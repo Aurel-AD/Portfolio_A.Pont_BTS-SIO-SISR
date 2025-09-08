@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio d'Aurélien Pont – BTS SIO SISR</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0a1a2f 0%, #1a3a4a 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    .top-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #0B8043;
+      padding: 1rem 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      animation: slideDown 0.8s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .menu-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      padding: 0 2rem;
+    }
+
+    .menu-item {
+      color: #37ff9f;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(55, 255, 159, 0.3);
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .menu-item:hover,
+    .menu-item.active {
+      background: linear-gradient(90deg, rgba(55, 255, 159, 0.15), rgba(55, 255, 159, 0.3));
+      border: 1px solid #37ff9f;
+      box-shadow: 0 0 15px rgba(55, 255, 159, 0.6);
+      transform: translateY(-3px);
+    }
+
+    .avatar-container {
+      margin-left: auto;
+    }
+
+    .avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 3px solid #37ff9f;
+      box-shadow: 0 0 10px rgba(55, 255, 159, 0.7);
+      object-fit: cover;
+      background: white;
+      transition: all 0.3s ease;
+    }
+
+    .avatar:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(55, 255, 159, 0.9);
+    }
+
+    /* Contenu principal */
+    .main-content {
+      padding-top: 120px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 2rem 2rem;
+    }
+
+    .hero-section {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 3rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      max-width: 800px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: bold;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: #dddddd;
+      line-height: 1.6;
+    }
+
+    /* Panneaux déroulants */
+    .dropdown-panel {
+      position: fixed;
+      top: 85px;
+      left: 0;
+      width: 100%;
+      background: #2c3e50;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      z-index: 999;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .dropdown-panel.active {
+      max-height: 300px;
+    }
+
+    .dropdown-content {
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .dropdown-section {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .section-title {
+      color: white;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .link-item {
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .link-item a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      display: block;
+      padding: 0.3rem 0;
+    }
+
+    .link-item a:hover {
+      color: #37ff9f;
+      transform: translateX(5px);
+    }
+
+    /* Robot Assistant - Version unifiée */
+    .robot-assistant {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1001;
+    }
+
+    .robot-button {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #37ff9f, #2ecc71);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: white;
+      box-shadow: 0 4px 20px rgba(55, 255, 159, 0.4);
+      transition: all 0.3s ease;
+      animation: robotPulse 2s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #lottie-robot {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+    }
+
+    .robot-emoji {
+      font-size: 2.5rem;
+      display: block;
+    }
+
+    @keyframes robotPulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 4px 20px rgba(55, 255, 159, 0.4);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 6px 30px rgba(55, 255, 159, 0.6);
+      }
+    }
+
+    .robot-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(55, 255, 159, 0.8);
+      animation-play-state: paused;
+    }
+
+    .robot-button:active {
+      transform: scale(0.95);
+    }
+
+    /* Panneau de l'assistant unifié */
+    .assistant-panel {
+      position: fixed;
+      bottom: 120px;
+      right: 20px;
+      width: 350px;
+      background: rgba(26, 26, 26, 0.98);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6);
+      border: 2px solid #37ff9f;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px) scale(0.9);
+      transition: all 0.3s ease;
+      z-index: 1002;
+    }
+
+    .assistant-panel.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    .assistant-header {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #37ff9f;
+      font-family: 'Montserrat', sans-serif;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(55, 255, 159, 0.3);
+    }
+
+    .assistant-header h3 {
+      font-size: 1.4rem;
+      margin-bottom: 5px;
+      text-shadow: 0 0 10px rgba(55, 255, 159, 0.5);
+    }
+
+    .assistant-header p {
+      font-size: 0.9rem;
+      color: #ccc;
+      margin-top: 5px;
+    }
+
+    .assistant-content {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .assistant-section {
+      margin-bottom: 15px;
+    }
+
+    .assistant-section-title {
+      font-size: 1rem;
+      color: #37ff9f;
+      margin-bottom: 10px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .assistant-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .assistant-btn {
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(55, 255, 159, 0.5);
+      padding: 12px 15px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .assistant-btn:hover {
+      background: rgba(55, 255, 159, 0.15);
+      border: 1px solid #37ff9f;
+      transform: translateX(5px);
+    }
+
+    .assistant-btn .emoji {
+      font-size: 1.3rem;
+      width: 24px;
+      text-align: center;
+    }
+
+    .assistant-contact {
+      background: rgba(55, 255, 159, 0.1);
+      padding: 15px;
+      border-radius: 12px;
+      margin-top: 15px;
+      border: 1px solid rgba(55, 255, 159, 0.3);
+    }
+
+    .contact-title {
+      font-size: 1rem;
+      color: #37ff9f;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .contact-info {
+      font-size: 0.9rem;
+      color: #ccc;
+      line-height: 1.5;
+    }
+
+    .contact-info a {
+      color: #37ff9f;
+      text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    .close-btn {
+      background: #ff4757;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 20px;
+      width: 100%;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .close-btn:hover {
+      background: #ff3742;
+      transform: scale(1.02);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .menu-container {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0 1rem;
+      }
+      
+      .hero-title {
+        font-size: 2rem;
+      }
+      
+      .hero-section {
+        padding: 2rem;
+        margin: 0 1rem;
+      }
+      
+      .main-content {
+        padding-top: 200px;
+      }
+      
+      .dropdown-panel {
+        top: 140px;
+      }
+      
+      .robot-button {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+      }
+      
+      .assistant-panel {
+        width: 300px;
+        bottom: 100px;
+        right: 10px;
+        padding: 20px;
+      }
+    }
+
+    /* Animation d'apparition */
+    .fade-in {
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="top-menu">
+      <div class="menu-container">
+        <div class="menu-item" data-section="biographie">Biographie</div>
+        <div class="menu-item" data-section="alternance">Mon alternance</div>
+        <div class="menu-item" data-section="veille">Mes sources</div>
+        <div class="menu-item" data-section="formation">Centre & Entreprise</div>
+        <div class="avatar-container">
+          <a href="cv.html" target="_blank">
+            <img src="https://placehold.co/100/37ff9f/000?text=CV" alt="Photo de profil" class="avatar" />
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+ <!-- Panneaux déroulants -->
+  <section class="dropdown-panel" id="biographie-panel" aria-label="Sous-menu Biographie">
+    <div class="dropdown-content">
+      <div class="dropdown-section">
+        <h3 class="section-title">À propos</h3>
+        <div class="link-item"><a href="1-apropos.html">À propos de moi</a></div>
+        <div class="link-item"><a href="2-parcours_pro.html">Parcours professionnel</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dropdown-panel" id="alternance-panel" aria-label="Sous-menu Alternance">
+    <div class="dropdown-content">
+      <div class="dropdown-section">
+        <h3 class="section-title">Entreprise</h3>
+        <div class="link-item"><a href="3-societe_novares.html">Novares</a></div>
+        <div class="link-item"><a href="4-experiences_pro.html">Mes expériences</a></div>
+      </div>
+      <div class="dropdown-section">
+        <h3 class="section-title">Compétences</h3>
+        <div class="link-item"><a href="5-tableau_competence.html">Tableau de compétences</a></div>
+        <div class="link-item"><a href="6-veille_techno.html">Veille technologique</a></div>
+      </div>
+      <div class="dropdown-section">
+        <h3 class="section-title">Sécurité</h3>
+        <div class="link-item"><a href="7-attestation_anssi_rgpd.html">Attestation MOOC</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dropdown-panel" id="veille-panel" aria-label="Sous-menu Veille technologique">
+    <div class="dropdown-content">
+      <div class="dropdown-section">
+        <h3 class="section-title">Sources</h3>
+        <div class="link-item"><a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+        <div class="link-item"><a href="https://www.it-connect.fr/" target="_blank" rel="noopener noreferrer">IT-CONNECT</a></div>
+        <div class="link-item"><a href="https://www.journaldunet.com/" target="_blank" rel="noopener noreferrer">Journal du Net</a></div>
+      </div>
+      <div class="dropdown-section">
+        <div class="link-item"><a href="https://www.lemondeinformatique.fr/" target="_blank" rel="noopener noreferrer">Le Monde Informatique</a></div>
+        <div class="link-item"><a href="https://www.leptidigital.fr/" target="_blank" rel="noopener noreferrer">LEPTIDIGITAL</a></div>
+        <div class="link-item"><a href="https://www.reddit.com/t/tech_news_and_discussion/" target="_blank" rel="noopener noreferrer">Reddit</a></div>
+      </div>
+      <div class="dropdown-section">
+        <div class="link-item"><a href="https://www.zataz.com/" target="_blank" rel="noopener noreferrer">ZATAZ</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dropdown-panel" id="formation-panel" aria-label="Sous-menu Formation">
+    <div class="dropdown-content">
+      <div class="dropdown-section">
+        <h3 class="section-title">Formateur</h3>
+        <div class="link-item"><a href="https://www.afpi-acmformation.com/" target="_blank" rel="noopener noreferrer">AFPI</a></div>
+      </div>
+      <div class="dropdown-section">
+        <h3 class="section-title">Entreprise</h3>
+        <div class="link-item"><a href="https://www.novaresteam.com/fr/" target="_blank" rel="noopener noreferrer">Novares</a></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Robot Assistant unifié -->
+  <div class="robot-assistant">
+    <button class="robot-button" id="robotBtn" title="Assistant Navia">
+      <div id="lottie-robot"></div>
+      <span class="robot-emoji">🤖</span>
+    </button>
+    
+    <div class="assistant-panel" id="assistantPanel">
+      <div class="assistant-header">
+        <h3>👋 Salut ! Je suis Navia</h3>
+        <p>Ton assistant virtuel</p>
+      </div>
+      
+      <div class="assistant-content">
+        <div class="assistant-section">
+          <div class="assistant-section-title">
+            <span>🌐</span> Navigation
+          </div>
+          <div class="assistant-buttons">
+            <button class="assistant-btn" data-action="about">
+              <span class="emoji">👤</span> À propos de moi
+            </button>
+            <button class="assistant-btn" data-action="company">
+              <span class="emoji">🏢</span> Mon entreprise (Novares)
+            </button>
+            <button class="assistant-btn" data-action="skills">
+              <span class="emoji">🔧</span> Mes compétences
+            </button>
+            <button class="assistant-btn" data-action="veille">
+              <span class="emoji">📰</span> Veille technologique
+            </button>
+          </div>
+        </div>
+        
+        <div class="assistant-section">
+          <div class="assistant-section-title">
+            <span>📞</span> Contact
+          </div>
+          <div class="assistant-contact">
+            <div class="contact-title">Me contacter</div>
+            <div class="contact-info">
+              <p><strong>Email:</strong> login@santal.com</p>
+              <p><strong>LinkedIn:</strong> <a href="#">Aurélien Pont</a></p>
+              <p><strong>CV:</strong> <a href="cv.html" target="_blank">Voir mon CV</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <button class="close-btn" id="closeBtn">Fermer l'assistant</button>
+    </div>
+  </div>
+
+  <!-- Contenu principal -->
+  <main class="main-content">
+    <div class="hero-section fade-in">
+      <h1 class="hero-title">Bienvenue sur mon portfolio</h1>
+      <p class="hero-subtitle">
+        Étudiant en BTS SIO option SISR en alternance chez Novares,
+        je vous invite à découvrir mes projets, mes compétences et mon parcours 
+        dans le domaine des systèmes, réseaux et cybersécurité.
+      </p>
+    </div>
+  </main>
+
+  <script>
+    // Variables globales
+    let robotAnimation = null;
+    
+    // Sélecteurs
+    const menuItems = document.querySelectorAll('.menu-item');
+    const panels = document.querySelectorAll('.dropdown-panel');
+    const robotBtn = document.getElementById('robotBtn');
+    const assistantPanel = document.getElementById('assistantPanel');
+    const closeBtn = document.getElementById('closeBtn');
+    const assistantButtons = document.querySelectorAll('.assistant-btn');
+    const lottieContainer = document.getElementById('lottie-robot');
+    const emojiElement = document.querySelector('.robot-emoji');
+
+    // Initialiser l'animation Lottie avec fallback robuste
+    function initLottieAnimation() {
+      console.log('Tentative de chargement de l\'animation Lottie...');
+      
+      // Vérifier si Lottie est disponible
+      if (typeof lottie === 'undefined') {
+        console.log('Lottie non chargé, utilisation du fallback emoji');
+        showEmojiFallback();
+        return;
+      }
+
+      try {
+        // Essayer de charger l'animation depuis un chemin alternatif
+        const animationPaths = [
+          'files/RobotSaludando.json',
+          'https://assets10.lottiefiles.com/packages/lf20_ukaaZIL1cL.json', // Animation robot générique
+          'https://assets1.lottiefiles.com/packages/lf20_6aY7Bc.json'      // Autre animation robot
+        ];
+        
+        let currentPathIndex = 0;
+        
+        const tryLoadAnimation = (pathIndex) => {
+          if (pathIndex >= animationPaths.length) {
+            console.log('Tous les chemins ont échoué, utilisation du fallback emoji');
+            showEmojiFallback();
+            return;
+          }
+          
+          const path = animationPaths[pathIndex];
+          console.log(`Essai de chargement depuis: ${path}`);
+          
+          robotAnimation = lottie.loadAnimation({
+            container: lottieContainer,
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: path
+          });
+          
+          robotAnimation.addEventListener('DOMLoaded', () => {
+            console.log('✅ Animation Lottie chargée avec succès !');
+            lottieContainer.style.display = 'block';
+            if (emojiElement) emojiElement.style.display = 'none';
+          });
+          
+          robotAnimation.addEventListener('data_failed', () => {
+            console.log(`❌ Échec du chargement depuis ${path}`);
+            tryLoadAnimation(pathIndex + 1);
+          });
+        };
+        
+        tryLoadAnimation(currentPathIndex);
+        
+        // Timeout de sécurité
+        setTimeout(() => {
+          if (!robotAnimation || (robotAnimation.isLoaded === false && !lottieContainer.style.display === 'block')) {
+            console.log('⏱️ Timeout - Utilisation du fallback emoji');
+            showEmojiFallback();
+          }
+        }, 4000);
+
+      } catch (error) {
+        console.log('❌ Erreur lors de l\'initialisation Lottie:', error);
+        showEmojiFallback();
+      }
+    }
+
+    function showEmojiFallback() {
+      console.log('🤖 Affichage du robot emoji en fallback');
+      if (lottieContainer) lottieContainer.style.display = 'none';
+      if (emojiElement) {
+        emojiElement.style.display = 'block';
+        emojiElement.innerHTML = '🤖';
+      }
+    }
+
+    // Gestion des menus déroulants
+    menuItems.forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const section = item.dataset.section;
+        const panel = document.getElementById(`${section}-panel`);
+        
+        // Fermer tous les panneaux
+        panels.forEach(p => p.classList.remove('active'));
+        menuItems.forEach(m => m.classList.remove('active'));
+        
+        // Ouvrir le panneau sélectionné
+        if (panel) {
+          panel.classList.add('active');
+          item.classList.add('active');
+        }
+      });
+    });
+
+    // Fermer les panneaux en cliquant ailleurs
+    document.addEventListener('click', () => {
+      panels.forEach(p => p.classList.remove('active'));
+      menuItems.forEach(m => m.classList.remove('active'));
+    });
+
+    // Gestion du robot assistant
+    robotBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      assistantPanel.classList.toggle('show');
+      
+      // Animation spéciale au clic
+      if (robotAnimation && robotAnimation.play) {
+        robotAnimation.goToAndPlay(0);
+      } else {
+        // Animation de fallback pour l'emoji
+        robotBtn.style.transform = 'scale(1.2)';
+        setTimeout(() => {
+          robotBtn.style.transform = 'scale(1)';
+        }, 300);
+      }
+    });
+
+    closeBtn.addEventListener('click', () => {
+      assistantPanel.classList.remove('show');
+    });
+
+    // Actions de l'assistant
+    assistantButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const action = btn.dataset.action;
+        
+        switch(action) {
+          case 'about':
+            // Ouvrir le panneau biographie
+            panels.forEach(p => p.classList.remove('active'));
+            menuItems.forEach(m => m.classList.remove('active'));
+            document.getElementById('biographie-panel').classList.add('active');
+            document.querySelector('[data-section="biographie"]').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            break;
+          case 'company':
+            // Ouvrir le panneau alternance/entreprise
+            panels.forEach(p => p.classList.remove('active'));
+            menuItems.forEach(m => m.classList.remove('active'));
+            document.getElementById('alternance-panel').classList.add('active');
+            document.querySelector('[data-section="alternance"]').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            break;
+          case 'skills':
+            // Ouvrir le panneau alternance (compétences)
+            panels.forEach(p => p.classList.remove('active'));
+            menuItems.forEach(m => m.classList.remove('active'));
+            document.getElementById('alternance-panel').classList.add('active');
+            document.querySelector('[data-section="alternance"]').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            break;
+          case 'veille':
+            // Ouvrir le panneau veille
+            panels.forEach(p => p.classList.remove('active'));
+            menuItems.forEach(m => m.classList.remove('active'));
+            document.getElementById('veille-panel').classList.add('active');
+            document.querySelector('[data-section="veille"]').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            break;
+        }
+        
+        assistantPanel.classList.remove('show');
+      });
+    });
+
+    // Fermer l'assistant en cliquant ailleurs
+    document.addEventListener('click', (e) => {
+      if (!robotBtn.contains(e.target) && !assistantPanel.contains(e.target)) {
+        assistantPanel.classList.remove('show');
+      }
+    });
+
+    // Initialisation
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('🚀 Portfolio initialisé - Chargement du robot...');
+      
+      // Attendre un peu que tout soit prêt
+      setTimeout(() => {
+        initLottieAnimation();
+      }, 500);
+    });
+
+    // Debug info
+    window.addEventListener('load', () => {
+      console.log('📊 Status:');
+      console.log('- Lottie disponible:', typeof lottie !== 'undefined');
+      console.log('- Animation chargée:', !!robotAnimation);
+      console.log('- Container trouvé:', !!lottieContainer);
+    });
+  </script>
+</body>
+</html>

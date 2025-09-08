@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>À propos - Portfolio d'Aurélien Pont — BTS SIO SISR</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Styles spécifiques à cette page */
+    .about-container {
+      margin-top: 60px;
+    }
+    
+    .decorative-circle {
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #37ff9f, #2ecc71);
+      border: 4px solid rgba(13, 27, 42, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .main-title {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #37ff9f;
+      margin-bottom: 2.5rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .section {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(55, 255, 159, 0.2);
+    }
+
+    .section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #37ff9f;
+      margin-bottom: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-content {
+      color: #e1e8ed;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .highlight {
+      color: #37ff9f;
+      font-weight: 600;
+    }
+
+    .quote-section {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5));
+      border-left: 4px solid #37ff9f;
+      padding: 3rem 2.5rem;
+      margin: 2rem 0;
+      border-radius: 0 20px 20px 0;
+      position: relative;
+      border: 2px solid #37ff9f;
+      overflow: hidden;
+    }
+
+    .quote-text {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: #37ff9f;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .quote-author {
+      text-align: right;
+      color: #b0b0b0;
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .fade-in {
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR --> 
+  <header>
+    <nav class="top-menu">
+      <div class="menu-container">
+        <div class="menu-item" data-section="biographie">Biographie</div>
+        <div class="menu-item" data-section="alternance">Mon alternance</div>
+        <div class="menu-item" data-section="veille">Mes sources</div>
+        <div class="menu-item" data-section="formation">Centre & Entreprise</div>
+        <div class="avatar-container">
+          <a href="cv.html" target="_blank">
+            <img src="img/profile.png" alt="Photo de profil" class="avatar" />
+          </a>
+        </div>
+      </div>
+    </nav>
+    
+    <!-- Panneaux déroulants -->
+    <section class="dropdown-panel" id="biographie-panel">
+      <div class="dropdown-content">
+        <div class="dropdown-section">
+          <h3 class="section-title">À propos</h3>
+          <div class="link-item"><a href="apropos.html">À propos de moi</a></div>
+          <div class="link-item"><a href="parcours_pro.html">Parcours</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dropdown-panel" id="alternance-panel">
+      <div class="dropdown-content">
+        <div class="dropdown-section">
+          <h3 class="section-title">Entreprise</h3>
+          <div class="link-item"><a href="societe_novares.html">Novares</a></div>
+          <div class="link-item"><a href="experience_pro.html">Expériences</a></div>
+        </div>
+        <div class="dropdown-section">
+          <h3 class="section-title">Compétences</h3>
+          <div class="link-item"><a href="tableau_competence.html">Compétences</a></div>
+          <div class="link-item"><a href="attestation_anssi_rgpd.html">Certifications</a></div>
+        </div>
+        <div class="dropdown-section">
+          <h3 class="section-title">Sécurité</h3>
+          <div class="link-item"><a href="attestation_anssi_rgpd.html">RGPD & ANSSI</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dropdown-panel" id="veille-panel">
+      <div class="dropdown-content">
+        <div class="dropdown-section">
+          <h3 class="section-title">Cybersécurité</h3>
+          <div class="link-item"><a href="https://www.zataz.com/" target="_blank" rel="noopener">ZATAZ</a></div>
+          <div class="link-item"><a href="https://www.lemondeinformatique.fr/" target="_blank" rel="noopener">Le Monde Informatique</a></div>
+        </div>
+        <div class="dropdown-section">
+          <h3 class="section-title">Technique & Systèmes</h3>
+          <div class="link-item"><a href="https://www.it-connect.fr/" target="_blank" rel="noopener">IT-Connect</a></div>
+          <div class="link-item"><a href="https://www.reddit.com/r/sysadmin/" target="_blank" rel="noopener">r/sysadmin (Reddit)</a></div>
+        </div>
+        <div class="dropdown-section">
+          <h3 class="section-title">Veille Digitale & IA</h3>
+          <div class="link-item"><a href="https://www.leptidigital.fr/" target="_blank" rel="noopener">LEPTIDIGITAL</a></div>
+          <div class="link-item"><a href="https://www.journaldunet.com/" target="_blank" rel="noopener">Journal du Net</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dropdown-panel" id="formation-panel">
+      <div class="dropdown-content">
+        <div class="dropdown-section">
+          <h3 class="section-title">Formation</h3>
+          <div class="link-item">
+            <a href="https://www.afpi-acmformation.com/" target="_blank">AFPI</a>
+          </div>
+        </div>
+        <div class="dropdown-section">
+          <h3 class="section-title">Entreprise</h3>
+          <div class="link-item">
+            <a href="https://www.novaresteam.com/fr/" target="_blank">Novares</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main class="main-content">
+    <div class="about-container fade-in">
+      <div class="decorative-circle">
+        <img src="img/profile.png" alt="Ma photo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+      </div>
+      
+      <h1 class="main-title">Bonjour, je me présente Aurélien</h1>
+      
+      <div class="section">
+        <h2 class="section-title">Parcours professionnel</h2>
+        <div class="section-content">
+          J'ai eu une carrière diversifiée dans le BTP avant de me reconvertir dans le numérique. Cependant, j'ai dû renoncer à ce 
+          dernier et j'ai décidé de me tourner vers l'informatique, un domaine qui me passionne depuis toujours.
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Formation</h2>
+        <div class="section-content">
+          J'ai confirmé mon choix lors d'une session chez <span class="highlight">Pôle Pro</span>, puis un stage avec le <span class="highlight">FRESC de Roubaix</span>. Ensuite, j'ai obtenu mon 
+          diplôme de <span class="highlight">Technicien d'Assistance en Informatique</span> en distanciel (8 mois) chez <span class="highlight">M2i Formation</span>.
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Actuellement</h2>
+        <div class="section-content">
+          Apprenti SISR en BTS Services Informatiques aux Organisations, option SISR. Je suis en alternance chez <span class="highlight">Novares</span>, un 
+          équipementier automobile, où j'interviens sur l'administration des systèmes, la gestion du réseau et le support technique. Cette 
+          formation me permet d'approfondir mes compétences techniques et d'acquérir une expérience solide et concrète en entreprise.
+        </div>
+      </div>
+
+      <div class="quote-section">
+        <img src="img/fresc.png" alt="Formation FRESC - Reconversion du BTP vers l'informatique" style="display: block; width: 100%; max-width: 600px; margin: 0 auto 1rem; border-radius: 10px;">
+        <div class="quote-content" style="text-align: center;">
+          <div class="quote-text" style="font-style: italic; font-size: 1.1rem; color: #37ff9f; margin-bottom: 0.5rem;">
+            "De la matière à la donnée, chaque métier a posé une brique de mon parcours."
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer">
+        © 2025 Pont Aurélien - Tous droits réservés
+      </div>
+    </div>
+  </main>
+
+  <!-- BOUTON FLOTTANT UNIQUE -->
+  <div class="navigation" id="backToHome">
+    <a href="index.html" class="nav-link">
+      <svg class="icon-arrow" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M10 8a.5.5 0 0 0-.5-.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H9.5A.5.5 0 0 0 10 8z"/>
+      </svg>
+      Accueil
+    </a>
+  </div>
+
+  <script src="menu.js"></script>
+  <script>
+    // Animation d'apparition au scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    });
+
+    document.querySelectorAll('.section').forEach((section) => {
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(20px)';
+      section.style.transition = 'all 0.6s ease';
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
