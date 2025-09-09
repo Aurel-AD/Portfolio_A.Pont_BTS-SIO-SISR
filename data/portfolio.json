@@ -1,0 +1,130 @@
+{
+  "profil": {
+    "nom": "PONT",
+    "prenom": "Aurélien",
+    "titre": "Assistant Administrateur Technique Informatique",
+    "email": "aurelienpont@gmail.com",
+    "telephone": "07.60.75.64.39",
+    "linkedin": "https://www.linkedin.com/in/aurelienpont",
+    "localisation": "Wattrelos (59150), Hauts-de-France",
+    "age": 40,
+    "permis": "Permis B",
+    "photo": "img/Avatar.png",
+    "presentation": "Alternant en BTS SIO option SISR, motivé et passionné par l'administration des systèmes, la sécurité et l'assistance technique."
+  },
+  "formation": [
+    {
+      "diplome": "BTS Services Informatiques aux Organisations - Option SISR",
+      "etablissement": "AFPI – Marcq-en-Barœul",
+      "annees": "Depuis octobre 2024",
+      "statut": "En cours"
+    },
+    {
+      "diplome": "Titre professionnel Technicien d'Assistance Informatique",
+      "etablissement": "M2I Formation",
+      "annees": "2024"
+    },
+    {
+      "diplome": "CAP Poissonnier/Traiteur",
+      "etablissement": "Campus Pro – Hellemmes",
+      "annees": "2017"
+    },
+    {
+      "diplome": "CAP Carreleur/Mosaïste – CAP Plâtrier/Plaquiste",
+      "etablissement": "BATIFORM – Hazebrouck",
+      "annees": "2007 – 2009"
+    },
+    {
+      "diplome": "CAP Électrotechnique (Niveau BEP)",
+      "etablissement": "Dynah Derrick – Villeneuve d'Ascq",
+      "annees": "2005"
+    }
+  ],
+  "experience": [
+    {
+      "poste": "Assistant administrateur technique informatique",
+      "entreprise": "Novares",
+      "lieu": "Lens",
+      "periode": "Depuis octobre 2024",
+      "missions": [
+        "Installation, configuration et maintenance de postes fixes et portables",
+        "Déploiement automatisé d'OS et logiciels via SCCM",
+        "Gestion imprimantes et serveurs d’impression",
+        "Mise en place de MFA sur PC et mobiles",
+        "Administration comptes, groupes et droits d'accès",
+        "Gestion des VPN (FortiClient, EMS)",
+        "Supervision Wi-Fi invité via Cisco Meraki",
+        "Sauvegardes/restaurations et gestion espace disque",
+        "Assistance utilisateurs (DameWare, TeamViewer, RDS)",
+        "Traitement incidents via Freshdesk"
+      ]
+    },
+    {
+      "poste": "Technicien informatique",
+      "entreprise": "FRESC",
+      "lieu": "Roubaix",
+      "periode": "Février 2024 – Avril 2024",
+      "missions": [
+        "Maintenance préventive postes utilisateurs",
+        "Déploiement et configuration postes de travail",
+        "Installation/retrait matériel (PC, écrans, périphériques)",
+        "Création de masters et déploiements standardisés",
+        "Diagnostic et résolution pannes matérielles/logicielles/réseau",
+        "Configuration switches (Cisco, D-Link) et routeurs Wi-Fi"
+      ]
+    },
+    {
+      "poste": "Technicien informatique",
+      "entreprise": "FRESC",
+      "lieu": "Roubaix",
+      "periode": "Janvier 2023",
+      "missions": [
+        "Mise en route PC fixes et portables",
+        "Installation/désinstallation de logiciels"
+      ]
+    },
+    {
+      "poste": "Poissonnier-Traiteur",
+      "entreprise": "Auchan Retail",
+      "lieu": "Hauts-de-France",
+      "periode": "2016 – 2023"
+    },
+    {
+      "poste": "Carreleur-Mosaïste / Plâtrier-Plaquiste",
+      "entreprise": "BTP",
+      "lieu": "Hauts-de-France",
+      "periode": "2003 – 2015"
+    }
+  ],
+  "competences": {
+    "support_assistance": ["Support N1 et N2", "Assistance à distance", "DameWare", "TeamViewer", "RDS", "Gestion tickets Freshdesk", "Workflows"],
+    "systemes_deploiement": ["Windows (Dell, Lenovo)", "SCCM", "Active Directory", "DFS", "Software Center", "Correctifs/Mises à jour"],
+    "securite_reseau": ["VPN FortiClient & EMS", "MFA", "Cisco Meraki Wi-Fi", "Gestion des droits d'accès", "Configuration réseau"],
+    "administration": ["Sauvegarde/Restaurations", "Gestion serveurs distants", "Maintenance préventive", "Gestion imprimantes"]
+  },
+  "certifications": [
+    {
+      "titre": "MOOC ANSSI",
+      "domaine": "Sécurité des systèmes d'information"
+    },
+    {
+      "titre": "MOOC RGPD",
+      "domaine": "Protection des données"
+    }
+  ],
+  "langues": [
+    {
+      "langue": "Français",
+      "niveau": "Langue maternelle"
+    },
+    {
+      "langue": "Anglais",
+      "niveau": "Technique"
+    }
+  ],
+  "centres_interet": [
+    "Plongée sous-marine N3 - RIFAP",
+    "Cuisine & Pâtisserie",
+    "Dirigeant bénévole – Enfants Wattrelos FC"
+  ]
+}
