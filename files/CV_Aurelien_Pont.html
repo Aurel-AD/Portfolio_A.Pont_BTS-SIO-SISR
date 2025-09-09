@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Aurélien Pont</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- Variables Couleurs Bleu et Vert --- */
+        :root {
+            --primary: #1565C0;     /* Bleu foncé (titres) */
+            --secondary: #2E7D32;   /* Vert foncé (éléments secondaires) */
+            --accent: #00BFA5;      /* Vert turquoise (éléments importants) */
+            --light: #E3F2FD;       /* Bleu très clair (arrière-plans) */
+            --text: #263238;        /* Texte standard */
+        }
+        
+        /* --- Reset et Styles de Base --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .cv-container {
+            max-width: 210mm; /* Format A4 */
+            min-height: 297mm;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        /* --- En-tête --- */
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 25px;
+            border-bottom: 3px solid var(--secondary);
+            position: relative;
+        }
+        .header::after {
+            content: "";
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        .name {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+        .job-title {
+            font-size: 18px;
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 15px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .icon {
+            color: var(--secondary);
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* --- Sections --- */
+        .section {
+            margin-bottom: 25px;
+        }
+        .section-title {
+            font-size: 20px;
+            color: var(--primary);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--light);
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        .section-title i {
+            color: var(--secondary);
+        }
+        
+        /* --- Profil --- */
+        .profile {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        /* --- Expériences --- */
+        .experience {
+            margin-bottom: 20px;
+        }
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+        .exp-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 17px;
+        }
+        .exp-company {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        .exp-date {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 15px;
+        }
+        .exp-details {
+            margin-left: 10px;
+        }
+        .subcategory {
+            margin: 12px 0 8px 0;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 15px;
+            padding-left: 5px;
+            border-left: 3px solid var(--accent);
+        }
+        
+        /* --- Compétences --- */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .skill-category {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border-top: 3px solid var(--secondary);
+        }
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            padding-bottom: 5px;
+            border-bottom: 1px dashed var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .skill-category h3 i {
+            color: var(--secondary);
+        }
+        .skill-category ul {
+            list-style-type: none;
+            padding-left: 5px;
+        }
+        .skill-category li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .skill-category li::before {
+            content: "•";
+            color: var(--secondary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* --- Formations --- */
+        .education-item {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 2px solid var(--light);
+            transition: border-color 0.3s;
+        }
+        .education-item:hover {
+            border-left-color: var(--accent);
+        }
+        .edu-title {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        .edu-details {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 3px;
+        }
+        .edu-institution {
+            font-style: italic;
+        }
+        .edu-date {
+            color: var(--accent);
+            font-weight: 500;
+        }
+        
+        /* --- Centres d'intérêt --- */
+        .interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .interest-item {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        
+        /* --- Impression --- */
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            .cv-container {
+                box-shadow: none;
+                padding: 15px;
+                max-width: 100%;
+            }
+            .no-print {
+                display: none;
+            }
+            .skill-category {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+
+        /* --- Bouton d'impression --- */
+        .print-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .print-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <!-- En-tête -->
+        <div class="header">
+            <div class="name">Aurélien Pont</div>
+            <div class="job-title">Assistant administrateur technique informatique</div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="icon"><i class="fas fa-envelope"></i></span>
+                    <span>aurelienpont@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <span class="icon"><i class="fas fa-phone"></i></span>
+                    <span>07.60.75.64.39</span>
+                </div>
+                <div class="contact-item">
+                    <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
+                    <span>Hauts-de-France</span>
+                </div>
+                <div class="contact-item">
+                    <span class="icon"><i class="fas fa-car"></i></span>
+                    <span>Permis B</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profil -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-user"></i>Profil</h2>
+            <div class="profile">
+                Technicien informatique expérimenté avec 2 ans d'expérience en support technique niveau 1-2 (sur site et à distance). Compétences en administration système et réseau, et déploiement automatisé via SCCM. Expertise dans la résolution de problèmes, l'assistance utilisateur, la sécurisation des postes et la documentation. Objectif : garantir un environnement numérique fluide, fiable et accessible.
+            </div>
+        </div>
+
+        <!-- Expériences professionnelles -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-briefcase"></i>Expériences professionnelles</h2>
+            
+            <div class="experience">
+                <div class="exp-header">
+                    <div>
+                        <span class="exp-title">Assistant administrateur technique informatique</span> - 
+                        <span class="exp-company">Novares Lens</span>
+                    </div>
+                    <div class="exp-date">Depuis octobre 2024</div>
+                </div>
+                <div class="exp-details">
+                    <div class="subcategory">Support Utilisateur & Gestion des Incidents</div>
+                    <ul>
+                        <li>Résolution des incidents niveau 1-2 (diagnostic matériel/logiciel)</li>
+                        <li>Assistance utilisateurs à distancia (DameWare, TeamViewer, RDS)</li>
+                        <li>Gestion des tickets et demandes via Freshworks</li>
+                        <li>Formation des utilisateurs aux outils internes et bonnes pratiques de sécurité</li>
+                    </ul>
+                    
+                    <div class="subcategory">Déploiement & Maintenance des Postes</div>
+                    <ul>
+                        <li>Installation, configuration et maintenance des postes de travail</li>
+                        <li>Déploiement automatisé des OS et logiciels via Microsoft SCCM</li>
+                        <li>Installation et mise à jour des pilotes et logiciels (DFS, Software Center)</li>
+                        <li>Déploiement et maintenance des pilotes d'imprimante (locaux/partagés)</li>
+                    </ul>
+                    
+                    <div class="subcategory">Administration Système & Sécurité</div>
+                    <ul>
+                        <li>Gestion des comptes utilisateurs et des droits d'accès (Active Directory)</li>
+                        <li>Configuration et maintenance du VPN (FortiClient/EMS Fortinet)</li>
+                        <li>Supervision des mises à jour de sécurité et correctifs</li>
+                        <li>Sauvegarde et restauration des données sur serveurs distants</li>
+                        <li>Mise en place et gestion de l'authentification multifacteur (MFA)</li>
+                        <li>Administration du réseau Wi-Fi invités (Cisco Meraki)</li>
+                    </ul>
+                    
+                    <div class="subcategory">Documentation & Conformité</div>
+                    <ul>
+                        <li>Documentation des procédures et conformité TISAX</li>
+                        <li>Rédaction de guides utilisateurs et FAQ techniques</li>
+                        <li>Suivi des workflows RH via SVIF (mouvements du personnel)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience">
+                <div class="exp-header">
+                    <div>
+                        <span class="exp-title">Technicien informatique</span> - 
+                        <span class="exp-company">FRESC Roubaix</span>
+                    </div>
+                    <div class="exp-date">Février 2024 - Avril 2024</div>
+                </div>
+                <div class="exp-details">
+                    <ul>
+                        <li>Maintenance préventive et optimisation des postes utilisateurs</li>
+                        <li>Déploiement et configuration complète des postes de travail</li>
+                        <li>Installation et remplacement de matériel informatique</li>
+                        <li>Déploiement automatisé des systèmes d'exploitation et logiciels</li>
+                        <li>Résolution des incidents niveau 1-2 (diagnostic et réparation)</li>
+                        <li>Configuration et administration des switches (Cisco, D-Link)</li>
+                        <li>Paramétrage des routeurs Wi-Fi et infrastructure réseau</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience">
+                <div class="exp-header">
+                    <div>
+                        <span class="exp-title">Technicien informatique</span> - 
+                        <span class="exp-company">FRESC Roubaix</span>
+                    </div>
+                    <div class="exp-date">Janvier 2023</div>
+                </div>
+                <div class="exp-details">
+                    <ul>
+                        <li>Installation/désinstallation de logiciels et mise en route of PC</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Compétences -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-tools"></i>Compétences</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i class="fas fa-headset"></i>Support & Assistance</h3>
+                    <ul>
+                        <li>Support technique niveau 1 et 2 (sur site et à distance)</li>
+                        <li>Gestion des tickets</li>
+                        <li>Suivi des workflows (entrées, sorties, mouvements)</li>
+                        <li>Rédaction de procédures utilisateurs</li>
+                        <li>Formation des utilisateurs</li>
+                        <li>Documentation technique (processus, conformité TISAX)</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-laptop"></i>Systèmes & Déploiement</h3>
+                    <ul>
+                        <li>Installation et configuration de postes (fixes et portables)</li>
+                        <li>Déploiement d'OS Windows et logiciels via SCCM</li>
+                        <li>Mises à jour, correctifs de sécurité, restauration système</li>
+                        <li>Installation de pilotes et logiciels (DFS, Software Center)</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-shield-alt"></i>Sécurité & Réseau</h3>
+                    <ul>
+                        <li>Configuration VPN FortiClient et gestion EMS</li>
+                        <li>Authentification multifacteur (MFA)</li>
+                        <li>Gestion du Wi-Fi invités (Cisco Meraki)</li>
+                        <li>Gestion des droits d'accès, comptes et groupes utilisateurs</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-server"></i>Administration & Gestion</h3>
+                    <ul>
+                        <li>Sauvegarde et récupération de données sur serveurs distants</li>
+                        <li>Gestion de l'espace disque collaborateur</li>
+                        <li>Administration de comptes (utilisateurs, ordinateurs)</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-wrench"></i>Outils & Environnements</h3>
+                    <ul>
+                        <li>SCCM, DFS, Citrix, DameWare, TeamViewer</li>
+                        <li>Cisco Meraki, FortiClient, EMS</li>
+                        <li>Windows (Dell, Lenovo), Active Directory</li>
+                        <li>Freshworks (ticketing), SVIF (workflows)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diplômes et Formations -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i>Diplômes et Formations</h2>
+            
+            <div class="education-item">
+                <div class="edu-title">BTS SIO Solutions d'Infrastructure, Systèmes et Réseaux</div>
+                <div class="edu-details">
+                    <span class="edu-institution">AFPI Marçon-en-Baroeul</span>
+                    <span class="edu-date">Depuis octobre 2024</span>
+                </div>
+            </div>
+            
+            <div class="education-item">
+                <div class="edu-title">Titre professionnel Technicien d'Assistance Informatique (BAC)</div>
+                <div class="edu-details">
+                    <span class="edu-institution">Mal Formation Distancielle</span>
+                    <span class="edu-date">2024</span>
+                </div>
+            </div>
+            
+            <div class="education-item">
+                <div class="edu-title">MOOC ANSSI - Sécurité des systèmes d'information</div>
+                <div class="edu-details">
+                    <span class="edu-institution">ANSSI</span>
+                    <span class="edu-date">2025</span>
+                </div>
+            </div>
+            
+            <div class="education-item">
+                <div class="edu-title">MOOC RGPD - Protection des données</div>
+                <div class="edu-details">
+                    <span class="edu-institution">En ligne</span>
+                    <span class="edu-date">2025</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Centres d'intérêt -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-heart"></i>Centres d'intérêt</h2>
+            <div class="interests">
+                <div class="interest-item">Plongée sous-marine N3-RIFAP</div>
+                <div class="interest-item">Cuisine et pâtisserie</div>
+                <div class="interest-item">Encadrement bénévole (Wattrelos FC)</div>
+            </div>
+        </div>
+    </div>
+
+    <button class="print-btn no-print" onclick="window.print()">
+        <i class="fas fa-print"></i> Imprimer ou sauvegarder en PDF
+    </button>
+
+    <script>
+        // Ajouter un effet de fondu lors du chargement de la page
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.opacity = 0;
+            document.body.style.transition = 'opacity 0.5s ease-in';
+            
+            setTimeout(function() {
+                document.body.style.opacity = 1;
+            }, 100);
+        });
+    </script>
+</body>
+</html>
