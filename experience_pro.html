@@ -220,13 +220,16 @@
       min-width: 200px;
     }
 
-    .section-title {
+    /* CORRECTION : Style pour les titres de section avec ligne verte en dessous */
+    .dropdown-section .section-title {
       color: white;
       font-weight: bold;
       font-size: 1.1rem;
       margin-bottom: 1rem;
       text-align: center;
       font-family: 'Montserrat', sans-serif;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #37ff9f;
     }
 
     .link-item {
@@ -277,21 +280,23 @@
       .container {
         padding: 25px;
       }
+      
       .navigation {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  z-index: 1000;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  opacity: 0;
-  transform: translateY(20px);
-}
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 1000;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        opacity: 0;
+        transform: translateY(20px);
+      }
 
-.navigation.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+      .navigation.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+    
     .floating-back-button {
       position: fixed;
       bottom: 30px;
@@ -311,131 +316,141 @@
         font-size: 0.9rem;
       }
     }
+    
     .navigation {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  z-index: 1000;
-  opacity: 1;
-  transform: translateY(0);
-}
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.nav-link {
-  display: inline-flex;
-  align-items: center;
-  background: linear-gradient(135deg, #0B8043 0%, #37ff9f 100%);
-  color: white;
-  padding: 12px 20px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-  border: 1px solid rgba(55, 255, 159, 0.5);
-}
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      background: linear-gradient(135deg, #0B8043 0%, #37ff9f 100%);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(55, 255, 159, 0.5);
+    }
 
-.nav-link:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(55, 255, 159, 0.4);
-  background: linear-gradient(135deg, #37ff9f 0%, #0B8043 100%);
-}
+    .nav-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(55, 255, 159, 0.4);
+      background: linear-gradient(135deg, #37ff9f 0%, #0B8043 100%);
+    }
 
-.icon-arrow {
-  margin-right: 8px;
-}
+    .icon-arrow {
+      margin-right: 8px;
+    }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .navigation {
-    bottom: 20px;
-    right: 20px;
-  }
-  
-  .nav-link {
-    padding: 10px 16px;
-    font-size: 0.9rem;
-  }
-}
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navigation {
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .nav-link {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 <body>
 
   <!-- Navigation -->
   <header>
-<nav class="top-menu">
-  <div class="menu-container">
-    <div class="menu-item" data-section="biographie">Biographie</div>
-    <div class="menu-item" data-section="alternance" class="active">Mon alternance</div>
-    <div class="menu-item" data-section="veille">Mes sources</div>
-    <div class="menu-item" data-section="formation">Centre & Entreprise</div>
-    <div class="avatar-container">
-      <a href="cv.html" target="_blank">
-        <img src="https://placehold.co/100/37ff9f/000?text=CV" alt="Photo de profil" class="avatar" />
-      </a>
-    </div>
-  </div>
-</nav>
+    <nav class="top-menu">
+      <div class="menu-container">
+        <div class="menu-item" data-section="biographie">Biographie</div>
+        <div class="menu-item" data-section="alternance" class="active">Mon alternance</div>
+        <div class="menu-item" data-section="veille">Mes sources</div>
+        <div class="menu-item" data-section="formation">Centre & Entreprise</div>
+        <div class="avatar-container">
+          <a href="cv.html" target="_blank">
+            <img src="https://placehold.co/100/37ff9f/000?text=CV" alt="Photo de profil" class="avatar" />
+          </a>
+        </div>
+      </div>
+    </nav>
   </header>
 
   <!-- Panneaux déroulants -->
   <section class="dropdown-panel" id="biographie-panel">
-    <div class="dropdown-content">
-      <div class="dropdown-section">
-        <h3 class="section-title">À propos</h3>
-        <div class="link-item"><a href="#a-propos">À propos de moi</a></div>
-        <div class="link-item"><a href="#parcours">Parcours</a></div>
-      </div>
+  <div class="dropdown-content">
+    <div class="dropdown-section">
+      <h3 class="section-title">À propos</h3>  <!-- ← Classe ajoutée -->
+      <div class="link-item"><a href="apropos.html">À propos de moi</a></div>
+      <div class="link-item"><a href="parcours_pro.html">Parcours</a></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="dropdown-panel" id="alternance-panel">
-    <div class="dropdown-content">
-      <div class="dropdown-section">
-        <h3 class="section-title">Entreprise</h3>
-        <div class="link-item"><a href="#entreprise">Novares</a></div>
-        <div class="link-item"><a href="experience-pro.html">Expériences</a></div>
-      </div>
-      <div class="dropdown-section">
-        <h3 class="section-title">Compétences</h3>
-        <div class="link-item"><a href="#competences">Compétences</a></div>
-        <div class="link-item"><a href="#certifications">Certifications</a></div>
-      </div>
-      <div class="dropdown-section">
-        <h3 class="section-title">Sécurité</h3>
-        <div class="link-item"><a href="#rgpd">RGPD & ANSSI</a></div>
-      </div>
+<section class="dropdown-panel" id="alternance-panel">
+  <div class="dropdown-content">
+    <div class="dropdown-section">
+      <h3 class="section-title">Entreprise</h3>  <!-- ← Classe ajoutée -->
+      <div class="link-item"><a href="societe_novares.html">Novares</a></div>
+      <div class="link-item"><a href="experience_pro.html">Expériences</a></div>
     </div>
-  </section>
+    <div class="dropdown-section">
+      <h3 class="section-title">Compétences</h3>  <!-- ← Classe ajoutée -->
+      <div class="link-item"><a href="tableau_competence.html">Compétences</a></div>
+      <div class="link-item"><a href="attestation_anssi_rgpd.html">Certifications</a></div>
+    </div>
+    <div class="dropdown-section">
+      <h3 class="section-title">Sécurité</h3>  <!-- ← Classe ajoutée -->
+      <div class="link-item"><a href="attestation_anssi_rgpd.html">RGPD & ANSSI</a></div>
+    </div>
+  </div>
+</section>
 
-  <section class="dropdown-panel" id="veille-panel">
-    <div class="dropdown-content">
-      <div class="dropdown-section">
-        <h3 class="section-title">Cybersécurité</h3>
-        <div class="link-item"><a href="https://www.zataz.com/" target="_blank">ZATAZ</a></div>
-        <div class="link-item"><a href="https://www.lemondeinformatique.fr/" target="_blank">Le Monde Informatique</a></div>
-      </div>
-      <div class="dropdown-section">
-        <h3 class="section-title">Technique</h3>
-        <div class="link-item"><a href="https://www.it-connect.fr/" target="_blank">IT-Connect</a></div>
-        <div class="link-item"><a href="https://www.reddit.com/r/sysadmin/" target="_blank">r/sysadmin</a></div>
-      </div>
+<section class="dropdown-panel" id="veille-panel">
+  <div class="dropdown-content">
+    <div class="dropdown-section">
+      <h3 class="section-title">Cybersécurité</h3>  <!-- ← Classe ajoutée -->
+      <div class="link-item"><a href="https://www.zataz.com/" target="_blank" rel="noopener">ZATAZ</a></div>
+      <div class="link-item"><a href="https://www.lemondeinformatique.fr/" target="_blank" rel="noopener">Le Monde Informatique</a></div>
     </div>
-  </section>
+    <div class="dropdown-section">
+      <h3 class="section-title">Technique & Systèmes</h3>  <!-- ← Classe ajoutée -->
+      <div class="link-item"><a href="https://www.it-connect.fr/" target="_blank" rel="noopener">IT-Connect</a></div>
+      <div class="link-item"><a href="https://www.reddit.com/r/sysadmin/" target="_blank" rel="noopener">r/sysadmin (Reddit)</a></div>
+    </div>
+    <div class="dropdown-section">
+      <h3 class="section-title">Veille Digitale & IA</h3>  <!-- ← Classe ajoutée -->
+      <div class="link-item"><a href="https://www.leptidigital.fr/" target="_blank" rel="noopener">LEPTIDIGITAL</a></div>
+      <div class="link-item"><a href="https://www.journaldunet.com/" target="_blank" rel="noopener">Journal du Net</a></div>
+    </div>
+  </div>
+</section>
 
-  <section class="dropdown-panel" id="formation-panel">
-    <div class="dropdown-content">
-      <div class="dropdown-section">
-        <h3 class="section-title">Formation</h3>
-        <div class="link-item"><a href="https://www.afpi-acmformation.com/" target="_blank">AFPI</a></div>
-      </div>
-      <div class="dropdown-section">
-        <h3 class="section-title">Entreprise</h3>
-        <div class="link-item"><a href="https://www.novaresteam.com/fr/" target="_blank">Novares</a></div>
+<section class="dropdown-panel" id="formation-panel">
+  <div class="dropdown-content">
+    <div class="dropdown-section">
+      <h3 class="section-title">Formation</h3>  <!-- ← Classe ajoutée -->
+      <div class="link-item">
+        <a href="https://www.afpi-acmformation.com/" target="_blank">AFPI</a>
       </div>
     </div>
-  </section>
+    <div class="dropdown-section">
+      <h3 class="section-title">Entreprise</h3>  <!-- ← Classe ajoutée -->
+      <div class="link-item">
+        <a href="https://www.novaresteam.com/fr/" target="_blank">Novares</a>
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- Contenu principal -->
   <div class="container">
@@ -449,7 +464,7 @@
       </li>
       <li>
         <a href="mission2.html" class="mission-link">
-          <strong>Déployer automatiquement des systèmes d’exploitation et logiciels</strong> via Microsoft SCCM
+          <strong>Déployer automatiquement des systèmes d'exploitation et logiciels</strong> via Microsoft SCCM
         </a>
       </li>
       <li>
@@ -459,7 +474,7 @@
       </li>
       <li>
         <a href="mission4.html" class="mission-link">
-          <strong>Gérer les imprimantes locales, partagées et via un serveur d’impression</strong>
+          <strong>Gérer les imprimantes locales, partagées et via un serveur d'impression</strong>
         </a>
       </li>
       <li>
@@ -474,7 +489,7 @@
       </li>
       <li>
         <a href="mission7.html" class="mission-link">
-          <strong>Administrer les comptes, groupes et droits d’accès</strong> (Active Directory)
+          <strong>Administrer les comptes, groupes et droits d'accès</strong> (Active Directory)
         </a>
       </li>
       <li>
@@ -489,7 +504,7 @@
       </li>
       <li>
         <a href="mission10.html" class="mission-link">
-          <strong>Sauvegarder et restaurer des données, gérer l’espace disque</strong> sur serveurs distants
+          <strong>Sauvegarder et restaurer des données, gérer l'espace disque</strong> sur serveurs distants
         </a>
       </li>
       <li>
@@ -499,12 +514,12 @@
       </li>
       <li>
         <a href="mission12.html" class="mission-link">
-          <strong>Traiter les incidents et demandes</strong> via l’outil de ticketing Freshworks
+          <strong>Traiter les incidents et demandes</strong> via l'outil de ticketing Freshworks
         </a>
       </li>
       <li>
         <a href="mission13.html" class="mission-link">
-          <strong>Suivre les workflows d’entrées, sorties et mouvements</strong> via ROK SWF
+          <strong>Suivre les workflows d'entrées, sorties et mouvements</strong> via ROK SWF
         </a>
       </li>
     </ul>
@@ -545,16 +560,16 @@
     });
   </script>
 
-<div class="navigation" id="backToHome">
-  <a href="index.html" class="nav-link">
-    <svg class="icon-arrow" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-      <path d="M10 8a.5.5 0 0 0-.5-.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H9.5A.5.5 0 0 0 10 8z"/>
-    </svg>
-    Accueil
-  </a>
-</div>
+  <div class="navigation" id="backToHome">
+    <a href="index.html" class="nav-link">
+      <svg class="icon-arrow" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M10 8a.5.5 0 0 0-.5-.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H9.5A.5.5 0 0 0 10 8z"/>
+      </svg>
+      Accueil
+    </a>
+  </div>
 
-<script src="script.js"></script>
-<script src="menu.js"></script>
+  <script src="script.js"></script>
+  <script src="menu.js"></script>
 </body>
 </html>
