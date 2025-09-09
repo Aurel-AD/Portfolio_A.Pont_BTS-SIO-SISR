@@ -99,7 +99,7 @@
       box-shadow: 0 0 20px rgba(55, 255, 159, 0.9);
     }
 
-    /* Panneaux déroulants - Style index.html */
+    /* Panneaux déroulants */
     .dropdown-panel {
       position: fixed;
       top: 85px;
@@ -139,6 +139,8 @@
       margin-bottom: 1rem;
       text-align: center;
       font-family: 'Montserrat', sans-serif;
+      padding-bottom: 0.5rem;           /* ← Ligne ajoutée */
+      border-bottom: 2px solid #37ff9f; /* ← Ligne ajoutée */
     }
 
     .link-item {
@@ -587,6 +589,10 @@
         padding-top: 200px;
       }
       
+      .dropdown-panel {
+        top: 140px;
+      }
+      
       .timeline {
         padding-left: 1rem;
       }
@@ -634,8 +640,8 @@
         <div class="menu-item" data-section="veille">Mes sources</div>
         <div class="menu-item" data-section="formation">Centre & Entreprise</div>
         <div class="avatar-container">
-          <a href="cv.html" target="_blank">
-            <img src="https://placehold.co/100/37ff9f/000?text=CV" alt="Photo de profil" class="avatar" />
+          <a href="files/cv.html" target="_blank">
+            <img src="img/Avatar.png" alt="Photo de profil" class="avatar" />
           </a>
         </div>
       </div>
@@ -819,185 +825,47 @@
               </div>
             </div>
           </div>
-
-          <!-- Stage 2024 -->
-          <div class="timeline-item">
-            <div class="timeline-date">Février 2024 - Avril 2024</div>
-            <h3 class="timeline-title">Technicien Informatique</h3>
-            <div class="timeline-company">Stage au Lycée Saint-Rémi et Léonard-De-Vinci, Roubaix</div>
-            <div class="timeline-description">
-              Stage de 3 mois dans le service informatique d'un établissement scolaire, 
-              me permettant de découvrir la gestion d'un parc informatique éducatif.
-            </div>
-            <ul class="timeline-tasks">
-              <li>Gestion de la maintenance préventive des postes utilisateurs</li>
-              <li>Mise en place, déploiement et personnalisation des postes utilisateurs</li>
-              <li>Installations/désinstallations du matériel informatique (tours, écrans, imprimantes)</li>
-              <li>Création de master pour serveur ou poste informatique</li>
-              <li>Dépannages divers (réseaux, mise à jour des logiciels et hardwares)</li>
-              <li>Configuration de switch paramétrable (CISCO, DLINK)</li>
-              <li>Configuration de routeur Wifi (paramétrage, réseaux)</li>
-            </ul>
-            <div class="skills-section">
-              <div class="skills-title">Compétences développées :</div>
-              <div class="skills-list">
-                <span class="skill-tag">Maintenance</span>
-                <span class="skill-tag">Cisco</span>
-                <span class="skill-tag">Réseau</span>
-                <span class="skill-tag">Masterisation</span>
-                <span class="skill-tag">Configuration Switch</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Premier stage 2023 -->
-          <div class="timeline-item">
-            <div class="timeline-date">Janvier 2023</div>
-            <h3 class="timeline-title">Technicien Informatique</h3>
-            <div class="timeline-company">Stage Inclu'Pro au Lycée Saint-Rémi et Léonard-De-Vinci, Roubaix</div>
-            <div class="timeline-description">
-              Premier contact avec le monde professionnel informatique dans le cadre du programme Inclu'Pro.
-            </div>
-            <ul class="timeline-tasks">
-              <li>Collaboration avec l'équipe informatique pour la gestion du parc informatique</li>
-              <li>Mise en route de PC fixes et de PC portables</li>
-              <li>Installations/désinstallations des programmes, des tours d'ordinateur</li>
-            </ul>
-          </div>
-
-          <!-- Section dépliante pour les expériences antérieures -->
-          <div class="toggle-section">
-            <div class="toggle-header" onclick="toggleOtherExperiences()">
-              <div class="toggle-title">Autres expériences</div>
-              <div class="toggle-icon">▼</div>
-            </div>
-            <div class="toggle-content" id="other-experiences">
-              <!-- Expérience antérieure -->
-              <div class="timeline-item">
-                <div class="timeline-date">2016 - 2023</div>
-                <h3 class="timeline-title">Poissonnier/Traiteur</h3>
-                <div class="timeline-company">Auchan Retail, Hauts-de-France</div>
-                <div class="timeline-description">
-                  Expérience dans le secteur alimentaire qui m'a permis de développer 
-                  des compétences en service client et en gestion d'équipe.
-                </div>
-              </div>
-
-              <!-- Première expérience -->
-              <div class="timeline-item">
-                <div class="timeline-date">2003 - 2015</div>
-                <h3 class="timeline-title">Ouvrier Polyvalent</h3>
-                <div class="timeline-company">BTP, Hauts-de-France</div>
-                <div class="timeline-description">
-                  Début de carrière dans le secteur du bâtiment, développement de compétences 
-                  techniques et de rigueur professionnelle.
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </main>
 
-  <!-- Bouton flottant Retour à l'accueil -->
-  <div class="navigation" id="backToHome">
+  <!-- Navigation -->
+  <div class="navigation">
     <a href="index.html" class="nav-link">
-      <svg class="icon-arrow" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-        <path d="M10 8a.5.5 0 0 0-.5-.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H9.5A.5.5 0 0 0 10 8z"/>
-      </svg>
-      Accueil
+      <span class="icon-arrow">←</span> Retour à l'accueil
     </a>
   </div>
 
+  <!-- Script JavaScript pour les menus déroulants -->
   <script>
+    // Sélecteurs
+    const menuItems = document.querySelectorAll('.menu-item');
+    const panels = document.querySelectorAll('.dropdown-panel');
+
     // Gestion des menus déroulants
-    let currentPanel = null;
-
-    // Ajout des event listeners pour les menus
-    document.addEventListener('DOMContentLoaded', function() {
-      const menuItems = document.querySelectorAll('.menu-item');
-      
-      menuItems.forEach(item => {
-        item.addEventListener('click', function() {
-          const section = this.getAttribute('data-section');
-          toggleDropdown(section);
-        });
-      });
-
-      // Fermer le menu si on clique ailleurs
-      document.addEventListener('click', function(e) {
-        if (!e.target.closest('.top-menu') && !e.target.closest('.dropdown-panel')) {
-          closeAllDropdowns();
+    menuItems.forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const section = item.dataset.section;
+        const panel = document.getElementById(`${section}-panel`);
+        
+        // Fermer tous les panneaux
+        panels.forEach(p => p.classList.remove('active'));
+        menuItems.forEach(m => m.classList.remove('active'));
+        
+        // Ouvrir le panneau sélectionné
+        if (panel) {
+          panel.classList.add('active');
+          item.classList.add('active');
         }
       });
     });
 
-    function toggleDropdown(section) {
-      const panel = document.getElementById(section + '-panel');
-      const menuItem = document.querySelector(`[data-section="${section}"]`);
-      
-      if (currentPanel && currentPanel !== panel) {
-        // Fermer le panneau actuel
-        currentPanel.classList.remove('active');
-        document.querySelector('.menu-item.active')?.classList.remove('active');
-      }
-      
-      if (panel.classList.contains('active')) {
-        // Fermer le panneau actuel
-        panel.classList.remove('active');
-        menuItem.classList.remove('active');
-        currentPanel = null;
-      } else {
-        // Ouvrir le nouveau panneau
-        panel.classList.add('active');
-        menuItem.classList.add('active');
-        currentPanel = panel;
-      }
-    }
-
-    function closeAllDropdowns() {
-      document.querySelectorAll('.dropdown-panel').forEach(panel => {
-        panel.classList.remove('active');
-      });
-      document.querySelectorAll('.menu-item').forEach(item => {
-        item.classList.remove('active');
-      });
-      currentPanel = null;
-    }
-
-    // Animation au scroll
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateX(0)';
-        }
-      });
-    }, observerOptions);
-
-    // Observer tous les éléments de timeline
-    document.querySelectorAll('.timeline-item').forEach(item => {
-      observer.observe(item);
-    });
-
-    // Fonction pour afficher/masquer les autres expériences
-    function toggleOtherExperiences() {
-      const content = document.getElementById('other-experiences');
-      const icon = document.querySelector('.toggle-icon');
-      
-      content.classList.toggle('open');
-      icon.classList.toggle('open');
-    }
-
-    // Animation au chargement
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('Page Parcours Professionnel chargée');
+    // Fermer les panneaux en cliquant ailleurs
+    document.addEventListener('click', () => {
+      panels.forEach(p => p.classList.remove('active'));
+      menuItems.forEach(m => m.classList.remove('active'));
     });
   </script>
 </body>
