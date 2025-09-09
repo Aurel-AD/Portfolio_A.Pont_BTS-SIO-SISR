@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mission X – BTS SIO SISR</title>
+
+  <!-- Polices -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- CSS global -->
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/dropdown-unified.css" />
+
+  <!-- Style spécifique -->
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #e2e8f0;
+      line-height: 1.8;
+      min-height: 100vh;
+      padding: 60px 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(56, 189, 248, 0.1);
+    }
+    h1 {
+      color: #34d399;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    h2 {
+      color: #38bdf8;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+    }
+    p {
+      margin-bottom: 20px;
+    }
+    .btn-back {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 24px;
+      border-radius: 10px;
+      background: #34d399;
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .btn-back:hover {
+      background: #22c55e;
+      color: white;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin: 20px 0;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION PRINCIPALE -->
+<header>
+  <nav class="top-menu" aria-label="Navigation principale">
+    <div class="menu-container">
+      <div class="menu-item" data-section="biographie">Biographie <span class="arrow">▼</span></div>
+      <div class="menu-item" data-section="alternance">Mon alternance <span class="arrow">▼</span></div>
+      <div class="menu-item" data-section="veille">Mes sources <span class="arrow">▼</span></div>
+      <div class="menu-item" data-section="formation">Centre & Entreprise <span class="arrow">▼</span></div>
+
+      <div class="avatar-container">
+        <a href="files/cv.html" target="_blank" rel="noopener noreferrer">
+          <img src="assets/img/avatar.png" alt="Photo de profil" class="avatar">
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- CONTENU -->
+<main>
+  <div class="container">
+    <h1>Mission X – Titre de la mission</h1>
+
+    <h2>🎯 Objectif</h2>
+    <p>
+      Décrire ici l’objectif de la mission : quel était le besoin de
+      l’entreprise, le problème à résoudre ou le service à mettre en place.
+    </p>
+
+    <h2>🛠️ Compétences mobilisées</h2>
+    <ul>
+      <li>Bloc du référentiel : …</li>
+      <li>Sous-compétence : …</li>
+    </ul>
+
+    <h2>📌 Réalisation</h2>
+    <p>
+      Décrire les étapes de ton travail : installation, configuration,
+      tests, outils utilisés, difficultés rencontrées.
+    </p>
+    <img src="assets/img/exemple.png" alt="Capture d'écran de la mission" />
+
+    <h2>✅ Résultat</h2>
+    <p>
+      Décrire ce que tu as obtenu : poste fonctionnel, service déployé,
+      amélioration, retour utilisateur, etc.
+    </p>
+
+    <a href="tableau.html" class="btn-back"><i class="fa fa-arrow-left"></i> Retour au tableau</a>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  &copy; 2025 Pont Aurélien - Tous droits réservés
+</footer>
+
+<!-- Script menu -->
+<script src="assets/js/nav.js"></script>
+
+</body>
+</html>
