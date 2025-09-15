@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>À propos - Portfolio d'Aurélien Pont — BTS SIO SISR</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <style>
     * {
       margin: 0;
@@ -21,94 +22,108 @@
       overflow-x: hidden;
     }
 
-    /* Navigation */
-    .top-menu {
-      position: fixed;
+    /* Navigation principale */
+    .navbar-container {
+      position: sticky;
       top: 0;
-      left: 0;
-      width: 100%;
-      background: #0B8043;
-      padding: 1rem 0;
       z-index: 1000;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      animation: slideDown 0.8s ease-out;
     }
 
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .main-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #0B8043;
+      padding: 0 20px;
+      height: 60px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
     }
 
-    .menu-container {
-      max-width: 1200px;
-      margin: 0 auto;
+    .main-links {
+      display: flex;
+      gap: 30px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .main-link {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      transition: opacity 0.3s;
+    }
+
+    .main-link:hover, .main-link.active {
+      opacity: 0.8;
+      text-shadow: 0 0 4px rgba(0,0,0,0.3);
+    }
+
+    .back-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: white;
+      cursor: pointer;
+      font-family: 'Montserrat';
+    }
+
+    .avatar-link {
+      border-radius: 50%;
+      overflow: hidden;
+      width: 40px;
+      height: 40px;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 2rem;
-      padding: 0 2rem;
-    }
-
-    .menu-item {
-      color: #37ff9f;
-      font-weight: bold;
-      font-size: 1.1rem;
-      cursor: pointer;
-      padding: 0.6rem 1.2rem;
-      border-radius: 10px;
-      transition: all 0.3s ease;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(55, 255, 159, 0.3);
-      font-family: 'Montserrat', sans-serif;
-      text-decoration: none;
-    }
-
-    .menu-item:hover,
-    .menu-item.active {
-      background: linear-gradient(90deg, rgba(55, 255, 159, 0.15), rgba(55, 255, 159, 0.3));
-      border: 1px solid #37ff9f;
-      box-shadow: 0 0 15px rgba(55, 255, 159, 0.6);
-      transform: translateY(-3px);
-    }
-
-    .avatar-container {
-      margin-left: auto;
     }
 
     .avatar {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      border: 3px solid #37ff9f;
-      box-shadow: 0 0 10px rgba(55, 255, 159, 0.7);
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      background: white;
-      transition: all 0.3s ease;
     }
 
-    .avatar:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 20px rgba(55, 255, 159, 0.9);
+    /* Sous-navigation */
+    .sub-nav {
+      background-color: rgba(11, 128, 67, 0.9);
+      padding: 10px 0;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .sub-links {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .sub-link {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .sub-link:hover {
+      text-decoration: underline;
     }
 
     /* Contenu principal */
     .main-content {
-      padding-top: 250px;
+      padding-top: 120px;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 120px 2rem 2rem;
     }
+    
     .about-container {
       margin-top: 60px;
     }
+    
     .about-container {
       max-width: 900px;
       width: 100%;
@@ -246,6 +261,8 @@
         transform: translateY(0);
       }
     }
+    
+    /* BOUTON FLOTTANT UNIQUE */
     .navigation {
       position: fixed;
       bottom: 30px;
@@ -281,74 +298,6 @@
       margin-right: 8px;
     }
 
-    /* CORRECTION DES PANEAUX DÉROULANTS - TITRES CENTRÉS */
-    .dropdown-panel {
-      position: fixed;
-      top: 85px;
-      left: 0;
-      width: 100%;
-      background: #2c3e50;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-      z-index: 999;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .dropdown-panel.active {
-      max-height: 300px;
-    }
-
-    .dropdown-content {
-      padding: 2rem;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .dropdown-section {
-      flex: 1;
-      min-width: 200px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .dropdown-section h3 {
-      color: white;
-      font-weight: bold;
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-      text-align: center;
-      font-family: 'Montserrat', sans-serif;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid #37ff9f;
-      width: 100%;
-    }
-
-    .link-item {
-      margin-bottom: 0.5rem;
-      text-align: center;
-      width: 100%;
-    }
-
-    .link-item a {
-      color: white;
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: all 0.3s ease;
-      display: block;
-      padding: 0.3rem 0;
-    }
-
-    .link-item a:hover {
-      color: #37ff9f;
-      transform: translateX(5px);
-    }
-
     /* Responsive */
     @media (max-width: 768px) {
       .navigation {
@@ -361,111 +310,120 @@
         font-size: 0.9rem;
       }
       
-      .menu-container {
-        flex-direction: column;
-        gap: 0.5rem;
-        padding: 0 1rem;
+      .main-links {
+        gap: 15px;
+        font-size: 14px;
+      }
+
+      .sub-links {
+        gap: 15px;
+        font-size: 13px;
       }
       
-      .dropdown-panel {
-        top: 140px;
+      .about-container {
+        padding: 2rem;
+        margin-top: 40px;
       }
       
-      .dropdown-content {
-        padding: 1rem;
-        gap: 1rem;
+      .decorative-circle {
+        width: 80px;
+        height: 80px;
+        top: -40px;
       }
       
-      .dropdown-section {
-        min-width: 150px;
+      .main-title {
+        font-size: 1.8rem;
       }
+    }
+    
+    /* Améliorations visuelles */
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    
+    .skill-tag {
+      background: rgba(55, 255, 159, 0.1);
+      border: 1px solid rgba(55, 255, 159, 0.3);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: #37ff9f;
+    }
+    
+    .timeline {
+      position: relative;
+      margin: 20px 0;
+      padding-left: 30px;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 2px;
+      background: #37ff9f;
+    }
+    
+    .timeline-item {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -30px;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #37ff9f;
+    }
+    
+    .timeline-date {
+      font-size: 0.9rem;
+      color: #37ff9f;
+      margin-bottom: 5px;
+    }
+    
+    .timeline-content {
+      color: #e1e8ed;
     }
   </style>
 </head>
 <body>
+  <!-- Double bandeau de navigation -->
+  <div class="navbar-container">
+    <nav class="main-nav">
+      <button class="back-btn" onclick="history.back()">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <div class="main-links">
+        <a href="index.html" class="main-link">Accueil</a>
+        <a href="apropos.html" class="main-link active">À propos</a>
+        <a href="competences_exp_pro.html" class="main-link">Compétences</a>
+        <a href="veille_techno.html" class="main-link">Veille</a>
+        <a href="societe_novares.html" class="main-link">Entreprise</a>
+      </div>
+      <a href="files/cv.html" target="_blank" class="avatar-link">
+        <img src="img/Avatar.png" alt="Photo de profil" class="avatar" />
+      </a>
+    </nav>
     
-  <header>
-    <nav class="top-menu">
-      <div class="menu-container">
-        <div class="menu-item" data-section="biographie">Biographie</div>
-        <div class="menu-item" data-section="alternance">Mon alternance</div>
-        <div class="menu-item" data-section="veille">Mes sources</div>
-        <div class="menu-item" data-section="formation">Centre & Entreprise</div>
-        <div class="avatar-container">
-          <a href="files/cv.html" target="_blank">
-            <img src="img/Avatar.png" alt="Photo de profil" class="avatar" />
-          </a>
-        </div>
+    <nav class="sub-nav">
+      <div class="sub-links">
+        <a href="apropos.html" class="sub-link active">Présentation</a>
+        <a href="parcours_pro.html" class="sub-link">Parcours</a>
+        <a href="experience_pro.html" class="sub-link">Expériences</a>
+        <a href="tableau_competence.html" class="sub-link">Compétences</a>
       </div>
     </nav>
-  </header>
-
-  <!-- Panneaux déroulants -->
-  <section class="dropdown-panel" id="biographie-panel">
-    <div class="dropdown-content">
-      <div class="dropdown-section">
-        <h3>À propos</h3>
-        <div class="link-item"><a href="apropos.html">À propos de moi</a></div>
-        <div class="link-item"><a href="parcours_pro.html">Parcours</a></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="dropdown-panel" id="alternance-panel">
-    <div class="dropdown-content">
-      <div class="dropdown-section">
-        <h3>Entreprise</h3>
-        <div class="link-item"><a href="societe_novares.html">Novares</a></div>
-        <div class="link-item"><a href="experience_pro.html">Expériences</a></div>
-      </div>
-      <div class="dropdown-section">
-        <h3>Compétences</h3>
-        <div class="link-item"><a href="tableau_competence.html">Compétences</a></div>
-        <div class="link-item"><a href="#certifications">Certifications</a></div>
-      </div>
-      <div class="dropdown-section">
-        <h3>Sécurité</h3>
-        <div class="link-item"><a href="attestation_anssi_rgpd.html">RGPD & ANSSI</a></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="dropdown-panel" id="veille-panel">
-    <div class="dropdown-content">
-      <div class="dropdown-section">
-        <h3>Cybersécurité</h3>
-        <div class="link-item"><a href="https://www.zataz.com/" target="_blank" rel="noopener">ZATAZ</a></div>
-        <div class="link-item"><a href="https://www.lemondeinformatique.fr/" target="_blank" rel="noopener">Le Monde Informatique</a></div>
-      </div>
-      <div class="dropdown-section">
-        <h3>Technique & Systèmes</h3>
-        <div class="link-item"><a href="https://www.it-connect.fr/" target="_blank" rel="noopener">IT-Connect</a></div>
-        <div class="link-item"><a href="https://www.reddit.com/r/sysadmin/" target="_blank" rel="noopener">r/sysadmin (Reddit)</a></div>
-      </div>
-      <div class="dropdown-section">
-        <h3>Veille Digitale & IA</h3>
-        <div class="link-item"><a href="https://www.leptidigital.fr/" target="_blank" rel="noopener">LEPTIDIGITAL</a></div>
-        <div class="link-item"><a href="https://www.journaldunet.com/" target="_blank" rel="noopener">Journal du Net</a></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="dropdown-panel" id="formation-panel">
-    <div class="dropdown-content">
-      <div class="dropdown-section">
-        <h3>Formation</h3>
-        <div class="link-item">
-          <a href="https://www.afpi-acmformation.com/" target="_blank">AFPI</a>
-        </div>
-      </div>
-      <div class="dropdown-section">
-        <h3>Entreprise</h3>
-        <div class="link-item">
-          <a href="https://www.novaresteam.com/fr/" target="_blank">Novares</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
 
   <main class="main-content">
     <div class="about-container fade-in">
@@ -476,27 +434,60 @@
       <h1 class="main-title">Bonjour, je me présente Aurélien</h1>
       
       <div class="section">
-        <h2 class="section-title">Parcours professionnel</h2>
+        <h2 class="section-title">
+          <i class="fas fa-road"></i>
+          Parcours professionnel
+        </h2>
         <div class="section-content">
-          J'ai eu une carrière diversifiée dans le BTP avant de me reconvertir dans le numérique. Cependant, j'ai dû renoncer à ce 
-          dernier et j'ai décidé de me tourner vers l'informatique, un domaine qui me passionne depuis toujours.
+          <p>J'ai eu une carrière diversifiée dans le BTP et la restauration avant de me reconvertir dans le numérique. J'ai décidé de me tourner vers l'informatique, un domaine qui me passionne depuis toujours.</p>
+          
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-date">2003-2015</div>
+              <div class="timeline-content">Expérience dans le secteur du BTP</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">2016-2023</div>
+              <div class="timeline-content">Poissonnier-traiteur</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">2023</div>
+              <div class="timeline-content">Découverte de la passion pour l'informatique et reconversion dans le numérique</div>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="section">
-        <h2 class="section-title">Formation</h2>
+        <h2 class="section-title">
+          <i class="fas fa-graduation-cap"></i>
+          Formation
+        </h2>
         <div class="section-content">
-          J'ai confirmé mon choix lors d'une session chez <span class="highlight">Pôle Pro</span>, puis un stage avec le <span class="highlight">FRESC de Roubaix</span>. Ensuite, j'ai obtenu mon 
-          diplôme de <span class="highlight">Technicien d'Assistance en Informatique</span> en distanciel (8 mois) chez <span class="highlight">M2i Formation</span>.
+          <p>J'ai confirmé mon choix lors d'une session chez <span class="highlight">Pôle Pro</span>, puis un stage avec le <span class="highlight">FRESC de Roubaix</span>. Ensuite, j'ai obtenu mon diplôme de <span class="highlight">Technicien d'Assistance en Informatique</span> en distanciel (8 mois) chez <span class="highlight">M2i Formation</span>.</p>
+          
+          <div class="skills-container">
+            <span class="skill-tag">Technicien d'Assistance en Informatique</span>
+            <span class="skill-tag">BTS SIO SISR</span>
+            <span class="skill-tag">Formation à distance</span>
+          </div>
         </div>
       </div>
 
       <div class="section">
-        <h2 class="section-title">Actuellement</h2>
+        <h2 class="section-title">
+          <i class="fas fa-briefcase"></i>
+          Actuellement
+        </h2>
         <div class="section-content">
-          Apprenti SISR en BTS Services Informatiques aux Organisations, option SISR. Je suis en alternance chez <span class="highlight">Novares</span>, un 
-          équipementier automobile, où j'interviens sur l'administration des systèmes, la gestion du réseau et le support technique. Cette 
-          formation me permet d'approfondir mes compétences techniques et d'acquérir une expérience solide et concrète en entreprise.
+          <p>Apprenti SISR en BTS Services Informatiques aux Organisations, option SISR. Je suis en alternance chez <span class="highlight">Novares</span>, un équipementier automobile, où j'interviens sur l'administration des systèmes, la gestion du réseau et le support technique. Cette formation me permet d'approfondir mes compétences techniques et d'acquérir une expérience solide et concrète en entreprise.</p>
+          
+          <div class="skills-container">
+            <span class="skill-tag">Administration systèmes</span>
+            <span class="skill-tag">Réseaux</span>
+            <span class="skill-tag">Support technique</span>
+            <span class="skill-tag">Cybersécurité</span>
+          </div>
         </div>
       </div>
 
@@ -507,6 +498,7 @@
             "De la matière à la donnée, chaque métier a posé une brique de mon parcours."
           </div>
           <div class="quote-author" style="color: #b0b0b0; font-size: 0.9rem;">
+            Aurélien Pont
           </div>
         </div>
       </div>
@@ -520,59 +512,22 @@
   <!-- BOUTON FLOTTANT UNIQUE -->
   <div class="navigation" id="backToHome">
     <a href="index.html" class="nav-link">
-      <svg class="icon-arrow" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-        <path d="M10 8a.5.5 0 0 0-.5-.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H9.5A.5.5 0 0 0 10 8z"/>
-      </svg>
-      Accueil
+      <i class="fas fa-home icon-arrow"></i> Retour à l'accueil
     </a>
   </div>
 
-<script>
-    // Animation d'apparition au scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
+  <script>
+    // Script pour afficher/masquer le bouton flottant au défilement
+    window.addEventListener('scroll', function() {
+      const backButton = document.getElementById('backToHome');
+      if (window.scrollY > 300) {
+        backButton.style.opacity = '1';
+        backButton.style.transform = 'translateY(0)';
+      } else {
+        backButton.style.opacity = '0';
+        backButton.style.transform = 'translateY(100px)';
+      }
     });
-
-    document.querySelectorAll('.section').forEach((section) => {
-      section.style.opacity = '0';
-      section.style.transform = 'translateY(20px)';
-      section.style.transition = 'all 0.6s ease';
-      observer.observe(section);
-    });
-
-    // Gestion des menus déroulants
-    const menuItems = document.querySelectorAll('.menu-item');
-    const panels = document.querySelectorAll('.dropdown-panel');
-
-    menuItems.forEach(item => {
-      item.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const section = item.dataset.section;
-        const panel = document.getElementById(`${section}-panel`);
-        
-        // Fermer tous les panneaux
-        panels.forEach(p => p.classList.remove('active'));
-        menuItems.forEach(m => m.classList.remove('active'));
-        
-        // Ouvrir le panneau sélectionné
-        if (panel) {
-          panel.classList.add('active');
-          item.classList.add('active');
-        }
-      });
-    });
-
-    // Fermer les panneaux en cliquant ailleurs
-    document.addEventListener('click', () => {
-      panels.forEach(p => p.classList.remove('active'));
-      menuItems.forEach(m => m.classList.remove('active'));
-    });
-</script>
+  </script>
 </body>
 </html>
-
