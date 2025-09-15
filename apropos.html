@@ -364,6 +364,54 @@
     .timeline-content {
       color: #e1e8ed;
     }
+
+    /* BOUTON RETOUR ACCUEIL - CORRIGÉ */
+    .back-to-home {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(100px);
+      transition: all 0.4s ease;
+    }
+
+    .back-to-home.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .home-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #37ff9f, #2ecc71);
+      color: #0a1a2f;
+      padding: 12px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      font-family: 'Montserrat', sans-serif;
+      box-shadow: 0 8px 25px rgba(55, 255, 159, 0.3);
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .home-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 35px rgba(55, 255, 159, 0.5);
+      border: 2px solid #37ff9f;
+      background: linear-gradient(135deg, #2ecc71, #37ff9f);
+    }
+
+    .home-btn i {
+      font-size: 1.1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .home-btn:hover i {
+      transform: scale(1.2);
+    }
     
     /* Responsive */
     @media (max-width: 768px) {
@@ -395,11 +443,21 @@
       .main-title {
         font-size: 1.8rem;
       }
+
+      .back-to-home {
+        bottom: 20px;
+        right: 20px;
+      }
+
+      .home-btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation principale (comme dans index.html) -->
+  <!-- Navigation principale -->
   <header>
     <nav class="top-menu">
       <div class="menu-container">
@@ -416,7 +474,7 @@
     </nav>
   </header>
 
-  <!-- Panneaux déroulants (comme dans index.html) -->
+  <!-- Panneaux déroulants -->
   <section class="dropdown-panel" id="biographie-panel">
     <div class="dropdown-content">
       <div class="dropdown-section">
@@ -483,11 +541,6 @@
     </div>
   </section>
 
-  <!-- Robot Assistant simplifié (sans Lottie) -->
-  <div class="robot-container" id="robot" aria-label="Assistant virtuel">
-    🤖
-  </div>
-
   <!-- Contenu principal de la page À propos -->
   <main class="main-content">
     <div class="about-container fade-in">
@@ -508,15 +561,15 @@
           <div class="timeline">
             <div class="timeline-item">
               <div class="timeline-date">2003-2015</div>
-              <div class="timeline-content">Expérience dans le secteur du BTP</div>
+              <div class="timeline-content">Ouvrier professionnel du BTP</div>
             </div>
             <div class="timeline-item">
               <div class="timeline-date">2016-2023</div>
-              <div class="timeline-content">Poissonnier-traiteur</div>
+              <div class="timeline-content">Spécialiste en produits de la mer et vente conseil en tant que poissonnier-traiteur</div>
             </div>
             <div class="timeline-item">
               <div class="timeline-date">2023</div>
-              <div class="timeline-content">Découverte de la passion pour l'informatique et reconversion dans le numérique</div>
+              <div class="timeline-content">Découverte et affirmation pour l'informatique et reconversion dans le Helpdesk, la Cybersécurité, l'Administration Système & Réseau</div>
             </div>
           </div>
         </div>
@@ -566,27 +619,16 @@
           </div>
         </div>
       </div>
+    </div>
+  </main>
       
-  <!-- BOUTON FLOTTANT UNIQUE -->
-  <div class="navigation" id="backToHome">
-    <a href="index.html" class="nav-link">
-      <i class="fas fa-home icon-arrow"></i> Retour à l'accueil
+  <!-- BOUTON RETOUR ACCUEIL CORRIGÉ -->
+  <div class="back-to-home" id="backToHome">
+    <a href="index.html" class="home-btn">
+      <i class="fas fa-home"></i>
+      <span>Retour à l'accueil</span>
     </a>
   </div>
-
-  <script>
-    // Script pour afficher/masquer le bouton flottant au défilement
-    window.addEventListener('scroll', function() {
-      const backButton = document.getElementById('backToHome');
-      if (window.scrollY > 300) {
-        backButton.style.opacity = '1';
-        backButton.style.transform = 'translateY(0)';
-      } else {
-        backButton.style.opacity = '0';
-        backButton.style.transform = 'translateY(100px)';
-      }
-    });
-  </script>
 
   <script>
     // Sélecteurs
@@ -617,9 +659,23 @@
       panels.forEach(p => p.classList.remove('active'));
       menuItems.forEach(m => m.classList.remove('active'));
     });
+
+    // Script pour afficher/masquer le bouton retour à l'accueil
+    const backButton = document.getElementById('backToHome');
+    
+    function toggleBackButton() {
+      if (window.scrollY > 300) {
+        backButton.classList.add('visible');
+      } else {
+        backButton.classList.remove('visible');
+      }
+    }
+
+    // Vérifier au chargement de la page
+    toggleBackButton();
+
+    // Écouter le scroll
+    window.addEventListener('scroll', toggleBackButton);
   </script>
 </body>
 </html>
-
-
-
