@@ -532,12 +532,24 @@
     </div>
   </div>
 
-  <!-- === BOUTON FIXE DE RETOUR AU PORTFOLIO === -->
- <a href="../index.html" class="back-button" aria-label="Retour au portfolio">
-  <i class="fas fa-arrow-left"></i>
-  Retour
-</a>
-<!-- Script pour le bouton flottant -->
-<script src="assets/js/nav.js"></script>
+  <!-- BOUTON FLOTTANT UNIQUE -->
+  <div class="navigation" id="backToHome">
+    <a href="index.html" class="nav-link">
+      <i class="fas fa-home icon-arrow"></i> Retour à l'accueil
+    </a>
+  </div>
+
+  <script>
+    // Script pour afficher/masquer le bouton flottant au défilement
+    window.addEventListener('scroll', function() {
+      const backButton = document.getElementById('backToHome');
+      if (window.scrollY > 300) {
+        backButton.style.opacity = '1';
+        backButton.style.transform = 'translateY(0)';
+      } else {
+        backButton.style.opacity = '0';
+        backButton.style.transform = 'translateY(100px)';
+      }
 </body>
 </html>
+
