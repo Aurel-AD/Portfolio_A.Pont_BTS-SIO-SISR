@@ -130,15 +130,18 @@
       min-width: 200px;
     }
 
-    .dropdown-section .section-title {
-      color: white;
+    .dropdown-section .section-title,
+    .dropdown-section h3 {
+      color: white !important;
       font-weight: bold;
       font-size: 1.1rem;
       margin-bottom: 1rem;
-      text-align: center;
+      text-align: center !important;
       font-family: 'Montserrat', sans-serif;
       padding-bottom: 0.5rem;
       border-bottom: 2px solid #37ff9f;
+      display: block !important;
+      width: 100%;
     }
 
     .link-item {
@@ -221,6 +224,18 @@
     }
 
     .section-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #37ff9f;
+      margin-bottom: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Titres spécifiques pour les sections principales du contenu */
+    .main-content .section-title {
       font-size: 1.4rem;
       font-weight: bold;
       color: #37ff9f;
