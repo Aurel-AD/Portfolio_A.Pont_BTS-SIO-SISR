@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mon Parcours Professionnel - Aurélien Pont</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <style>
     * {
       margin: 0;
@@ -139,8 +140,8 @@
       margin-bottom: 1rem;
       text-align: center;
       font-family: 'Montserrat', sans-serif;
-      padding-bottom: 0.5rem;           /* ← Ligne ajoutée */
-      border-bottom: 2px solid #37ff9f; /* ← Ligne ajoutée */
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #37ff9f;
     }
 
     .link-item {
@@ -438,60 +439,18 @@
       transform: scale(1.05);
     }
 
-    /* Styles pour la section dépliante */
-    .toggle-section {
-      margin-top: 2rem;
-    }
-
-    .toggle-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(55, 255, 159, 0.3);
-    }
-
-    .toggle-header:hover {
-      background: rgba(55, 255, 159, 0.1);
-    }
-
-    .toggle-title {
-      font-size: 1.2rem;
-      color: #37ff9f;
-      font-weight: 600;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .toggle-icon {
-      font-size: 1.5rem;
-      color: #37ff9f;
-      transition: transform 0.3s ease;
-    }
-
-    .toggle-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease;
-    }
-
-    .toggle-content.open {
-      max-height: 1000px;
-    }
-
-    .toggle-icon.open {
-      transform: rotate(180deg);
-    }
-
     /* Bouton retour à l'accueil */
     .navigation {
       position: fixed;
       bottom: 30px;
       right: 30px;
       z-index: 1000;
+      opacity: 0;
+      transform: translateY(100px);
+      transition: all 0.3s ease;
+    }
+
+    .navigation.visible {
       opacity: 1;
       transform: translateY(0);
     }
@@ -646,7 +605,7 @@
         </div>
       </div>
     </nav>
-  </header> 
+  </header>
 
   <!-- Panneaux déroulants -->
   <section class="dropdown-panel" id="biographie-panel">
@@ -830,7 +789,7 @@
     </div>
   </main>
 
-   <!-- BOUTON FLOTTANT UNIQUE -->
+  <!-- BOUTON FLOTTANT UNIQUE -->
   <div class="navigation" id="backToHome">
     <a href="index.html" class="nav-link">
       <i class="fas fa-home icon-arrow"></i> Retour à l'accueil
@@ -838,24 +797,20 @@
   </div>
 
   <script>
-    // Script pour afficher/masquer le bouton flottant au défilement
+    // Gestion du bouton flottant au défilement
     window.addEventListener('scroll', function() {
       const backButton = document.getElementById('backToHome');
       if (window.scrollY > 300) {
-        backButton.style.opacity = '1';
-        backButton.style.transform = 'translateY(0)';
+        backButton.classList.add('visible');
       } else {
-        backButton.style.opacity = '0';
-        backButton.style.transform = 'translateY(100px)';
+        backButton.classList.remove('visible');
       }
+    });
 
-  <!-- Script JavaScript pour les menus déroulants -->
-  <script>
-    // Sélecteurs
+    // Gestion des menus déroulants
     const menuItems = document.querySelectorAll('.menu-item');
     const panels = document.querySelectorAll('.dropdown-panel');
 
-    // Gestion des menus déroulants
     menuItems.forEach(item => {
       item.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -879,8 +834,4 @@
       panels.forEach(p => p.classList.remove('active'));
       menuItems.forEach(m => m.classList.remove('active'));
     });
-  </script>
-</body>
-</html>
-
-
+    
