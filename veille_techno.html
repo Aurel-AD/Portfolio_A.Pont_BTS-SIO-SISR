@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />S
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ma Veille Technologique - Portfolio d'Aurélien Pont</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
       margin: 0;
@@ -269,7 +270,7 @@
       font-weight: 600;
     }
 
-    /* Panneaux déroulants
+    /* Panneaux déroulants - CORRIGÉ */
     .dropdown-panel {
       position: fixed;
       top: 85px;
@@ -302,7 +303,7 @@
       min-width: 200px;
       display: flex;
       flex-direction: column;
-      align-items: center; /* Ajouté pour centrer le contenu */
+      align-items: center;
     }
 
     .dropdown-section .section-title {
@@ -314,14 +315,13 @@
       font-family: 'Montserrat', sans-serif;
       padding-bottom: 0.5rem;
       border-bottom: 2px solid #37ff9f;
-      width: 100%; /* Ajouté pour s'assurer que la bordure s'étende sur toute la largeur */
-      /* display: inline-block a été retiré */
+      width: 100%;
     }
 
     .link-item {
       margin-bottom: 0.5rem;
       text-align: center;
-      width: 100%; /* Ajouté pour centrer les liens */
+      width: 100%;
     }
 
     .link-item a {
@@ -336,6 +336,36 @@
     .link-item a:hover {
       color: #37ff9f;
       transform: translateX(5px);
+    }
+
+    /* Navigation fixe */
+    .navigation-fixed {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+    }
+
+    .nav-link-fixed {
+      display: inline-flex;
+      align-items: center;
+      background: linear-gradient(135deg, #0B8043 0%, #37ff9f 100%);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(55, 255, 159, 0.5);
+    }
+
+    .nav-link-fixed:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(55, 255, 159, 0.4);
+      background: linear-gradient(135deg, #37ff9f 0%, #0B8043 100%);
     }
 
     .icon-arrow {
@@ -379,6 +409,15 @@
       .nav-link-fixed {
         padding: 10px 16px;
         font-size: 0.9rem;
+      }
+      
+      .dropdown-content {
+        padding: 1rem;
+        gap: 1rem;
+      }
+      
+      .dropdown-section {
+        min-width: 150px;
       }
     }
 
@@ -497,14 +536,14 @@
               <span class="card-icon">🖨️</span>
               <div class="card-title">Veille 1</div>
               <div>Imprimantes 3D & 4D</div>
-              <a href="veille_printer_3-4D.html" class="card-link" target="_blank">Accéder à la veille</a>
+              <a href="veille_printer_3-4D.html" class="card-link">Accéder à la veille</a>
             </div>
             
             <div class="card">
               <span class="card-icon">☁️</span>
               <div class="card-title">Veille 2</div>
               <div>Cloud Computing</div>
-              <a href="veille_cloud.html" class="card-link" target="_blank">Accéder à la veille</a>
+              <a href="veille_cloud.html" class="card-link">Accéder à la veille</a>
             </div>
           </div>
         </div>
@@ -530,7 +569,7 @@
     </div>
   </main>
   
-<!-- Navigation fixe - style cohérent -->
+  <!-- Navigation fixe - style cohérent -->
   <div class="navigation-fixed">
     <a href="index.html" class="nav-link-fixed">
       <i class="fas fa-home icon-arrow"></i>
@@ -571,9 +610,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
