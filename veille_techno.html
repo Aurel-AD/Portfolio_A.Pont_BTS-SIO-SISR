@@ -553,25 +553,14 @@
       </div>
     </div>
   </main>
-
-  <!-- BOUTON FLOTTANT UNIQUE -->
-  <div class="navigation" id="backToHome">
-    <a href="index.html" class="nav-link">
-      <i class="fas fa-home icon-arrow"></i> Retour à l'accueil
+  
+<!-- Navigation fixe - style cohérent -->
+  <div class="navigation-fixed">
+    <a href="index.html" class="nav-link-fixed">
+      <i class="fas fa-home icon-arrow"></i>
+      <span>Retour à l'accueil</span>
     </a>
   </div>
-
-  <script>
-    // Script pour afficher/masquer le bouton flottant au défilement
-    window.addEventListener('scroll', function() {
-      const backButton = document.getElementById('backToHome');
-      if (window.scrollY > 300) {
-        backButton.style.opacity = '1';
-        backButton.style.transform = 'translateY(0)';
-      } else {
-        backButton.style.opacity = '0';
-        backButton.style.transform = 'translateY(100px)';
-      }
 
   <!-- Script JavaScript pour les menus déroulants -->
   <script>
@@ -606,6 +595,7 @@
   </script>
 </body>
 </html>
+
 
 
 
