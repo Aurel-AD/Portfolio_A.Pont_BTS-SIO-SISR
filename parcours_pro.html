@@ -501,6 +501,20 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
       transition: all 0.3s ease;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bottom-panel::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(55, 255, 159, 0.1) 0%, rgba(11, 128, 67, 0.1) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .bottom-panel:hover {
@@ -509,17 +523,23 @@
       border-color: rgba(55, 255, 159, 0.5);
     }
 
+    .bottom-panel:hover::before {
+      opacity: 1;
+    }
+
     .bottom-panel h3 {
       color: #37ff9f;
       font-size: 1.4rem;
       margin-bottom: 1.5rem;
       text-align: center;
       font-family: 'Montserrat', sans-serif;
+      position: relative;
     }
 
     .bottom-panel ul {
       list-style: none;
       padding: 0;
+      position: relative;
     }
 
     .bottom-panel li {
@@ -528,6 +548,12 @@
       background: rgba(255, 255, 255, 0.1);
       border-radius: 8px;
       border-left: 3px solid #37ff9f;
+      transition: all 0.3s ease;
+    }
+
+    .bottom-panel li:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateX(5px);
     }
 
     .bottom-panel .date {
@@ -541,6 +567,15 @@
       color: white;
       font-weight: 500;
       font-size: 1rem;
+    }
+
+    .panel-icon {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      color: #37ff9f;
+      font-size: 1.5rem;
+      opacity: 0.7;
     }
 
     /* Animations */
@@ -652,6 +687,16 @@
       .nav-link {
         padding: 10px 16px;
         font-size: 0.9rem;
+      }
+      
+      .bottom-panel {
+        padding: 1.5rem;
+      }
+      
+      .panel-icon {
+        top: 1rem;
+        right: 1rem;
+        font-size: 1.2rem;
       }
     }
   </style>
@@ -857,6 +902,7 @@
     <!-- Panneaux cliquables en bas -->
     <div class="bottom-panels">
       <div class="bottom-panel" onclick="window.location.href='experience_pro.html'">
+        <i class="fas fa-laptop-code panel-icon"></i>
         <h3>Expériences Informatiques</h3>
         <ul>
           <li>
@@ -867,10 +913,15 @@
             <div class="date">Stages et formations pratiques</div>
             <div class="role">Autres expériences informatiques</div>
           </li>
+          <li>
+            <div class="date">ROK</div>
+            <div class="role">Suivi des workflows et gestion des mouvements</div>
+          </li>
         </ul>
       </div>
 
       <div class="bottom-panel" onclick="window.location.href='parcours_pro.html'">
+        <i class="fas fa-briefcase panel-icon"></i>
         <h3>Expériences Antérieures</h3>
         <ul>
           <li>
@@ -884,6 +935,10 @@
           <li>
             <div class="date">2005 - 2007</div>
             <div class="role">CAP Carreleur mosaïste - CFA, Roubaix</div>
+          </li>
+          <li>
+            <div class="date">2003 - 2005</div>
+            <div class="role">CAP Électrotechnique (niveau BEP) - Dynah Derrick, Villeneuve-d'Ascq</div>
           </li>
         </ul>
       </div>
