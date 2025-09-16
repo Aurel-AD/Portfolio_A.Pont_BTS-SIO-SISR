@@ -481,6 +481,68 @@
       margin-right: 8px;
     }
 
+    /* Panneaux cliquables en bas */
+    .bottom-panels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .bottom-panel {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .bottom-panel:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+      border-color: rgba(55, 255, 159, 0.5);
+    }
+
+    .bottom-panel h3 {
+      color: #37ff9f;
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .bottom-panel ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .bottom-panel li {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      border-left: 3px solid #37ff9f;
+    }
+
+    .bottom-panel .date {
+      color: #37ff9f;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .bottom-panel .role {
+      color: white;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
     /* Animations */
     @keyframes fadeIn {
       from {
@@ -520,6 +582,10 @@
       .content-container {
         grid-template-columns: 1fr;
         gap: 2rem;
+      }
+      
+      .bottom-panels {
+        grid-template-columns: 1fr;
       }
       
       .experiences-column,
@@ -787,6 +853,41 @@
         </div>
       </div>
     </div>
+
+    <!-- Panneaux cliquables en bas -->
+    <div class="bottom-panels">
+      <div class="bottom-panel" onclick="window.location.href='experience_pro.html'">
+        <h3>Expériences Informatiques</h3>
+        <ul>
+          <li>
+            <div class="date">2023 - 2024</div>
+            <div class="role">Technicien d'Assistance Informatique - M2i (Distanciel)</div>
+          </li>
+          <li>
+            <div class="date">Stages et formations pratiques</div>
+            <div class="role">Autres expériences informatiques</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bottom-panel" onclick="window.location.href='parcours_pro.html'">
+        <h3>Expériences Antérieures</h3>
+        <ul>
+          <li>
+            <div class="date">2015 - 2017</div>
+            <div class="role">CAP Poissonnier traiteur - Campus Pro, Hellemmes</div>
+          </li>
+          <li>
+            <div class="date">2008 - 2009</div>
+            <div class="role">CAP Plâtrier plaquiste - BATIFORM, Hazebrouck</div>
+          </li>
+          <li>
+            <div class="date">2005 - 2007</div>
+            <div class="role">CAP Carreleur mosaïste - CFA, Roubaix</div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </main>
 
   <!-- BOUTON FLOTTANT UNIQUE -->
@@ -834,4 +935,6 @@
       panels.forEach(p => p.classList.remove('active'));
       menuItems.forEach(m => m.classList.remove('active'));
     });
-    
+  </script>
+</body>
+</html>
