@@ -4,56 +4,294 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Expérience Professionnelle - Aurélien Pont</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: #e2e8f0;
-      line-height: 1.8;
+      background: linear-gradient(135deg, #0a1a2f 0%, #1a3a4a 100%);
+      background-attachment: fixed;
       min-height: 100vh;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    .top-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #0B8043;
+      padding: 1rem 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      animation: slideDown 0.8s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .menu-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      padding: 0 2rem;
+    }
+
+    .menu-item {
+      color: #37ff9f;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(55, 255, 159, 0.3);
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .menu-item:hover,
+    .menu-item.active {
+      background: linear-gradient(90deg, rgba(55, 255, 159, 0.15), rgba(55, 255, 159, 0.3));
+      border: 1px solid #37ff9f;
+      box-shadow: 0 0 15px rgba(55, 255, 159, 0.6);
+      transform: translateY(-3px);
+    }
+
+    .avatar-container {
+      margin-left: auto;
+    }
+
+    .avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: 3px solid #37ff9f;
+      box-shadow: 0 0 10px rgba(55, 255, 159, 0.7);
+      object-fit: cover;
+      background: white;
+      transition: all 0.3s ease;
+    }
+
+    .avatar:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(55, 255, 159, 0.9);
+    }
+
+    /* Panneaux déroulants */
+    .dropdown-panel {
+      position: fixed;
+      top: 85px;
+      left: 0;
+      width: 100%;
+      background: #2c3e50;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      z-index: 999;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .dropdown-panel.active {
+      max-height: 300px;
+    }
+
+    .dropdown-content {
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .dropdown-section {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .dropdown-section .section-title,
+    .dropdown-section h3 {
+      color: white !important;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      text-align: center !important;
+      font-family: 'Montserrat', sans-serif;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #37ff9f;
+      display: block !important;
+      width: 100%;
+    }
+
+    .link-item {
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .link-item a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      display: block;
+      padding: 0.3rem 0;
+    }
+
+    .link-item a:hover {
+      color: #37ff9f;
+      transform: translateX(5px);
+    }
+
+    /* Contenu principal */
+    .container {
       padding: 120px 20px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     h2 {
-      color: #34d399;
+      color: #37ff9f;
       font-weight: 600;
-      font-size: 2rem;
+      font-size: 2.5rem;
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 3rem;
+      font-family: 'Montserrat', sans-serif;
+      text-shadow: 0 0 20px rgba(55, 255, 159, 0.3);
     }
 
     /* Titres catégories */
     .competence-title {
-      margin: 40px 0 20px;
-      font-size: 1.4rem;
-      color: #34d399;
-      border-bottom: 2px solid #34d399;
-      padding-bottom: 5px;
+      margin: 3rem 0 1.5rem;
+      font-size: 1.6rem;
+      color: #37ff9f;
+      border-bottom: 2px solid #37ff9f;
+      padding: 1rem 0.5rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: rgba(13, 27, 42, 0.5);
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .competence-title:hover {
+      background: rgba(13, 27, 42, 0.8);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(55, 255, 159, 0.2);
+    }
+
+    .competence-title::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 50px;
+      height: 2px;
+      background: #37ff9f;
+      box-shadow: 0 0 10px rgba(55, 255, 159, 0.5);
+    }
+
+    .toggle-icon {
+      font-size: 1.2rem;
+      color: #37ff9f;
+      transition: transform 0.3s ease;
+    }
+
+    .toggle-icon.open {
+      transform: rotate(180deg);
     }
 
     /* Grille de missions */
     .missions-group {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+
+    .missions-group.open {
+      max-height: 1000px;
+      opacity: 1;
+      padding-top: 1rem;
     }
 
     .mission-card {
       display: block;
-      background: rgba(30, 41, 59, 0.4);
-      padding: 15px 20px;
-      border-radius: 10px;
+      background: rgba(13, 27, 42, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 1.5rem;
+      border-radius: 12px;
       text-decoration: none;
-      color: #a8d8b9;
-      transition: 0.3s;
-      border-left: 4px solid #34d399;
+      color: #e1e8ed;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(55, 255, 159, 0.3);
+      border-left: 4px solid #37ff9f;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
     }
+
+    .mission-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(55, 255, 159, 0.1));
+      transition: width 0.3s ease;
+    }
+
     .mission-card:hover {
-      background: rgba(30, 41, 59, 0.6);
-      color: #34d399;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      background: rgba(13, 27, 42, 1);
+      color: #37ff9f;
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      border: 1px solid #37ff9f;
+    }
+
+    .mission-card:hover::before {
+      width: 100%;
+    }
+
+    .mission-card:hover {
+      animation: glow 0.5s ease-in-out;
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); }
+      50% { box-shadow: 0 8px 25px rgba(55, 255, 159, 0.3); }
+      100% { box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); }
     }
 
     /* Bouton retour */
@@ -63,6 +301,7 @@
       right: 30px;
       z-index: 1000;
     }
+
     .nav-link {
       display: inline-flex;
       align-items: center;
@@ -76,16 +315,80 @@
       font-size: 14px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
       transition: all 0.3s ease;
+      border: 1px solid rgba(55, 255, 159, 0.5);
     }
+
     .nav-link:hover {
       transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(55, 255, 159, 0.4);
       background: linear-gradient(135deg, #37ff9f 0%, #0B8043 100%);
+    }
+
+    .icon-arrow {
+      margin-right: 8px;
+    }
+
+    /* Animations */
+    .fade-in {
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .menu-container {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0 1rem;
+      }
+      
+      .container {
+        padding-top: 200px;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      
+      .dropdown-panel {
+        top: 140px;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .competence-title {
+        font-size: 1.4rem;
+      }
+
+      .missions-group {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .navigation {
+        bottom: 20px;
+        right: 20px;
+      }
+
+      .nav-link {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
 <body>
-
-  <!-- ✅ Double bandeau navigation -->
+  <!-- Navigation principale -->
   <header>
     <nav class="top-menu">
       <div class="menu-container">
@@ -102,7 +405,7 @@
     </nav>
   </header>
 
-  <!-- Panels dropdown (comme dans ton fichier original) -->
+  <!-- Panneaux déroulants -->
   <section class="dropdown-panel" id="biographie-panel">
     <div class="dropdown-content">
       <div class="dropdown-section">
@@ -123,7 +426,7 @@
       <div class="dropdown-section">
         <h3 class="section-title">Compétences</h3>
         <div class="link-item"><a href="tableau_competence.html">Compétences</a></div>
-        <div class="link-item"><a href="attestation_anssi_rgpd.html">Certifications</a></div>
+        <div class="link-item"><a href="#certifications">Certifications</a></div>
       </div>
       <div class="dropdown-section">
         <h3 class="section-title">Sécurité</h3>
@@ -136,13 +439,18 @@
     <div class="dropdown-content">
       <div class="dropdown-section">
         <h3 class="section-title">Cybersécurité</h3>
-        <div class="link-item"><a href="https://www.zataz.com/" target="_blank">ZATAZ</a></div>
-        <div class="link-item"><a href="https://www.lemondeinformatique.fr/" target="_blank">Le Monde Informatique</a></div>
+        <div class="link-item"><a href="https://www.zataz.com/" target="_blank" rel="noopener">ZATAZ</a></div>
+        <div class="link-item"><a href="https://www.lemondeinformatique.fr/" target="_blank" rel="noopener">Le Monde Informatique</a></div>
       </div>
       <div class="dropdown-section">
         <h3 class="section-title">Technique & Systèmes</h3>
-        <div class="link-item"><a href="https://www.it-connect.fr/" target="_blank">IT-Connect</a></div>
-        <div class="link-item"><a href="https://www.reddit.com/r/sysadmin/" target="_blank">Reddit r/sysadmin</a></div>
+        <div class="link-item"><a href="https://www.it-connect.fr/" target="_blank" rel="noopener">IT-Connect</a></div>
+        <div class="link-item"><a href="https://www.reddit.com/r/sysadmin/" target="_blank" rel="noopener">r/sysadmin (Reddit)</a></div>
+      </div>
+      <div class="dropdown-section">
+        <h3 class="section-title">Veille Digitale & IA</h3>
+        <div class="link-item"><a href="https://www.leptidigital.fr/" target="_blank" rel="noopener">LEPTIDIGITAL</a></div>
+        <div class="link-item"><a href="https://www.journaldunet.com/" target="_blank" rel="noopener">Journal du Net</a></div>
       </div>
     </div>
   </section>
@@ -151,48 +459,67 @@
     <div class="dropdown-content">
       <div class="dropdown-section">
         <h3 class="section-title">Formation</h3>
-        <div class="link-item"><a href="https://www.afpi-acmformation.com/" target="_blank">AFPI</a></div>
+        <div class="link-item">
+          <a href="https://www.afpi-acmformation.com/" target="_blank">AFPI</a>
+        </div>
       </div>
       <div class="dropdown-section">
         <h3 class="section-title">Entreprise</h3>
-        <div class="link-item"><a href="https://www.novaresteam.com/fr/" target="_blank">Novares</a></div>
+        <div class="link-item">
+          <a href="https://www.novaresteam.com/fr/" target="_blank">Novares</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ✅ Missions avec catégories -->
-  <div class="container">
-    <h2>Missions réalisées chez Novares :</h2>
+  <!-- Contenu principal -->
+  <div class="container fade-in">
+    <h2>Missions réalisées chez Novares</h2>
 
-    <h3 class="competence-title">Gérer le patrimoine informatique</h3>
-    <div class="missions-group">
+    <h3 class="competence-title" data-toggle="patrimoine">
+      <span>Gérer le patrimoine informatique</span>
+      <i class="fas fa-chevron-down toggle-icon"></i>
+    </h3>
+    <div class="missions-group" id="patrimoine">
       <a href="deploiement1.html" class="mission-card">Installation, configuration et maintenance des postes de travail</a>
       <a href="deploiement2.html" class="mission-card">Déploiement automatisé des OS et logiciels via Microsoft SCCM</a>
       <a href="deploiement3.html" class="mission-card">Installation et mise à jour des pilotes et logiciels (DFS, Software Center)</a>
       <a href="deploiement4.html" class="mission-card">Déploiement et maintenance des pilotes d'imprimante</a>
     </div>
 
-    <h3 class="competence-title">Répondre aux incidents et aux demandes d’assistance et d’évolution</h3>
-    <div class="missions-group">
+    <h3 class="competence-title" data-toggle="incidents">
+      <span>Répondre aux incidents et aux demandes d'assistance et d'évolution</span>
+      <i class="fas fa-chevron-down toggle-icon"></i>
+    </h3>
+    <div class="missions-group" id="incidents">
       <a href="support1.html" class="mission-card">Résolution des incidents niveau 1-2</a>
       <a href="support2.html" class="mission-card">Assistance utilisateurs à distance</a>
       <a href="support3.html" class="mission-card">Gestion des tickets et demandes via Freshworks</a>
       <a href="support4.html" class="mission-card">Formation des utilisateurs aux outils internes</a>
     </div>
 
-    <h3 class="competence-title">Développer la présence en ligne de l’organisation</h3>
-    <div class="missions-group">
+    <h3 class="competence-title" data-toggle="presence">
+      <span>Développer la présence en ligne de l'organisation</span>
+      <i class="fas fa-chevron-down toggle-icon"></i>
+    </h3>
+    <div class="missions-group" id="presence">
       <a href="doc1.html" class="mission-card">Documentation des procédures et conformité TISAX</a>
       <a href="doc2.html" class="mission-card">Rédaction de guides utilisateurs et FAQ techniques</a>
     </div>
 
-    <h3 class="competence-title">Travailler en mode projet</h3>
-    <div class="missions-group">
+    <h3 class="competence-title" data-toggle="projet">
+      <span>Travailler en mode projet</span>
+      <i class="fas fa-chevron-down toggle-icon"></i>
+    </h3>
+    <div class="missions-group" id="projet">
       <a href="doc3.html" class="mission-card">Suivi des workflows RH via SVIF</a>
     </div>
 
-    <h3 class="competence-title">Mettre à disposition des utilisateurs un service informatique</h3>
-    <div class="missions-group">
+    <h3 class="competence-title" data-toggle="service">
+      <span>Mettre à disposition des utilisateurs un service informatique</span>
+      <i class="fas fa-chevron-down toggle-icon"></i>
+    </h3>
+    <div class="missions-group" id="service">
       <a href="admin1.html" class="mission-card">Gestion des comptes utilisateurs et des droits (Active Directory)</a>
       <a href="admin2.html" class="mission-card">Configuration et maintenance du VPN</a>
       <a href="admin3.html" class="mission-card">Supervision des mises à jour de sécurité</a>
@@ -201,16 +528,67 @@
       <a href="admin6.html" class="mission-card">Administration du réseau Wi-Fi invités</a>
     </div>
 
-    <h3 class="competence-title">Organiser son développement professionnel</h3>
-    <div class="missions-group">
+    <h3 class="competence-title" data-toggle="developpement">
+      <span>Organiser son développement professionnel</span>
+      <i class="fas fa-chevron-down toggle-icon"></i>
+    </h3>
+    <div class="missions-group" id="developpement">
       <a href="formation1.html" class="mission-card">Veille technologique (cybersécurité, systèmes, IA)</a>
     </div>
   </div>
 
-  <!-- ✅ Bouton retour -->
+  <!-- Bouton retour -->
   <div class="navigation">
-    <a href="index.html" class="nav-link">← Retour à l'accueil</a>
+    <a href="index.html" class="nav-link">
+      <i class="fas fa-home icon-arrow"></i>
+      <span>Retour à l'accueil</span>
+    </a>
   </div>
 
+  <script>
+    // Sélecteurs
+    const menuItems = document.querySelectorAll('.menu-item');
+    const panels = document.querySelectorAll('.dropdown-panel');
+
+    // Gestion des menus déroulants
+    menuItems.forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const section = item.dataset.section;
+        const panel = document.getElementById(`${section}-panel`);
+        
+        // Fermer tous les panneaux
+        panels.forEach(p => p.classList.remove('active'));
+        menuItems.forEach(m => m.classList.remove('active'));
+        
+        // Ouvrir le panneau sélectionné
+        if (panel) {
+          panel.classList.add('active');
+          item.classList.add('active');
+        }
+      });
+    });
+
+    // Fermer les panneaux en cliquant ailleurs
+    document.addEventListener('click', () => {
+      panels.forEach(p => p.classList.remove('active'));
+      menuItems.forEach(m => m.classList.remove('active'));
+    });
+
+    // Gestion des sections dépliantes
+    const competenceTitles = document.querySelectorAll('.competence-title');
+    
+    competenceTitles.forEach(title => {
+      title.addEventListener('click', () => {
+        const targetId = title.dataset.toggle;
+        const targetGroup = document.getElementById(targetId);
+        const icon = title.querySelector('.toggle-icon');
+        
+        // Toggle de la section
+        targetGroup.classList.toggle('open');
+        icon.classList.toggle('open');
+      });
+    });
+  </script>
 </body>
 </html>
