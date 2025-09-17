@@ -481,101 +481,153 @@
       margin-right: 8px;
     }
 
-    /* Panneaux cliquables en bas */
-    .bottom-panels {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
+    /* Section supplémentaire avec onglets */
+    .additional-sections {
       margin-top: 3rem;
       max-width: 1200px;
       margin-left: auto;
       margin-right: auto;
     }
 
-    .bottom-panel {
+    .tabs-container {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .tab-button {
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(10px);
-      padding: 2rem;
+      color: #37ff9f;
+      border: 1px solid rgba(55, 255, 159, 0.3);
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tab-button:hover {
+      background: rgba(55, 255, 159, 0.1);
+      border-color: #37ff9f;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(55, 255, 159, 0.3);
+    }
+
+    .tab-button.active {
+      background: linear-gradient(135deg, rgba(55, 255, 159, 0.2), rgba(11, 128, 67, 0.2));
+      border-color: #37ff9f;
+      box-shadow: 0 4px 20px rgba(55, 255, 159, 0.4);
+    }
+
+    .tab-content {
+      display: none;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
       border-radius: 15px;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
       border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.3s ease;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
+      padding: 2rem;
+      animation: fadeIn 0.5s ease-out;
     }
 
-    .bottom-panel::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(55, 255, 159, 0.1) 0%, rgba(11, 128, 67, 0.1) 100%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+    .tab-content.active {
+      display: block;
     }
 
-    .bottom-panel:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-      border-color: rgba(55, 255, 159, 0.5);
-    }
-
-    .bottom-panel:hover::before {
-      opacity: 1;
-    }
-
-    .bottom-panel h3 {
+    .tab-content h3 {
       color: #37ff9f;
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       margin-bottom: 1.5rem;
       text-align: center;
       font-family: 'Montserrat', sans-serif;
-      position: relative;
+      border-bottom: 2px solid rgba(55, 255, 159, 0.3);
+      padding-bottom: 0.5rem;
     }
 
-    .bottom-panel ul {
-      list-style: none;
-      padding: 0;
-      position: relative;
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
     }
 
-    .bottom-panel li {
-      margin-bottom: 1rem;
-      padding: 1rem;
+    .experience-card {
       background: rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      border-left: 3px solid #37ff9f;
+      padding: 1.5rem;
+      border-radius: 10px;
+      border-left: 4px solid #37ff9f;
       transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
     }
 
-    .bottom-panel li:hover {
+    .experience-card:hover {
       background: rgba(255, 255, 255, 0.15);
-      transform: translateX(5px);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     }
 
-    .bottom-panel .date {
+    .experience-card .date {
       color: #37ff9f;
       font-weight: 600;
       font-size: 0.9rem;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.5rem;
+      font-family: 'Montserrat', sans-serif;
     }
 
-    .bottom-panel .role {
+    .experience-card .role {
       color: white;
-      font-weight: 500;
-      font-size: 1rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      font-family: 'Montserrat', sans-serif;
     }
 
-    .panel-icon {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
+    .experience-card .company {
+      color: #64ffda;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      font-style: italic;
+    }
+
+    .experience-card .description {
+      color: #e2e8f0;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .experience-card .skills {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(55, 255, 159, 0.2);
+    }
+
+    .experience-card .skills-title {
       color: #37ff9f;
-      font-size: 1.5rem;
-      opacity: 0.7;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .experience-card .skills-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .experience-card .skill-tag-small {
+      background: rgba(55, 255, 159, 0.2);
+      color: #37ff9f;
+      padding: 0.2rem 0.6rem;
+      border-radius: 15px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      border: 1px solid rgba(55, 255, 159, 0.3);
     }
 
     /* Animations */
@@ -629,7 +681,23 @@
       }
     }
 
+    /* Responsive pour les onglets */
     @media (max-width: 768px) {
+      .tabs-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .tab-button {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+      }
+      
+      .experience-grid {
+        grid-template-columns: 1fr;
+      }
+      
       .menu-container {
         flex-direction: column;
         gap: 0.5rem;
@@ -899,48 +967,155 @@
       </div>
     </div>
 
-    <!-- Panneaux cliquables en bas -->
-    <div class="bottom-panels">
-      <div class="bottom-panel" onclick="window.location.href='experience_pro.html'">
-        <i class="fas fa-laptop-code panel-icon"></i>
-        <h3>Expériences Informatiques</h3>
-        <ul>
-          <li>
-            <div class="date">2023 - 2024</div>
-            <div class="role">Technicien d'Assistance Informatique - M2i (Distanciel)</div>
-          </li>
-          <li>
-            <div class="date">Stages et formations pratiques</div>
-            <div class="role">Autres expériences informatiques</div>
-          </li>
-          <li>
-            <div class="date">ROK</div>
-            <div class="role">Suivi des workflows et gestion des mouvements</div>
-          </li>
-        </ul>
+    <!-- Section supplémentaire avec onglets -->
+    <div class="additional-sections">
+      <div class="tabs-container">
+        <button class="tab-button active" data-tab="informatique">
+          <i class="fas fa-laptop-code"></i>
+          Stages et formations pratiques
+        </button>
+        <button class="tab-button" data-tab="anterieures">
+          <i class="fas fa-briefcase"></i>
+          Parcours avant reconversion
+        </button>
       </div>
 
-      <div class="bottom-panel" onclick="window.location.href='parcours_pro.html'">
-        <i class="fas fa-briefcase panel-icon"></i>
-        <h3>Expériences Antérieures</h3>
-        <ul>
-          <li>
+      <div class="tab-content active" id="informatique">
+        <h3>Autres expériences informatiques - Stages et formations pratiques</h3>
+        <div class="experience-grid">
+          <div class="experience-card">
+            <div class="date">2023 - 2024</div>
+            <div class="role">Technicien d'Assistance Informatique</div>
+            <div class="company">M2i Formation (Distanciel)</div>
+            <div class="description">
+              Formation intensive en assistance informatique avec mise en pratique des compétences techniques 
+              sur différents environnements et technologies.
+            </div>
+            <div class="skills">
+              <div class="skills-title">Compétences acquises :</div>
+              <div class="skills-tags">
+                <span class="skill-tag-small">Support N1/N2</span>
+                <span class="skill-tag-small">Windows</span>
+                <span class="skill-tag-small">Linux</span>
+                <span class="skill-tag-small">Réseau</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="experience-card">
+            <div class="date">Stages - FRESC</div>
+            <div class="role">Formations pratiques en entreprise</div>
+            <div class="company">Passage à la FRESC</div>
+            <div class="description">
+              Stages pratiques et formations en entreprise dans le cadre de mon parcours 
+              de reconversion professionnelle. Mise en application des connaissances théoriques 
+              dans un environnement professionnel réel.
+            </div>
+            <div class="skills">
+              <div class="skills-title">Compétences développées :</div>
+              <div class="skills-tags">
+                <span class="skill-tag-small">Pratique terrain</span>
+                <span class="skill-tag-small">Adaptation</span>
+                <span class="skill-tag-small">Environnement pro</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="experience-card">
+            <div class="date">ROK - Workflow Management</div>
+            <div class="role">Suivi des mouvements</div>
+            <div class="company">Novares (Système interne)</div>
+            <div class="description">
+              Gestion et suivi des workflows SWF pour les entrées, sorties et mouvements 
+              de matériel informatique au sein de l'entreprise.
+            </div>
+            <div class="skills">
+              <div class="skills-title">Outils utilisés :</div>
+              <div class="skills-tags">
+                <span class="skill-tag-small">ROK</span>
+                <span class="skill-tag-small">Gestion stocks</span>
+                <span class="skill-tag-small">Workflows</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="anterieures">
+        <h3>Expériences antérieures - Parcours avant reconversion</h3>
+        <div class="experience-grid">
+          <div class="experience-card">
             <div class="date">2015 - 2017</div>
-            <div class="role">CAP Poissonnier traiteur - Campus Pro, Hellemmes</div>
-          </li>
-          <li>
+            <div class="role">CAP Poissonnier traiteur</div>
+            <div class="company">Campus Pro, Hellemmes</div>
+            <div class="description">
+              Formation complète dans les métiers de la poissonnerie et du traiteur. 
+              Acquisition de compétences en transformation, conservation et présentation des produits de la mer.
+            </div>
+            <div class="skills">
+              <div class="skills-title">Compétences développées :</div>
+              <div class="skills-tags">
+                <span class="skill-tag-small">Hygiène HACCP</span>
+                <span class="skill-tag-small">Service client</span>
+                <span class="skill-tag-small">Gestion qualité</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="experience-card">
             <div class="date">2008 - 2009</div>
-            <div class="role">CAP Plâtrier plaquiste - BATIFORM, Hazebrouck</div>
-          </li>
-          <li>
+            <div class="role">CAP Plâtrier plaquiste</div>
+            <div class="company">BATIFORM, Hazebrouck</div>
+            <div class="description">
+              Apprentissage des techniques de plâtrerie et de pose de cloisons sèches. 
+              Développement de compétences manuelles et de précision dans le secteur du BTP.
+            </div>
+            <div class="skills">
+              <div class="skills-title">Compétences techniques :</div>
+              <div class="skills-tags">
+                <span class="skill-tag-small">Techniques BTP</span>
+                <span class="skill-tag-small">Précision</span>
+                <span class="skill-tag-small">Finitions</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="experience-card">
             <div class="date">2005 - 2007</div>
-            <div class="role">CAP Carreleur mosaïste - CFA, Roubaix</div>
-          </li>
-          <li>
+            <div class="role">CAP Carreleur mosaïste</div>
+            <div class="company">CFA, Roubaix</div>
+            <div class="description">
+              Formation en pose de carrelage et création de mosaïques. 
+              Maîtrise des techniques traditionnelles et modernes de revêtement.
+            </div>
+            <div class="skills">
+              <div class="skills-title">Savoir-faire :</div>
+              <div class="skills-tags">
+                <span class="skill-tag-small">Pose carrelage</span>
+                <span class="skill-tag-small">Créativité</span>
+                <span class="skill-tag-small">Méticulosité</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="experience-card">
             <div class="date">2003 - 2005</div>
-            <div class="role">CAP Électrotechnique (niveau BEP) - Dynah Derrick, Villeneuve-d'Ascq</div>
-          </li>
-        </ul>
+            <div class="role">CAP Électrotechnique (niveau BEP)</div>
+            <div class="company">Dynah Derrick, Villeneuve-d'Ascq</div>
+            <div class="description">
+              Formation initiale dans le domaine technique avec une première approche 
+              de l'électrotechnique et des systèmes électriques.
+            </div>
+            <div class="skills">
+              <div class="skills-title">Bases techniques :</div>
+              <div class="skills-tags">
+                <span class="skill-tag-small">Électricité</span>
+                <span class="skill-tag-small">Logique technique</span>
+                <span class="skill-tag-small">Sécurité</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </main>
@@ -953,6 +1128,24 @@
   </div>
 
   <script>
+    // Gestion des onglets
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const tabId = button.dataset.tab;
+        
+        // Retirer la classe active de tous les boutons et contenus
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+        
+        // Ajouter la classe active au bouton cliqué et au contenu correspondant
+        button.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+
     // Gestion du bouton flottant au défilement
     window.addEventListener('scroll', function() {
       const backButton = document.getElementById('backToHome');
