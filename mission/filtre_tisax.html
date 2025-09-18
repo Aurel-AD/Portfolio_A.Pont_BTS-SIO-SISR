@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expériences Professionnelles - Portfolio Aurélien Pont</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0a1a2f 0%, #1a3a4a 100%);
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Menu principal */
+    .top-menu { position: fixed; top: 0; left: 0; width: 100%; background: #0B8043; padding: 1rem 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+    .menu-container { max-width: 1200px; margin: auto; display: flex; align-items: center; gap: 2rem; padding: 0 2rem; }
+    .menu-item { color: #37ff9f; font-weight: bold; font-size: 1.1rem; cursor: pointer; padding: 0.6rem 1.2rem; border-radius: 10px; transition: 0.3s; background: rgba(255,255,255,0.05); border: 1px solid rgba(55,255,159,0.3); font-family: 'Montserrat', sans-serif; }
+    .menu-item:hover, .menu-item.active { background: linear-gradient(90deg, rgba(55,255,159,0.15), rgba(55,255,159,0.3)); border: 1px solid #37ff9f; box-shadow: 0 0 15px rgba(55,255,159,0.6); transform: translateY(-3px); }
+    .avatar-container { margin-left: auto; }
+    .avatar { width: 56px; height: 56px; border-radius: 50%; border: 3px solid #37ff9f; object-fit: cover; transition: 0.3s; }
+    .avatar:hover { transform: scale(1.1); }
+
+    /* Contenu principal */
+    .main-content { padding-top: 120px; display: flex; justify-content: center; }
+    .experience-container { max-width: 1100px; width: 100%; padding: 40px; background: rgba(15, 23, 42, 0.8); border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); border: 1px solid rgba(56,189,248,0.2); }
+    .experience-title { font-family: 'Montserrat', sans-serif; font-size: 2.4rem; font-weight: 800; color: #34d399; text-align: center; margin-bottom: 30px; }
+    .cards-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+
+    .card { background: rgba(30,41,59,0.7); border-radius: 15px; padding: 25px; text-align: center; transition: 0.3s; border: 1px solid rgba(52,211,153,0.2); }
+    .card:hover { transform: translateY(-8px); background: rgba(30,41,59,0.9); box-shadow: 0 15px 30px rgba(52,211,153,0.2); }
+    .card-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+    .card-title { font-size: 1.2rem; font-weight: 700; font-family: 'Montserrat', sans-serif; color: #34d399; margin-bottom: 10px; }
+    .card-text { color: #e2e8f0; font-size: 0.95rem; margin-bottom: 15px; }
+    .card-link { display: inline-block; padding: 8px 16px; border-radius: 30px; background: #34d399; color: #0f172a; font-weight: 600; text-decoration: none; transition: 0.3s; font-size: 0.9rem; }
+    .card-link:hover { background: #0f172a; color: #34d399; border: 2px solid #34d399; }
+
+    /* Pagination */
+    .pagination { display: flex; justify-content: center; margin-top: 25px; gap: 10px; }
+    .page-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(55,255,159,0.3); color: #37ff9f; padding: 8px 14px; border-radius: 6px; cursor: pointer; transition: 0.3s; font-weight: bold; }
+    .page-btn:hover, .page-btn.active { background: #34d399; color: #0f172a; border: 1px solid #34d399; }
+
+    /* Navigation fixe */
+    .navigation-fixed { position: fixed; bottom: 30px; right: 30px; }
+    .nav-link-fixed { display: inline-flex; align-items: center; background: linear-gradient(135deg, #0B8043 0%, #37ff9f 100%); color: white; padding: 12px 20px; border-radius: 50px; text-decoration: none; font-family: 'Montserrat', sans-serif; font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: 0.3s; }
+    .nav-link-fixed:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(55,255,159,0.4); background: linear-gradient(135deg, #37ff9f 0%, #0B8043 100%); }
+  </style>
+</head>
+<body>
+  <!-- Menu -->
+  <header>
+    <nav class="top-menu">
+      <div class="menu-container">
+        <div class="menu-item" data-section="biographie">Biographie</div>
+        <div class="menu-item" data-section="alternance">Mon alternance</div>
+        <div class="menu-item" data-section="veille">Mes sources</div>
+        <div class="menu-item" data-section="formation">Centre & Entreprise</div>
+        <div class="avatar-container">
+          <a href="cv.html" target="_blank">
+            <img src="img/Avatar.png" alt="Photo de profil" class="avatar" />
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Contenu principal -->
+  <main class="main-content">
+    <div class="experience-container fade-in">
+      <h1 class="experience-title">Mes Expériences Professionnelles</h1>
+      <div id="cardsContainer" class="cards-container"></div>
+      <div class="pagination" id="pagination"></div>
+    </div>
+  </main>
+
+  <!-- Navigation retour -->
+  <div class="navigation-fixed">
+    <a href="index.html" class="nav-link-fixed">
+      <span>🏠</span>
+      <span>Accueil</span>
+    </a>
+  </div>
+
+  <!-- Script -->
+  <script>
+    // Toutes les expériences
+    const experiences = [
+      { icon: "💻", title: "Installation & Maintenance", text: "Installation et configuration de postes fixes/portables. Maintenance préventive et corrective.", link: "guides/installation_guide.pdf" },
+      { icon: "🛠️", title: "Réparation matériel", text: "Diagnostic et remplacement de composants sur tours et portables.", link: "guides/repair_procedures.pdf" },
+      { icon: "⚙️", title: "Déploiement SCCM", text: "Automatisation des déploiements OS et logiciels via SCCM.", link: "guides/sccm_configuration.pdf" },
+      { icon: "📦", title: "Installation logiciels", text: "Installation via DFS, Software Center et Internet. Gestion des pilotes.", link: "guides/software_catalog.pdf" },
+      { icon: "🖨️", title: "Gestion imprimantes", text: "Configuration imprimantes locales, partagées et serveurs d’impression.", link: "guides/printers_guide.pdf" },
+      { icon: "🔒", title: "Double authentification", text: "Mise en place MFA sur postes et mobiles. Formation utilisateurs.", link: "guides/mfa_guide.pdf" },
+      { icon: "🌐", title: "VPN FortiClient", text: "Configuration VPN avec EMS. Support utilisateurs distants.", link: "guides/vpn_guide.pdf" },
+      { icon: "👥", title: "Gestion comptes AD", text: "Administration des comptes, groupes et droits d’accès Active Directory.", link: "guides/ad_procedures.pdf" },
+      { icon: "📂", title: "Mises à jour", text: "Déploiement correctifs via WSUS & SCCM. Gestion des fenêtres de maintenance.", link: "guides/update_schedule.pdf" },
+      { icon: "📡", title: "Wi-Fi invité", text: "Gestion Wi-Fi invité via Cisco Meraki : SSID, portail captif, monitoring.", link: "guides/meraki_configuration.pdf" },
+      { icon: "💾", title: "Sauvegarde & Restauration", text: "Supervision des sauvegardes et restauration des données.", link: "guides/backup_policy.pdf" },
+      { icon: "📞", title: "Assistance distante", text: "Support utilisateurs via DameWare, TeamViewer et RDS.", link: "guides/remote_support.pdf" },
+      { icon: "🎫", title: "Gestion incidents", text: "Traitement des tickets via Freshdesk. Respect SLA.", link: "guides/freshdesk_guide.pdf" },
+      { icon: "📋", title: "Suivi Workflows", text: "Entrées, sorties et mouvements de matériel via SWF.", link: "guides/swf_guide.pdf" },
+      { icon: "✅", title: "Conformité TISAX", text: "Inventaire informatique et préparation audits TISAX.", link: "guides/tisax_reference.pdf" },
+      { icon: "📖", title: "Guides utilisateurs", text: "Rédaction et mise à jour de documentation technique claire.", link: "guides/documentation_templates.pdf" }
+    ];
+
+    const cardsPerPage = 4;
+    let currentPage = 1;
+
+    function renderCards(page) {
+      const container = document.getElementById("cardsContainer");
+      container.innerHTML = "";
+      const start = (page - 1) * cardsPerPage;
+      const end = start + cardsPerPage;
+      const paginatedExperiences = experiences.slice(start, end);
+
+      paginatedExperiences.forEach(exp => {
+        const card = `
+          <div class="card">
+            <span class="card-icon">${exp.icon}</span>
+            <div class="card-title">${exp.title}</div>
+            <div class="card-text">${exp.text}</div>
+            <a href="${exp.link}" target="_blank" class="card-link">Voir plus</a>
+          </div>
+        `;
+        container.innerHTML += card;
+      });
+      renderPagination();
+    }
+
+    function renderPagination() {
+      const pagination = document.getElementById("pagination");
+      pagination.innerHTML = "";
+      const totalPages = Math.ceil(experiences.length / cardsPerPage);
+
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.textContent = i;
+        btn.classList.add("page-btn");
+        if (i === currentPage) btn.classList.add("active");
+        btn.addEventListener("click", () => {
+          currentPage = i;
+          renderCards(currentPage);
+        });
+        pagination.appendChild(btn);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderCards(currentPage);
+    });
+  </script>
+</body>
+</html>
