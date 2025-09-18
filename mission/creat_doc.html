@@ -1,0 +1,123 @@
+<div class="container">
+    <div class="header">
+        <h1>📑 Document Technique</h1>
+        <div class="subtitle">Présentation et justification</div>
+    </div>
+
+    <div class="content">
+        <div class="info-card">
+            <h3>📋 Pourquoi ce document ?</h3>
+            <p>
+                Ce document technique a été rédigé afin de détailler ma démarche, 
+                mes choix et les aspects techniques de ce projet. 
+                Il constitue une référence complète pour comprendre 
+                l’implémentation et les solutions retenues.
+            </p>
+        </div>
+
+        <div class="step">
+            <div class="step-header">
+                <span class="step-number">1</span>
+                <h3>Consultation du document</h3>
+            </div>
+            <div class="step-content">
+                <p>Vous pouvez lire directement le PDF ci-dessous :</p>
+                <div class="visual-demo">
+                    <iframe src="documents/mon-document.pdf" width="100%" height="600px"></iframe>
+                    <p class="image-caption">📖 Aperçu intégré du document technique</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-header">
+                <span class="step-number">2</span>
+                <h3>Téléchargement</h3>
+            </div>
+            <div class="step-content">
+                <p>
+                    Pour conserver une copie locale ou l’ouvrir en plein écran :
+                </p>
+                <a href="files/Mode sans echec.pdf" target="_blank" class="status-ok">🔗 Ouvrir dans un nouvel onglet</a><br>
+                <a href="documents/mon-document.pdf" download class="status-ok">⬇️ Télécharger le PDF</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Documentation technique personnelle - Portfolio</p>
+    </div>
+</div>
+
+<!-- Bouton retour vers le haut / retour page -->
+<a href="#" class="back-to-top" id="backToTop">↑</a>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const style = document.createElement('style');
+        style.textContent = `
+            #backToTop {
+                position: fixed !important;
+                bottom: 30px !important;
+                right: 30px !important;
+                z-index: 9999 !important;
+                padding: 12px 18px !important;
+                background: linear-gradient(135deg, #0c6b1e, #29a348) !important;
+                color: white !important;
+                text-align: center !important;
+                text-decoration: none !important;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                font-size: 1rem !important;
+                font-weight: 600 !important;
+                border-radius: 24px !important;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease !important;
+                border: none;
+                cursor: pointer;
+            }
+
+            #backToTop.show {
+                opacity: 1 !important;
+                visibility: visible !important;
+            }
+
+            #backToTop:hover {
+                transform: translateY(-3px) !important;
+                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3) !important;
+            }
+
+            @media (max-width: 768px) {
+                #backToTop {
+                    bottom: 20px !important;
+                    right: 20px !important;
+                    padding: 10px 16px !important;
+                    font-size: 0.95rem !important;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        const btn = document.getElementById('backToTop');
+        if (!btn) return;
+
+        // Texte du bouton
+        btn.textContent = 'Retour';
+
+        // Redirection vers la page principale du portfolio
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.location.href = 'index.html'; // change vers ta page d’accueil
+        });
+
+        // Afficher après défilement
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 300) {
+                btn.classList.add('show');
+            } else {
+                btn.classList.remove('show');
+            }
+        });
+    });
+</script>
