@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des OU - Documentation Technique Novares</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #24292f;
+            background: #f6f8fa;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            overflow: hidden;
+            border: 1px solid #d1d9e0;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            opacity: 0.1;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .github-badge {
+            background: #f6f8fa;
+            border: 1px solid #d1d9e0;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .github-badge-icon {
+            font-size: 1.5em;
+        }
+        
+        .info-card {
+            background: #dcfce7;
+            border: 1px solid #86efac;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .info-card h3 {
+            color: #166534;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .sites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+        
+        .site-card {
+            background: #ecfdf5;
+            border: 1px solid #34d399;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        
+        .site-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .site-card h4 {
+            color: #166534;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        
+        .procedure {
+            margin-top: 32px;
+        }
+        
+        .procedure h2 {
+            color: #24292f;
+            border-bottom: 2px solid #059669;
+            padding-bottom: 8px;
+            margin-bottom: 24px;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+        
+        .step {
+            background: #ffffff;
+            border: 1px solid #d1d9e0;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 16px;
+            transition: all 0.2s ease;
+        }
+        
+        .step:hover {
+            border-color: #059669;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .step-number {
+            background: #059669;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        .step h3 {
+            color: #24292f;
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .step-content {
+            color: #656d76;
+            line-height: 1.6;
+        }
+        
+        .visual-demo {
+            background: #f6f8fa;
+            border: 1px solid #d1d9e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 16px 0;
+            text-align: center;
+        }
+        
+        .visual-demo-icon {
+            font-size: 3em;
+            margin-bottom: 12px;
+            display: block;
+        }
+        
+        .visual-demo h4 {
+            color: #24292f;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .visual-demo p {
+            color: #656d76;
+            font-size: 0.9em;
+        }
+        
+        .status-indicator {
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 4px;
+            font-size: 0.875em;
+        }
+        
+        .status-ok {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+        
+        .status-failed {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+        
+        .highlight {
+            background: #ecfdf5;
+            border: 1px solid #86efac;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+        
+        .highlight strong {
+            color: #166534;
+        }
+        
+        .tech-info {
+            background: #ecfdf5;
+            border: 1px solid #10b981;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+        
+        .tech-info strong {
+            color: #047857;
+        }
+        
+        .image-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .procedure-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: 1px solid #d1d9e0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .procedure-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+        
+        .image-caption {
+            margin-top: 8px;
+            font-size: 0.9em;
+            color: #656d76;
+            font-style: italic;
+            font-weight: 500;
+        }
+        
+        .mock-interface {
+            background: #1f2937;
+            color: #f9fafb;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.875em;
+        }
+        
+        .mock-interface .title-bar {
+            background: #374151;
+            margin: -16px -16px 12px -16px;
+            padding: 8px 16px;
+            border-radius: 8px 8px 0 0;
+            font-weight: 600;
+        }
+        
+        .mock-ticket {
+            background: #ffffff;
+            border: 1px solid #d1d9e0;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        
+        .mock-ticket-header {
+            background: #059669;
+            color: white;
+            margin: -16px -16px 16px -16px;
+            padding: 12px 16px;
+            border-radius: 8px 8px 0 0;
+            font-weight: 600;
+        }
+        
+        .mock-ad-console {
+            background: #0d1117;
+            color: #c9d1d9;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.875em;
+        }
+        
+        .ad-line {
+            margin: 4px 0;
+            padding: 4px;
+        }
+        
+        .ad-success {
+            color: #7dd3fc;
+        }
+        
+        .ad-success::before {
+            content: "✓ ";
+            color: #10b981;
+        }
+        
+        .footer {
+            background: #24292f;
+            color: #f0f6fc;
+            text-align: center;
+            padding: 24px;
+            font-size: 0.9em;
+        }
+        
+        .footer a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            font-size: 1.5em;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 8px;
+            }
+            
+            .header {
+                padding: 24px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 24px;
+            }
+            
+            .step-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            
+            .step-number {
+                margin-right: 0;
+            }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏢 Gestion des OU - Intégration Utilisateur</h1>
+            <div class="subtitle">Procédure Novares - Suite à Ticket Freshdesk</div>
+        </div>
+        
+        <div class="content">
+            <div class="info-card">
+                <h3>📋 Contexte de la procédure</h3>
+                <p>Cette procédure décrit l'intégration d'une personne dans une Unité Organisationnelle (OU) Active Directory suite à la réception d'un ticket Freshdesk dans l'environnement Novares.</p>
+            </div>
+            
+            <div class="sites-grid">
+                <div class="site-card">
+                    <h4>🏢 Site de Lens</h4>
+                    <p>Centre d'expertise</p>
+                </div>
+                <div class="site-card">
+                    <h4>🏭 Site de Libercourt</h4>
+                    <p>Usine</p>
+                </div>
+                <div class="site-card">
+                    <h4>🏭 Site de Villers-Bretonneux</h4>
+                    <p>Usine</p>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                <strong>🎯 Déclenchement :</strong> Cette procédure est initiée lors de la réception d'un ticket Freshdesk pour l'intégration d'un nouvel utilisateur.
+            </div>
+            
+            <div class="procedure">
+                <h2>⚙️ Procédure d'intégration dans une OU</h2>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <span class="step-number">1</span>
+                        <h3>Réception et analyse du ticket Freshdesk</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Analyser le ticket reçu et identifier les informations nécessaires pour l'intégration.</p>
+                        
+                        <div class="image-container">
+                            <img src="ou_ticket.jpg" alt="Ticket Freshdesk pour OU" class="procedure-image">
+                            <div class="image-caption">📧 Exemple de ticket Freshdesk reçu</div>
+                        </div>
+                        
+                        <div class="mock-ticket">
+                            <div class="mock-ticket-header">
+                                🎫 Ticket #FR-2024-0856 - Demande d'accès OU
+                            </div>
+                            <p><strong>Demandeur :</strong> Marie Dupont (Manager RH)</p>
+                            <p><strong>Utilisateur :</strong> Jean Martin</p>
+                            <p><strong>Service :</strong> Production - Lens</p>
+                            <p><strong>OU cible :</strong> OU=Production,OU=Lens,DC=novares,DC=local</p>
+                        </div>
+                        
+                        <div class="tech-info">
+                            <strong>💡 Information :</strong> Vérifier que toutes les informations requises sont présentes dans le ticket.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <span class="step-number">2</span>
+                        <h3>Vérification de l'utilisateur dans Active Directory</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Rechercher l'utilisateur dans Active Directory pour vérifier son existence et ses paramètres actuels.</p>
+                        
+                        <div class="image-container">
+                            <img src="ou_ad_search.jpg" alt="Recherche utilisateur AD" class="procedure-image">
+                            <div class="image-caption">🔍 Recherche utilisateur dans Active Directory</div>
+                        </div>
+                        
+                        <div class="mock-ad-console">
+                            <div class="title-bar">PowerShell - Recherche utilisateur AD</div>
+                            <div class="ad-line">PS C:\> Get-ADUser -Identity "jmartin" -Properties *</div>
+                            <div class="ad-line ad-success">Utilisateur trouvé: Jean Martin (jmartin)</div>
+                            <div class="ad-line ad-success">OU actuelle: OU=Temp,DC=novares,DC=local</div>
+                            <div class="ad-line ad-success">Compte actif: True</div>
+                        </div>
+                        
+                        <div class="tech-info">
+                            <strong>🔍 Vérification :</strong> S'assurer que le compte utilisateur existe et est dans un état valide.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <span class="step-number">3</span>
+                        <h3>Déplacement de l'utilisateur vers la nouvelle OU</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Effectuer le déplacement de l'utilisateur vers l'OU de destination spécifiée dans le ticket.</p>
+                        
+                        <div class="image-container">
+                            <img src="ou_move_user.jpg" alt="Déplacement utilisateur OU" class="procedure-image">
+                            <div class="image-caption">🔄 Déplacement de l'utilisateur vers la nouvelle OU</div>
+                        </div>
+                        
+                        <div class="mock-ad-console">
+                            <div class="title-bar">PowerShell - Déplacement utilisateur</div>
+                            <div class="ad-line">PS C:\> Move-ADObject -Identity "CN=Jean Martin,OU=Temp,DC=novares,DC=local" `</div>
+                            <div class="ad-line">     -TargetPath "OU=Production,OU=Lens,DC=novares,DC=local"</div>
+                            <div class="ad-line ad-success">Déplacement réussi vers OU=Production,OU=Lens</div>
+                            <div class="ad-line ad-success">Synchronisation AD en cours...</div>
+                        </div>
+                        
+                        <div class="tech-info">
+                            <strong>🔄 Migration :</strong> Le déplacement peut prendre quelques minutes pour se propager dans tout le domaine.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <span class="step-number">4</span>
+                        <h3>Vérification et validation du déplacement</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Confirmer que l'utilisateur a bien été déplacé et que tous ses attributs sont corrects.</p>
+                        
+                        <div class="image-container">
+                            <img src="ou_verification.jpg" alt="Vérification déplacement OU" class="procedure-image">
+                            <div class="image-caption">✅ Vérification du déplacement réussi</div>
+                        </div>
+                        
+                        <div style="margin: 16px 0;">
+                            <h4 style="margin-bottom: 8px;">Points de contrôle :</h4>
+                            <span class="status-ok">✅ Utilisateur présent dans la nouvelle OU</span><br>
+                            <span class="status-ok">✅ Permissions héritées correctement</span><br>
+                            <span class="status-ok">✅ Accès aux ressources fonctionnel</span><br>
+                            <span class="status-ok">✅ Stratégies de groupe appliquées</span>
+                        </div>
+                        
+                        <div class="highlight">
+                            <strong>🎯 Validation :</strong> Tester l'accès de l'utilisateur aux ressources de sa nouvelle OU.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <span class="step-number">5</span>
+                        <h3>Application des stratégies de groupe</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Vérifier que les stratégies de groupe (GPO) appropriées sont appliquées à l'utilisateur dans sa nouvelle OU.</p>
+                        
+                        <div class="mock-ad-console">
+                            <div class="title-bar">GPMC - Vérification des stratégies</div>
+                            <div class="ad-line ad-success">GPO "Production-Security-Policy" : Appliquée</div>
+                            <div class="ad-line ad-success">GPO "Lens-Site-Settings" : Appliquée</div>
+                            <div class="ad-line ad-success">GPO "Default Domain Policy" : Héritée</div>
+                        </div>
+                        
+                        <div class="tech-info">
+                            <strong>🛡️ Sécurité :</strong> Les stratégies de groupe définissent les permissions et restrictions de l'utilisateur.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <span class="step-number">6</span>
+                        <h3>Notification et clôture du ticket</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Informer le demandeur de la réalisation de la demande et clôturer le ticket Freshdesk.</p>
+                        
+                        <div class="mock-ticket">
+                            <div class="mock-ticket-header">
+                                ✅ Ticket #FR-2024-0856 - RÉSOLU
+                            </div>
+                            <p><strong>Statut :</strong> Résolu</p>
+                            <p><strong>Action réalisée :</strong> Utilisateur Jean Martin déplacé vers OU=Production,OU=Lens</p>
+                            <p><strong>Date de résolution :</strong> 18/09/2024 - 14:30</p>
+                            <p><strong>Technicien :</strong> Service IT Novares</p>
+                        </div>
+                        
+                        <div class="tech-info">
+                            <strong>📝 Documentation :</strong> Conserver une trace de l'intervention pour l'historique.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <span class="step-number">7</span>
+                        <h3>Suivi post-déplacement</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Effectuer un suivi dans les 24-48h pour s'assurer que l'utilisateur n'a pas de problème d'accès.</p>
+                        
+                        <div class="tech-info">
+                            <strong>📊 Monitoring :</strong> Surveiller les logs d'authentification pour détecter d'éventuels problèmes.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <h3>🔍 Points de contrôle essentiels</h3>
+                <div style="margin-top: 12px;">
+                    <div style="margin: 8px 0;">✅ <strong>Ticket analysé :</strong> Toutes les informations vérifiées</div>
+                    <div style="margin: 8px 0;">✅ <strong>Utilisateur vérifié :</strong> Compte valide dans AD</div>
+                    <div style="margin: 8px 0;">✅ <strong>Déplacement effectué :</strong> OU mise à jour</div>
+                    <div style="margin: 8px 0;">✅ <strong>Permissions validées :</strong> Accès fonctionnel</div>
+                    <div style="margin: 8px 0;">✅ <strong>Ticket clôturé :</strong> Demandeur informé</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Documentation technique Novares - Gestion des OU</p>
+            <p>© 2024 Novares Group. Tous droits réservés.</p>
+        </div>
+    </div>
+    
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const style = document.createElement('style');
+            style.textContent = `
+                #backToTop {
+                    position: fixed !important;
+                    bottom: 30px !important;
+                    right: 30px !important;
+                    z-index: 9999 !important;
+                    width: auto !important;
+                    height: auto !important;
+                    padding: 12px 18px !important;
+                    background: linear-gradient(135deg, #059669, #10b981) !important;
+                    color: white !important;
+                    text-align: center !important;
+                    text-decoration: none !important;
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                    font-size: 1rem !important;
+                    font-weight: 600 !important;
+                    border-radius: 24px !important;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: all 0.3s ease !important;
+                    border: none;
+                    cursor: pointer;
+                }
+
+                #backToTop.show {
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                }
+
+                #backToTop:hover {
+                    transform: translateY(-3px) !important;
+                    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3) !important;
+                }
+
+                @media (max-width: 768px) {
+                    #backToTop {
+                        bottom: 20px !important;
+                        right: 20px !important;
+                        padding: 10px 16px !important;
+                        font-size: 0.95rem !important;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+
+            const btn = document.getElementById('backToTop');
+            if (!btn) return;
+
+            btn.textContent = 'Retour';
+
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                window.location.href = '../experiences_pro.html';
+            });
+
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 300) {
+                    btn.classList.add('show');
+                } else {
+                    btn.classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
