@@ -434,6 +434,7 @@
             <div class="subtitle">Procédure Novares - Documentation Technique</div>
         </div>
         
+        <div class="content">
             <div class="info-card">
                 <h3>📋 Contexte de la procédure</h3>
                 <p>Vérification hebdomadaire automatisée des statuts de sauvegarde sur l'ensemble des sites Novares. Cette procédure garantit l'intégrité et la disponibilité des données critiques de l'entreprise.</p>
@@ -634,78 +635,86 @@
     <a href="#" class="back-to-top" id="backToTop">↑</a>
     
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Ajouter le style personnalisé pour le bouton
-        const style = document.createElement('style');
-        style.textContent = `
-            #backToTop {
-                position: fixed !important;
-                bottom: 30px !important;
-                right: 30px !important;
-                z-index: 9999 !important;
-                width: auto !important;
-                height: auto !important;
-                padding: 12px 18px !important;
-                background: linear-gradient(135deg, #0969da, #218bff) !important;
-                color: white !important;
-                text-align: center !important;
-                text-decoration: none !important;
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-                font-size: 1rem !important;
-                font-weight: 600 !important;
-                border-radius: 24px !important;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.3s ease !important;
-                border: none;
-                cursor: pointer;
-            }
-
-            #backToTop.show {
-                opacity: 1 !important;
-                visibility: visible !important;
-            }
-
-            #backToTop:hover {
-                transform: translateY(-3px) !important;
-                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3) !important;
-            }
-
-            @media (max-width: 768px) {
-                #backToTop {
-                    bottom: 20px !important;
-                    right: 20px !important;
-                    padding: 10px 16px !important;
-                    font-size: 0.95rem !important;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Cibler le bouton
+document.addEventListener('DOMContentLoaded', function () {
+    // Ne pas afficher le bouton retour sur GitHub Pages (en ligne)
+    if (window.location.hostname.includes('github.io') || window.location.hostname.includes('github.com')) {
         const btn = document.getElementById('backToTop');
-        if (!btn) return;
+        if (btn) {
+            btn.style.display = 'none';
+        }
+        return; // Sortir de la fonction
+    }
+    
+    // Ajouter le style personnalisé pour le bouton
+    const style = document.createElement('style');
+    style.textContent = `
+        #backToTop {
+            position: fixed !important;
+            bottom: 30px !important;
+            right: 30px !important;
+            z-index: 9999 !important;
+            width: auto !important;
+            height: auto !important;
+            padding: 12px 18px !important;
+            background: linear-gradient(135deg, #0969da, #218bff) !important;
+            color: white !important;
+            text-align: center !important;
+            text-decoration: none !important;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 1rem !important;
+            font-weight: 600 !important;
+            border-radius: 24px !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease !important;
+            border: none;
+            cursor: pointer;
+        }
 
-        // Changer le texte
-        btn.textContent = 'Retour';
+        #backToTop.show {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
 
-        // Rediriger au clic
-        btn.addEventListener('click', function (e) {
-            e.preventDefault();
-            window.location.href = '../experiences_pro.html';
-        });
+        #backToTop:hover {
+            transform: translateY(-3px) !important;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3) !important;
+        }
 
-        // Afficher le bouton après défilement
-        window.addEventListener('scroll', function () {
-            if (window.scrollY > 300) {
-                btn.classList.add('show');
-            } else {
-                btn.classList.remove('show');
+        @media (max-width: 768px) {
+            #backToTop {
+                bottom: 20px !important;
+                right: 20px !important;
+                padding: 10px 16px !important;
+                font-size: 0.95rem !important;
             }
-        });
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Cibler le bouton
+    const btn = document.getElementById('backToTop');
+    if (!btn) return;
+
+    // Changer le texte
+    btn.textContent = 'Retour';
+
+    // Rediriger vers la page d'accueil
+    btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.location.href = '../';
     });
+
+    // Afficher le bouton après défilement
+    window.addEventListener('scroll', function () {
+        if (window.scrollY > 300) {
+            btn.classList.add('show');
+        } else {
+            btn.classList.remove('show');
+        }
+    });
+});
 </script>
 </body>
-
 </html>
