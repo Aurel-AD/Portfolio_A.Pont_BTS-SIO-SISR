@@ -1,123 +1,484 @@
-<div class="container">
-    <div class="header">
-        <h1>📑 Document Technique</h1>
-        <div class="subtitle">Présentation et justification</div>
-    </div>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide IT - Mode Sans Échec & BitLocker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <div class="content">
-        <div class="info-card">
-            <h3>📋 Pourquoi ce document ?</h3>
-            <p>
-                Ce document technique a été rédigé afin de détailler ma démarche, 
-                mes choix et les aspects techniques de ce projet. 
-                Il constitue une référence complète pour comprendre 
-                l’implémentation et les solutions retenues.
-            </p>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f2f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 30px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .ticket-info {
+            background: #e3f2fd;
+            padding: 20px;
+            border-left: 4px solid #2196f3;
+        }
+
+        .ticket-info h3 {
+            color: #1976d2;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ticket-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .ticket-item {
+            background: white;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .ticket-item strong {
+            color: #1976d2;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .guide-section {
+            background: #fff3e0;
+            padding: 25px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            border-left: 4px solid #ff9800;
+        }
+
+        .guide-section h3 {
+            color: #e65100;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .guide-section p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .important-note {
+            background: #ffebee;
+            border: 1px solid #ffcdd2;
+            border-radius: 6px;
+            padding: 18px;
+            margin: 20px 0;
+        }
+
+        .important-note h4 {
+            color: #c62828;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .important-note p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .pdf-section {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .pdf-header {
+            background: #495057;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .pdf-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pdf-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 18px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-success:hover {
+            background: #1e7e34;
+        }
+
+        .pdf-viewer {
+            background: white;
+            min-height: 600px;
+            position: relative;
+        }
+
+        .pdf-viewer iframe {
+            width: 100%;
+            height: 700px;
+            border: none;
+        }
+
+        .pdf-fallback {
+            display: none;
+            padding: 50px 30px;
+            text-align: center;
+            background: #f8f9fa;
+        }
+
+        .pdf-fallback.show {
+            display: block;
+        }
+
+        .pdf-fallback h4 {
+            color: #dc3545;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .pdf-fallback p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+
+        .footer-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-top: 1px solid #dee2e6;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .footer-info p {
+            margin-bottom: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.6rem;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .pdf-header {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+
+            .pdf-actions {
+                justify-content: center;
+            }
+
+            .ticket-details {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        .status-resolved {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .loading {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            width: 30px;
+            height: 30px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🖥️ Guide de Support IT</h1>
+            <div class="subtitle">Mode Sans Échec Windows & Récupération BitLocker</div>
         </div>
 
-        <div class="step">
-            <div class="step-header">
-                <span class="step-number">1</span>
-                <h3>Consultation du document</h3>
+        <div class="ticket-info">
+            <h3>🎫 Informations du ticket</h3>
+            <div class="ticket-details">
+                <div class="ticket-item">
+                    <strong>Problème :</strong> Accès mode sans échec
+                </div>
+                <div class="ticket-item">
+                    <strong>Contexte :</strong> Support à distance impossible
+                </div>
+                <div class="ticket-item">
+                    <strong>Solution :</strong> Guide utilisateur autonome
+                </div>
+                <div class="ticket-item">
+                    <strong>Statut :</strong> <span class="status-indicator status-resolved">✓ Documentation fournie</span>
+                </div>
             </div>
-            <div class="step-content">
-                <p>Vous pouvez lire directement le PDF ci-dessous :</p>
-                <div class="visual-demo">
-                    <iframe src="documents/mon-document.pdf" width="100%" height="600px"></iframe>
-                    <p class="image-caption">📖 Aperçu intégré du document technique</p>
+            <p><strong>Objectif :</strong> Permettre à l'utilisateur de démarrer en mode sans échec et de récupérer sa clé BitLocker de manière autonome.</p>
+        </div>
+
+        <div class="content">
+            <div class="guide-section">
+                <h3>🛠️ Contenu du guide</h3>
+                <p>
+                    Ce document contient les instructions détaillées pour effectuer les opérations 
+                    suivantes sur un poste Windows :
+                </p>
+                <p>
+                    <strong>• Démarrage en mode sans échec</strong> - Procédure complète avec captures d'écran<br>
+                    <strong>• Récupération de clé BitLocker</strong> - Étapes pour obtenir la clé de chiffrement<br>
+                    <strong>• Dépannage commun</strong> - Solutions aux problèmes fréquents
+                </p>
+            </div>
+
+            <div class="important-note">
+                <h4>⚠️ Information importante</h4>
+                <p>
+                    Ces procédures nécessitent un accès physique au poste de travail. 
+                    Le support à distance n'est pas possible pour ces opérations de sécurité système.
+                </p>
+            </div>
+
+            <div class="pdf-section">
+                <div class="pdf-header">
+                    <div class="pdf-title">
+                        📋 Documentation technique
+                    </div>
+                    <div class="pdf-actions">
+                        <button onclick="refreshDoc()" class="btn btn-warning" title="Recharger le document">
+                            🔄 Actualiser
+                        </button>
+                        <a href="files/Mode sans echec.pdf" target="_blank" class="btn" title="Ouvrir dans un nouvel onglet">
+                            🔗 Ouvrir
+                        </a>
+                        <a href="files/Mode sans echec.pdf" download class="btn btn-success" title="Télécharger le guide">
+                            📥 Télécharger
+                        </a>
+                    </div>
+                </div>
+
+                <div class="pdf-viewer" id="pdfViewer">
+                    <div class="loading" id="loadingDiv">
+                        <div class="spinner"></div>
+                        <p>Chargement du document...</p>
+                    </div>
+                    <iframe 
+                        src="files/Mode sans echec.pdf#view=FitH" 
+                        id="pdfFrame"
+                        title="Guide Mode Sans Échec et BitLocker"
+                        onload="handleLoad()"
+                        onerror="handleError()">
+                    </iframe>
+                    <div class="pdf-fallback" id="fallbackDiv">
+                        <h4>📄 Affichage alternatif</h4>
+                        <p>Le document ne peut pas être affiché directement. Utilisez les options ci-dessous pour y accéder :</p>
+                        <div>
+                            <a href="files/Mode sans echec.pdf" target="_blank" class="btn">
+                                🔗 Ouvrir dans un nouvel onglet
+                            </a>
+                            <a href="files/Mode sans echec.pdf" download class="btn btn-success">
+                                📥 Télécharger le PDF
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="step">
-            <div class="step-header">
-                <span class="step-number">2</span>
-                <h3>Téléchargement</h3>
-            </div>
-            <div class="step-content">
-                <p>
-                    Pour conserver une copie locale ou l’ouvrir en plein écran :
-                </p>
-                <a href="files/Mode sans echec.pdf" target="_blank" class="status-ok">🔗 Ouvrir dans un nouvel onglet</a><br>
-                <a href="documents/mon-document.pdf" download class="status-ok">⬇️ Télécharger le PDF</a>
-            </div>
+        <div class="footer-info">
+            <p><strong>Support IT :</strong> Guide procédural pour résolution autonome</p>
+            <p><strong>Document :</strong> Mode_sans_echec.pdf - Version mise à jour</p>
+            <p><strong>Compatibilité :</strong> Windows 10/11 - Toutes versions</p>
         </div>
     </div>
 
-    <div class="footer">
-        <p>Documentation technique personnelle - Portfolio</p>
-    </div>
-</div>
-
-<!-- Bouton retour vers le haut / retour page -->
-<a href="#" class="back-to-top" id="backToTop">↑</a>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const style = document.createElement('style');
-        style.textContent = `
-            #backToTop {
-                position: fixed !important;
-                bottom: 30px !important;
-                right: 30px !important;
-                z-index: 9999 !important;
-                padding: 12px 18px !important;
-                background: linear-gradient(135deg, #0c6b1e, #29a348) !important;
-                color: white !important;
-                text-align: center !important;
-                text-decoration: none !important;
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-                font-size: 1rem !important;
-                font-weight: 600 !important;
-                border-radius: 24px !important;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.3s ease !important;
-                border: none;
-                cursor: pointer;
-            }
-
-            #backToTop.show {
-                opacity: 1 !important;
-                visibility: visible !important;
-            }
-
-            #backToTop:hover {
-                transform: translateY(-3px) !important;
-                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3) !important;
-            }
-
-            @media (max-width: 768px) {
-                #backToTop {
-                    bottom: 20px !important;
-                    right: 20px !important;
-                    padding: 10px 16px !important;
-                    font-size: 0.95rem !important;
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            showLoading();
+            
+            // Timeout pour gérer les cas où le PDF ne se charge pas
+            setTimeout(() => {
+                if (document.getElementById('loadingDiv').classList.contains('show')) {
+                    handleError();
                 }
-            }
-        `;
-        document.head.appendChild(style);
-
-        const btn = document.getElementById('backToTop');
-        if (!btn) return;
-
-        // Texte du bouton
-        btn.textContent = 'Retour';
-
-        // Redirection vers la page principale du portfolio
-        btn.addEventListener('click', function (e) {
-            e.preventDefault();
-            window.location.href = 'index.html'; // change vers ta page d’accueil
+            }, 8000);
         });
 
-        // Afficher après défilement
-        window.addEventListener('scroll', function () {
-            if (window.scrollY > 300) {
-                btn.classList.add('show');
-            } else {
-                btn.classList.remove('show');
-            }
-        });
-    });
-</script>
+        function showLoading() {
+            document.getElementById('loadingDiv').classList.add('show');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingDiv').classList.remove('show');
+        }
+
+        function handleLoad() {
+            hideLoading();
+            console.log('Document chargé avec succès');
+        }
+
+        function handleError() {
+            hideLoading();
+            document.getElementById('pdfFrame').style.display = 'none';
+            document.getElementById('fallbackDiv').classList.add('show');
+        }
+
+        function refreshDoc() {
+            showLoading();
+            const frame = document.getElementById('pdfFrame');
+            const fallback = document.getElementById('fallbackDiv');
+            
+            // Réinitialiser l'affichage
+            frame.style.display = 'block';
+            fallback.classList.remove('show');
+            
+            // Recharger avec cache busting
+            const originalSrc = 'files/Mode sans echec.pdf#view=FitH';
+            frame.src = '';
+            setTimeout(() => {
+                frame.src = originalSrc + '&t=' + Date.now();
+            }, 300);
+        }
+
+        // Détection mobile pour optimiser l'affichage
+        if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            setTimeout(() => {
+                handleError(); // Basculer vers les liens sur mobile
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
