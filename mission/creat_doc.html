@@ -472,7 +472,26 @@
                 frame.src = originalSrc + '&t=' + Date.now();
             }, 300);
         }
+        
+  document.head.appendChild(style);
 
+            const btn = document.getElementById('backToTop');
+            if (!btn) return;
+
+            btn.textContent = 'Retour';
+
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                window.location.href = 'experiences_pro.html';
+            });
+
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 300) {
+                    btn.classList.add('show');
+                } else {
+                    btn.classList.remove('show');
+                }
+                
         // Détection mobile pour optimiser l'affichage
         if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             setTimeout(() => {
