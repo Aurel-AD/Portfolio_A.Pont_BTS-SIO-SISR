@@ -389,6 +389,24 @@
             transform: translateY(-3px);
             box-shadow: 0 6px 16px rgba(0,0,0,0.3);
         }
+
+        /* Style pour les images manquantes */
+        .image-error {
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .image-error::before {
+            content: "🖼️";
+            display: block;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
         
         @media (max-width: 768px) {
             .container {
@@ -471,7 +489,14 @@
                         <p>Retirer le computeur du SCCM.</p>
                         
                         <div class="image-container">
-                       <img src="/sccm/sccm1.webp" alt="Console d'administration SCCM" class="procedure-image"> -->
+                            <picture>
+                                <source srcset="sccm/sccm1.webp" type="image/webp">
+                                <img src="sccm/sccm1.jpg" alt="Console d'administration SCCM" class="procedure-image" onerror="this.style.display='none'; this.parentElement.nextElementSibling.style.display='block';">
+                            </picture>
+                            <div class="image-error" style="display:none;">
+                                Image non trouvée: sccm/sccm1.webp ou sccm/sccm1.jpg
+                                <br><small>Vérifiez que le fichier existe et que le chemin est correct</small>
+                            </div>
                             <div class="image-caption">🔧 Console d'administration Novares AD MANAGER</div>
                         </div>
                     </div>
@@ -480,13 +505,20 @@
                 <div class="step">
                     <div class="step-header">
                         <span class="step-number">2</span>
-                        <h3>Préparation du déploiement</h3>
+                        <h3>Configuration du BOOT</h3>
                     </div>
                     <div class="step-content">
                         <p>Choisir le BOOT UEFI.</p>
                         
                         <div class="image-container">
-                            <img src="sccm/sccm2.webp" alt="Console d'administration SCCM" class="procedure-image">
+                            <picture>
+                                <source srcset="sccm/sccm2.webp" type="image/webp">
+                                <img src="sccm/sccm2.jpg" alt="BIOS computeur" class="procedure-image" onerror="this.style.display='none'; this.parentElement.nextElementSibling.style.display='block';">
+                            </picture>
+                            <div class="image-error" style="display:none;">
+                                Image non trouvée: sccm/sccm2.webp ou sccm/sccm2.jpg
+                                <br><small>Vérifiez que le fichier existe et que le chemin est correct</small>
+                            </div>
                             <div class="image-caption">💻 BIOS computeur</div>
                         </div>
                         <div class="mock-console">
@@ -506,7 +538,14 @@
                         <p>Validation de l'identité via le système de mot de passe.</p>
                         
                         <div class="image-container">
-                            <img src="sccm/sccm3.webp" alt="Console d'administration SCCM" class="procedure-image">
+                            <picture>
+                                <source srcset="sccm/sccm3.webp" type="image/webp">
+                                <img src="sccm/sccm3.jpg" alt="Validation Administrateur" class="procedure-image" onerror="this.style.display='none'; this.parentElement.nextElementSibling.style.display='block';">
+                            </picture>
+                            <div class="image-error" style="display:none;">
+                                Image non trouvée: sccm/sccm3.webp ou sccm/sccm3.jpg
+                                <br><small>Vérifiez que le fichier existe et que le chemin est correct</small>
+                            </div>
                             <div class="image-caption">🔐 Validation Administrateur requise</div>
                         </div>
                         
@@ -517,13 +556,20 @@
                 <div class="step">
                     <div class="step-header">
                         <span class="step-number">4</span>
-                        <h3>Préparation du déploiement</h3>
+                        <h3>Sélection de l'image</h3>
                     </div>
                     <div class="step-content">
-                        <p>Selection de l'image à déployer.</p>
+                        <p>Sélection de l'image à déployer.</p>
                         
                         <div class="image-container">
-                            <img src="sccm/sccm4.webp" alt="Console d'administration SCCM" class="procedure-image">
+                            <picture>
+                                <source srcset="sccm/sccm4.webp" type="image/webp">
+                                <img src="sccm/sccm4.jpg" alt="Console d'administration SCCM" class="procedure-image" onerror="this.style.display='none'; this.parentElement.nextElementSibling.style.display='block';">
+                            </picture>
+                            <div class="image-error" style="display:none;">
+                                Image non trouvée: sccm/sccm4.webp ou sccm/sccm4.jpg
+                                <br><small>Vérifiez que le fichier existe et que le chemin est correct</small>
+                            </div>
                             <div class="image-caption">📊 Console d'administration SCCM</div>
                         </div>
                         
@@ -539,11 +585,18 @@
                         <h3>Création de l'application</h3>
                     </div>
                     <div class="step-content">
-                        <p>Gestion des application et programmes dans la console SCCM et configurer les propriétés.</p>
+                        <p>Gestion des applications et programmes dans la console SCCM et configurer les propriétés.</p>
                         
                         <div class="image-container">
-                            <img src=""sccm/sccm5.webp" alt="Création d'application SCCM" class="procedure-image">
-                            <div class="image-caption">➕ Selection des application et programmes dans SCCM</div>
+                            <picture>
+                                <source srcset="sccm/sccm5.webp" type="image/webp">
+                                <img src="sccm/sccm5.jpg" alt="Création d'application SCCM" class="procedure-image" onerror="this.style.display='none'; this.parentElement.nextElementSibling.style.display='block';">
+                            </picture>
+                            <div class="image-error" style="display:none;">
+                                Image non trouvée: sccm/sccm5.webp ou sccm/sccm5.jpg
+                                <br><small>Vérifiez que le fichier existe et que le chemin est correct</small>
+                            </div>
+                            <div class="image-caption">➕ Sélection des applications et programmes dans SCCM</div>
                         </div>
                         
                         <div class="mock-console">
@@ -562,11 +615,18 @@
                         <h3>Configuration des paramètres de déploiement</h3>
                     </div>
                     <div class="step-content">
-                        <p>Déploiement</p>
+                        <p>Déploiement de l'image système.</p>
                         
                         <div class="image-container">
-                            <img src="sccm/sccm6.webp" alt="Paramètres de déploiement" class="procedure-image">
-                            <div class="image-caption">⏳ Déploiement</div>
+                            <picture>
+                                <source srcset="sccm/sccm6.webp" type="image/webp">
+                                <img src="sccm/sccm6.jpg" alt="Paramètres de déploiement" class="procedure-image" onerror="this.style.display='none'; this.parentElement.nextElementSibling.style.display='block';">
+                            </picture>
+                            <div class="image-error" style="display:none;">
+                                Image non trouvée: sccm/sccm6.webp ou sccm/sccm6.jpg
+                                <br><small>Vérifiez que le fichier existe et que le chemin est correct</small>
+                            </div>
+                            <div class="image-caption">⏳ Déploiement en cours</div>
                         </div>
                     </div>
                 </div>
@@ -580,7 +640,14 @@
                         <p>Surveiller l'état du déploiement dans la console SCCM.</p>
                         
                         <div class="image-container">
-                            <img src="sccm/sccm7.webp" alt="Surveillance du déploiement" class="procedure-image">
+                            <picture>
+                                <source srcset="sccm/sccm7.webp" type="image/webp">
+                                <img src="sccm/sccm7.jpg" alt="Surveillance du déploiement" class="procedure-image" onerror="this.style.display='none'; this.parentElement.nextElementSibling.style.display='block';">
+                            </picture>
+                            <div class="image-error" style="display:none;">
+                                Image non trouvée: sccm/sccm7.webp ou sccm/sccm7.jpg
+                                <br><small>Vérifiez que le fichier existe et que le chemin est correct</small>
+                            </div>
                             <div class="image-caption">📊 Surveillance du déploiement</div>
                         </div>
                         <div class="highlight">
@@ -596,7 +663,7 @@
             </div>
             
             <div class="info-card">
-                <h3>🔑 Points de contrôle essentiels</h3>
+                <h3>🔒 Points de contrôle essentiels</h3>
                 <div style="margin-top: 12px;">
                     <div style="margin: 8px 0;">✅ <strong>Sources :</strong> Fichiers sources accessibles et complets</div>
                     <div style="margin: 8px 0;">✅ <strong>Paramètres :</strong> Configuration de déploiement correcte</div>
