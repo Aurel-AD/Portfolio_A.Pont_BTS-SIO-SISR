@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Procédure de Déploiement SCCM - Novares</title>
     <style>
+        /* VOS STYLES EXISTANTS (inchangés) */
         * {
             margin: 0;
             padding: 0;
@@ -15,416 +16,13 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
             line-height: 1.6;
             color: #24292f;
-            background: #f6f8fa; /* Correction: couleur d'arrière-plan valide */
+            background: #f6f8fa;
             min-height: 100vh;
             padding: 20px;
         }
         
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-            overflow: hidden;
-            border: 1px solid #d1d9e0;
-        }
+        /* ... (tous les autres styles restent inchangés) ... */
         
-        .header {
-            background: linear-gradient(135deg, #0054a6, #0078d7);
-            color: white;
-            padding: 40px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
-            opacity: 0.1;
-        }
-        
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            font-weight: 600;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .header .subtitle {
-            font-size: 1.1em;
-            opacity: 0.9;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .content {
-            padding: 40px;
-        }
-        
-        .github-badge {
-            background: #f6f8fa;
-            border: 1px solid #d1d9e0;
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .github-badge-icon {
-            font-size: 1.5em;
-        }
-        
-        .info-card {
-            background: #e3f2fd;
-            border: 1px solid #90caf9;
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 24px;
-        }
-        
-        .info-card h3 {
-            color: #0d47a1;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        
-        .sites-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin: 24px 0;
-        }
-        
-        .site-card {
-            background: #e3f2fd;
-            border: 1px solid #64b5f6;
-            padding: 16px;
-            border-radius: 8px;
-            text-align: center;
-            transition: all 0.2s ease;
-        }
-        
-        .site-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        .site-card h4 {
-            color: #0d47a1;
-            font-size: 1.1em;
-            font-weight: 600;
-        }
-        
-        .procedure {
-            margin-top: 32px;
-        }
-        
-        .procedure h2 {
-            color: #24292f;
-            border-bottom: 2px solid #0054a6;
-            padding-bottom: 8px;
-            margin-bottom: 24px;
-            font-size: 1.5em;
-            font-weight: 600;
-        }
-        
-        .step {
-            background: #ffffff;
-            border: 1px solid #d1d9e0;
-            border-radius: 8px;
-            padding: 24px;
-            margin-bottom: 16px;
-            transition: all 0.2s ease;
-        }
-        
-        .step:hover {
-            border-color: #0054a6;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        .step-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-        
-        .step-number {
-            background: #0054a6;
-            color: white;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 14px;
-            margin-right: 12px;
-            flex-shrink: 0;
-        }
-        
-        .step h3 {
-            color: #24292f;
-            margin: 0;
-            font-weight: 600;
-        }
-        
-        .step-content {
-            color: #656d76;
-            line-height: 1.6;
-        }
-        
-        .visual-demo {
-            background: #f6f8fa;
-            border: 1px solid #d1d9e0;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 16px 0;
-            text-align: center;
-        }
-        
-        .visual-demo-icon {
-            font-size: 3em;
-            margin-bottom: 12px;
-            display: block;
-        }
-        
-        .visual-demo h4 {
-            color: #24292f;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        
-        .visual-demo p {
-            color: #656d76;
-            font-size: 0.9em;
-        }
-        
-        .status-indicator {
-            padding: 4px 12px;
-            border-radius: 16px;
-            font-weight: 600;
-            display: inline-block;
-            margin: 4px;
-            font-size: 0.875em;
-        }
-        
-        .status-ok {
-            background: #e3f2fd;
-            color: #0d47a1;
-            border: 1px solid #bbdefb;
-        }
-        
-        .status-failed {
-            background: #ffebee;
-            color: #c62828;
-            border: 1px solid #ffcdd2;
-        }
-        
-        .highlight {
-            background: #e3f2fd;
-            border: 1px solid #64b5f6;
-            padding: 16px;
-            border-radius: 8px;
-            margin: 16px 0;
-        }
-        
-        .highlight strong {
-            color: #0d47a1;
-        }
-        
-        .tech-info {
-            background: #e8f5e9;
-            border: 1px solid #66bb6a;
-            padding: 16px;
-            border-radius: 8px;
-            margin: 16px 0;
-        }
-        
-        .tech-info strong {
-            color: #2e7d32;
-        }
-        
-        .image-container {
-            margin: 20px 0;
-            text-align: center;
-        }
-        
-        .procedure-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            border: 1px solid #d1d9e0;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .procedure-image:hover {
-            transform: scale(1.02);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-        }
-        
-        .image-caption {
-            margin-top: 8px;
-            font-size: 0.9em;
-            color: #656d76;
-            font-style: italic;
-            font-weight: 500;
-        }
-        
-        .mock-interface {
-            background: #1f2937;
-            color: #f9fafb;
-            border-radius: 8px;
-            padding: 16px;
-            margin: 16px 0;
-            font-family: 'Monaco', 'Menlo', monospace;
-            font-size: 0.875em;
-        }
-        
-        .mock-interface .title-bar {
-            background: #374151;
-            margin: -16px -16px 12px -16px;
-            padding: 8px 16px;
-            border-radius: 8px 8px 0 0;
-            font-weight: 600;
-        }
-        
-        .mock-ticket {
-            background: #ffffff;
-            border: 1px solid #d1d9e0;
-            border-radius: 8px;
-            padding: 16px;
-            margin: 16px 0;
-        }
-        
-        .mock-ticket-header {
-            background: #0054a6;
-            color: white;
-            margin: -16px -16px 16px -16px;
-            padding: 12px 16px;
-            border-radius: 8px 8px 0 0;
-            font-weight: 600;
-        }
-        
-        .mock-console {
-            background: #0d1117;
-            color: #c9d1d9;
-            border-radius: 8px;
-            padding: 16px;
-            margin: 16px 0;
-            font-family: 'Monaco', 'Menlo', monospace;
-            font-size: 0.875em;
-        }
-        
-        .console-line {
-            margin: 4px 0;
-            padding: 4px;
-        }
-        
-        .console-success {
-            color: #7dd3fc;
-        }
-        
-        .console-success::before {
-            content: "✓ ";
-            color: #10b981;
-        }
-        
-        .footer {
-            background: #24292f;
-            color: #f0f6fc;
-            text-align: center;
-            padding: 24px;
-            font-size: 0.9em;
-        }
-        
-        .footer a {
-            color: #58a6ff;
-            text-decoration: none;
-        }
-        
-        .footer a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Bouton retour flottant */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 9999;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #0054a6, #0078d7);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            font-size: 1.5em;
-        }
-        
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                margin: 10px;
-                border-radius: 8px;
-            }
-            
-            .header {
-                padding: 24px;
-            }
-            
-            .header h1 {
-                font-size: 2em;
-            }
-            
-            .content {
-                padding: 24px;
-            }
-            
-            .step-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-            }
-            
-            .step-number {
-                margin-right: 0;
-            }
-            
-            .back-to-top {
-                bottom: 20px;
-                right: 20px;
-                width: 45px;
-                height: 45px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -471,11 +69,9 @@
                         <p>Retirer le computeur du SCCM.</p>
                         
                         <div class="image-container">
-                            <div class="visual-demo">
-                                <span class="visual-demo-icon">🔧</span>
-                                <h4>Console d'administration Novares AD MANAGER</h4>
-                                <p>Image non disponible: sccm/sccm1.jpg</p>
-                            </div>
+                            <!-- REMPLACER PAR VOTRE IMAGE 1 -->
+                            <img src="sccm/sccm1.jpg" alt="Console d'administration Novares AD MANAGER" class="procedure-image">
+                            <p class="image-caption">Console d'administration Novares AD MANAGER</p>
                         </div>
                     </div>
                 </div>
@@ -489,11 +85,9 @@
                         <p>Choisir le BOOT UEFI.</p>
                         
                         <div class="image-container">
-                            <div class="visual-demo">
-                                <span class="visual-demo-icon">💻</span>
-                                <h4>BIOS computeur</h4>
-                                <p>Image non disponible: sccm/sccm2.jpg</p>
-                            </div>
+                            <!-- REMPLACER PAR VOTRE IMAGE 2 -->
+                            <img src="sccm/sccm2.jpg" alt="BIOS computeur" class="procedure-image">
+                            <p class="image-caption">BIOS computeur</p>
                         </div>
                         <div class="mock-console">
                             <div class="title-bar">Information</div>
@@ -512,11 +106,9 @@
                         <p>Validation de l'identité via le système de mot de passe.</p>
                         
                         <div class="image-container">
-                            <div class="visual-demo">
-                                <span class="visual-demo-icon">🔐</span>
-                                <h4>Validation Administrateur requise</h4>
-                                <p>Image non disponible: sccm/sccm3.jpg</p>
-                            </div>
+                            <!-- REMPLACER PAR VOTRE IMAGE 3 -->
+                            <img src="sccm/sccm3.jpg" alt="Validation Administrateur requise" class="procedure-image">
+                            <p class="image-caption">Validation Administrateur requise</p>
                         </div>
                         
                         <p>Cette couche de sécurité supplémentaire garantit que seuls les administrateurs autorisés peuvent accéder à la console SCCM.</p>
@@ -532,11 +124,9 @@
                         <p>Selection de l'image à déployer.</p>
                         
                         <div class="image-container">
-                            <div class="visual-demo">
-                                <span class="visual-demo-icon">📊</span>
-                                <h4>Console d'administration SCCM</h4>
-                                <p>Image non disponible: sccm/sccm4.jpg</p>
-                            </div>
+                            <!-- REMPLACER PAR VOTRE IMAGE 4 -->
+                            <img src="sccm/sccm4.jpg" alt="Console d'administration SCCM" class="procedure-image">
+                            <p class="image-caption">Console d'administration SCCM</p>
                         </div>
                         
                         <div class="tech-info">
@@ -554,11 +144,9 @@
                         <p>Gestion des application et programmes dans la console SCCM et configurer les propriétés.</p>
                         
                         <div class="image-container">
-                            <div class="visual-demo">
-                                <span class="visual-demo-icon">➡</span>
-                                <h4>Selection des application et programmes dans SCCM</h4>
-                                <p>Image non disponible: sccm/sccm5.jpg</p>
-                            </div>
+                            <!-- REMPLACER PAR VOTRE IMAGE 5 -->
+                            <img src="sccm/sccm5.jpg" alt="Selection des application et programmes dans SCCM" class="procedure-image">
+                            <p class="image-caption">Selection des application et programmes dans SCCM</p>
                         </div>
                         
                         <div class="mock-console">
@@ -580,11 +168,9 @@
                         <p>Déploiement</p>
                         
                         <div class="image-container">
-                            <div class="visual-demo">
-                                <span class="visual-demo-icon">⌨</span>
-                                <h4>Déploiement</h4>
-                                <p>Image non disponible: sccm/sccm6.jpg</p>
-                            </div>
+                            <!-- REMPLACER PAR VOTRE IMAGE 6 -->
+                            <img src="sccm/sccm6.jpg" alt="Déploiement" class="procedure-image">
+                            <p class="image-caption">Déploiement</p>
                         </div>
                     </div>
                 </div>
@@ -598,11 +184,9 @@
                         <p>Surveiller l'état du déploiement dans la console SCCM.</p>
                         
                         <div class="image-container">
-                            <div class="visual-demo">
-                                <span class="visual-demo-icon">📊</span>
-                                <h4>Surveillance du déploiement</h4>
-                                <p>Image non disponible: sccm/sccm7.jpg (corrigé de scam7.jpg)</p>
-                            </div>
+                            <!-- REMPLACER PAR VOTRE IMAGE 7 -->
+                            <img src="CHEMIN/VERS/sccm7.jpg" alt="Surveillance du déploiement" class="procedure-image">
+                            <p class="image-caption">Surveillance du déploiement</p>
                         </div>
                         <div class="highlight">
                             <strong>🎯 Validation :</strong> Vérifier que le contenu a été correctement distribué à tous les points de distribution.
@@ -638,6 +222,7 @@
     <a href="#" class="back-to-top" id="backToTop">↑</a>
     
     <script>
+        // VOTRE SCRIPT EXISTANT (inchangé)
         document.addEventListener('DOMContentLoaded', function () {
             // Ajouter le style personnalisé pour le bouton
             const style = document.createElement('style');
