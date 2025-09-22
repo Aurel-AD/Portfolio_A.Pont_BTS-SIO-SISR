@@ -282,6 +282,34 @@
             font-weight: 500;
         }
         
+        .image-placeholder {
+            background: linear-gradient(135deg, #f0f4f8, #e2e8f0);
+            border: 2px dashed #94a3b8;
+            border-radius: 8px;
+            padding: 40px;
+            margin: 16px 0;
+            text-align: center;
+            color: #64748b;
+            font-weight: 500;
+        }
+        
+        .image-placeholder-icon {
+            font-size: 3em;
+            margin-bottom: 12px;
+            display: block;
+            opacity: 0.6;
+        }
+        
+        .image-placeholder .path-info {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin: 8px 0;
+            font-family: monospace;
+            font-size: 0.85em;
+            color: #475569;
+        }
+        
         .mock-interface {
             background: #1f2937;
             color: #f9fafb;
@@ -470,9 +498,11 @@
                     <div class="step-content">
                         <p>Retirer le computeur du SCCM.</p>
                         
-                        <div class="image-container">
-                            <img src="sccm/sccm1.jpg" alt="Console d'administration SCCM" class="procedure-image">
-                            <div class="image-caption">🔧 Console d'administration Novares AD MANAGER</div>
+                        <div class="image-placeholder">
+                            <span class="image-placeholder-icon">🔧</span>
+                            <h4>Console d'administration Novares AD MANAGER</h4>
+                            <div class="path-info">Chemin original: sccm/sccm1.jpg</div>
+                            <p>Interface de gestion SCCM pour la suppression des clients</p>
                         </div>
                     </div>
                 </div>
@@ -480,15 +510,18 @@
                 <div class="step">
                     <div class="step-header">
                         <span class="step-number">2</span>
-                        <h3>Préparation du déploiement</h3>
+                        <h3>Configuration BIOS</h3>
                     </div>
                     <div class="step-content">
                         <p>Choisir le BOOT UEFI.</p>
                         
-                        <div class="image-container">
-                            <img src="sccm/sccm2.jpg" alt="Console d'administration SCCM" class="procedure-image">
-                            <div class="image-caption">💻 BIOS computeur</div>
+                        <div class="image-placeholder">
+                            <span class="image-placeholder-icon">💻</span>
+                            <h4>BIOS computeur - Configuration de démarrage</h4>
+                            <div class="path-info">Chemin original: sccm/sccm2.jpg</div>
+                            <p>Interface BIOS/UEFI avec options de démarrage réseau</p>
                         </div>
+                        
                         <div class="mock-console">
                             <div class="title-bar">Information</div>
                             <div class="console-line console-success">Onboard NIC: <strong>câble réseau</strong></div>
@@ -505,9 +538,11 @@
                     <div class="step-content">
                         <p>Validation de l'identité via le système de mot de passe.</p>
                         
-                        <div class="image-container">
-                            <img src="sccm/sccm3.jpg" alt="Console d'administration SCCM" class="procedure-image">
-                            <div class="image-caption">🔐 Validation Administrateur requise</div>
+                        <div class="image-placeholder">
+                            <span class="image-placeholder-icon">🔐</span>
+                            <h4>Interface d'authentification SCCM</h4>
+                            <div class="path-info">Chemin original: sccm/sccm3.jpg</div>
+                            <p>Écran de connexion administrateur avec champs utilisateur/mot de passe</p>
                         </div>
                         
                         <p>Cette couche de sécurité supplémentaire garantit que seuls les administrateurs autorisés peuvent accéder à la console SCCM.</p>
@@ -517,14 +552,16 @@
                 <div class="step">
                     <div class="step-header">
                         <span class="step-number">4</span>
-                        <h3>Préparation du déploiement</h3>
+                        <h3>Sélection de l'image</h3>
                     </div>
                     <div class="step-content">
-                        <p>Selection de l'image à déployer.</p>
+                        <p>Sélection de l'image à déployer.</p>
                         
-                        <div class="image-container">
-                            <img src="sccm/sccm4.jpg" alt="Console d'administration SCCM" class="procedure-image">
-                            <div class="image-caption">📊 Console d'administration SCCM</div>
+                        <div class="image-placeholder">
+                            <span class="image-placeholder-icon">📊</span>
+                            <h4>Console SCCM - Sélection d'images</h4>
+                            <div class="path-info">Chemin original: sccm/sccm4.jpg</div>
+                            <p>Interface de sélection des images système disponibles</p>
                         </div>
                         
                         <div class="tech-info">
@@ -539,11 +576,13 @@
                         <h3>Création de l'application</h3>
                     </div>
                     <div class="step-content">
-                        <p>Gestion des application et programmes dans la console SCCM et configurer les propriétés.</p>
+                        <p>Gestion des applications et programmes dans la console SCCM et configuration des propriétés.</p>
                         
-                        <div class="image-container">
-                            <img src="sccm/sccm5.jpg" alt="Création d'application SCCM" class="procedure-image">
-                            <div class="image-caption">➡ Selection des application et programmes dans SCCM</div>
+                        <div class="image-placeholder">
+                            <span class="image-placeholder-icon">⚡</span>
+                            <h4>SCCM - Gestion des applications</h4>
+                            <div class="path-info">Chemin original: sccm/sccm5.jpg</div>
+                            <p>Interface de configuration des applications avec paramètres utilisateur</p>
                         </div>
                         
                         <div class="mock-console">
@@ -562,11 +601,13 @@
                         <h3>Configuration des paramètres de déploiement</h3>
                     </div>
                     <div class="step-content">
-                        <p>Déploiement</p>
+                        <p>Déploiement de la configuration.</p>
                         
-                        <div class="image-container">
-                            <img src="sccm/sccm6.jpg" alt="Paramètres de déploiement" class="procedure-image">
-                            <div class="image-caption">⌨ Déploiement</div>
+                        <div class="image-placeholder">
+                            <span class="image-placeholder-icon">⌨️</span>
+                            <h4>SCCM - Interface de déploiement</h4>
+                            <div class="path-info">Chemin original: sccm/sccm6.jpg</div>
+                            <p>Console de déploiement avec paramètres finaux</p>
                         </div>
                     </div>
                 </div>
@@ -579,10 +620,13 @@
                     <div class="step-content">
                         <p>Surveiller l'état du déploiement dans la console SCCM.</p>
                         
-                        <div class="image-container">
-                            <img src="scam7.jpg" alt="Surveillance du déploiement" class="procedure-image">
-                            <div class="image-caption">📊 Surveillance du déploiement</div>
+                        <div class="image-placeholder">
+                            <span class="image-placeholder-icon">📊</span>
+                            <h4>SCCM - Surveillance du déploiement</h4>
+                            <div class="path-info">Chemin original: scam7.jpg (Erreur de nom détectée)</div>
+                            <p>Tableau de bord de surveillance avec statistiques de déploiement</p>
                         </div>
+                        
                         <div class="highlight">
                             <strong>🎯 Validation :</strong> Vérifier que le contenu a été correctement distribué à tous les points de distribution.
                         </div>
@@ -596,13 +640,24 @@
             </div>
             
             <div class="info-card">
-                <h3>🔍 Points de contrôle essentiels</h3>
+                <h3>📝 Points de contrôle essentiels</h3>
                 <div style="margin-top: 12px;">
                     <div style="margin: 8px 0;">✓ <strong>Sources :</strong> Fichiers sources accessibles et complets</div>
                     <div style="margin: 8px 0;">✓ <strong>Paramètres :</strong> Configuration de déploiement correcte</div>
                     <div style="margin: 8px 0;">✓ <strong>Cibles :</strong> Collections appropriées sélectionnées</div>
                     <div style="margin: 8px 0;">✓ <strong>Distribution :</strong> Contenu distribué sur tous les points de distribution</div>
                     <div style="margin: 8px 0;">✓ <strong>Surveillance :</strong> État du déploiement surveillé et problèmes résolus</div>
+                </div>
+            </div>
+
+            <div class="tech-info">
+                <h3>🔧 Instructions pour restaurer les images</h3>
+                <p><strong>Pour restaurer les images originales :</strong></p>
+                <div style="margin-top: 12px;">
+                    <div style="margin: 8px 0;">1. Placez les images dans le dossier <code>sccm/</code> à côté du fichier HTML</div>
+                    <div style="margin: 8px 0;">2. Vérifiez que les noms correspondent : sccm1.jpg, sccm2.jpg, sccm3.jpg, sccm4.jpg, sccm5.jpg, sccm6.jpg</div>
+                    <div style="margin: 8px 0;">3. Corrigez le nom de la dernière image : <code>scam7.jpg</code> → <code>sccm7.jpg</code></div>
+                    <div style="margin: 8px 0;">4. Les placeholders seront automatiquement remplacés par les vraies images</div>
                 </div>
             </div>
         </div>
@@ -690,6 +745,47 @@
                     btn.classList.remove('show');
                 }
             });
+
+            // Fonction pour vérifier et remplacer les placeholders par de vraies images
+            function checkAndReplaceImages() {
+                const placeholders = document.querySelectorAll('.image-placeholder');
+                const imagePaths = [
+                    { placeholder: 0, path: 'sccm/sccm1.jpg', alt: 'Console d\'administration Novares AD MANAGER' },
+                    { placeholder: 1, path: 'sccm/sccm2.jpg', alt: 'BIOS computeur' },
+                    { placeholder: 2, path: 'sccm/sccm3.jpg', alt: 'Interface d\'authentification SCCM' },
+                    { placeholder: 3, path: 'sccm/sccm4.jpg', alt: 'Console SCCM - Sélection d\'images' },
+                    { placeholder: 4, path: 'sccm/sccm5.jpg', alt: 'SCCM - Gestion des applications' },
+                    { placeholder: 5, path: 'sccm/sccm6.jpg', alt: 'SCCM - Interface de déploiement' },
+                    { placeholder: 6, path: 'sccm/sccm7.jpg', alt: 'SCCM - Surveillance du déploiement' }
+                ];
+
+                imagePaths.forEach((imageInfo, index) => {
+                    if (placeholders[index]) {
+                        const img = new Image();
+                        img.onload = function() {
+                            // L'image existe, remplacer le placeholder
+                            const container = document.createElement('div');
+                            container.className = 'image-container';
+                            container.innerHTML = `
+                                <img src="${imageInfo.path}" alt="${imageInfo.alt}" class="procedure-image">
+                                <div class="image-caption">🔧 ${imageInfo.alt}</div>
+                            `;
+                            placeholders[index].parentNode.replaceChild(container, placeholders[index]);
+                        };
+                        img.onerror = function() {
+                            // L'image n'existe pas, garder le placeholder mais ajouter un message
+                            const warningDiv = document.createElement('div');
+                            warningDiv.style.cssText = 'background: #fef3cd; border: 1px solid #fecaca; color: #92400e; padding: 8px 12px; border-radius: 6px; margin-top: 8px; font-size: 0.85em;';
+                            warningDiv.innerHTML = `⚠️ Image non trouvée: ${imageInfo.path}`;
+                            placeholders[index].appendChild(warningDiv);
+                        };
+                        img.src = imageInfo.path;
+                    }
+                });
+            }
+
+            // Vérifier les images au chargement de la page
+            setTimeout(checkAndReplaceImages, 1000);
         });
     </script>
 </body>
