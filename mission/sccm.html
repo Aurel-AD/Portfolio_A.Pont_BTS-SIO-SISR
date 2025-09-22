@@ -671,21 +671,21 @@
             if (!btn) return;
 
             // Changer le texte
-            btn.textContent = 'Retour en haut';
+            btn.textContent = 'Retour';
 
-                // Rediriger vers la page d'accueil
-    btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        window.location.href = 'experience_pro.html';
-    });
+            // Rediriger au clic
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                window.location.href = 'experiences_pro.html';
+            });
 
-    // Afficher le bouton après défilement
-    window.addEventListener('scroll', function () {
-        if (window.scrollY > 300) {
-            btn.classList.add('show');
-        } else {
-            btn.classList.remove('show');
-        }
+            // Afficher le bouton après défilement
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 300) {
+                    btn.classList.add('show');
+                } else {
+                    btn.classList.remove('show');
+                }
             });
         });
     </script>
