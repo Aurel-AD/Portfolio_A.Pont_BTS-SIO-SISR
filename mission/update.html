@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mise à jour Matériel et Logiciels après SCCM - Novares</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #24292f;
+            background: #f6f8fa;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            overflow: hidden;
+            border: 1px solid #d1d9e0;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            opacity: 0.1;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .github-badge {
+            background: #f6f8fa;
+            border: 1px solid #d1d9e0;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .github-badge-icon {
+            font-size: 1.5em;
+        }
+        
+        .info-card {
+            background: #dbeafe;
+            border: 1px solid #93c5fd;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .info-card h3 {
+            color: #1e40af;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .sites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+        
+        .site-card {
+            background: #eff6ff;
+            border: 1px solid #3b82f6;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        
+        .site-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .site-card h4 {
+            color: #1e40af;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        
+        .procedure {
+            margin-top: 32px;
+        }
+        
+        .procedure h2 {
+            color: #24292f;
+            border-bottom: 2px solid #1e40af;
+            padding-bottom: 8px;
+            margin-bottom: 24px;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+        
+        .step {
+            background: #ffffff;
+            border: 1px solid #d1d9e0;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 16px;
+            transition: all 0.2s ease;
+        }
+        
+        .step:hover {
+            border-color: #1e40af;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .step-number {
+            background: #1e40af;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        .step h3 {
+            color: #24292f;
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .step-content {
+            color: #656d76;
+            line-height: 1.6;
+        }
+        
+        .visual-demo {
+            background: #f6f8fa;
+            border: 1px solid #d1d9e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 16px 0;
+            text-align: center;
+        }
+        
+        .visual-demo-icon {
+            font-size: 3em;
+            margin-bottom: 12px;
+            display: block;
+        }
+        
+        .visual-demo h4 {
+            color: #24292f;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .visual-demo p {
+            color: #656d76;
+            font-size: 0.9em;
+        }
+        
+        .status-indicator {
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 4px;
+            font-size: 0.875em;
+        }
+        
+        .status-ok {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+        
+        .status-failed {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+        
+        .highlight {
+            background: #eff6ff;
+            border: 1px solid #3b82f6;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+        
+        .highlight strong {
+            color: #1e40af;
+        }
+        
+        .tech-info {
+            background: #f0fdf4;
+            border: 1px solid #4ade80;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+        
+        .tech-info strong {
+            color: #166534;
+        }
+        
+        .image-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .procedure-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: 1px solid #d1d9e0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .procedure-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+        
+        .image-caption {
+            margin-top: 8px;
+            font-size: 0.9em;
+            color: #656d76;
+            font-style: italic;
+            font-weight: 500;
+        }
+        
+        .mock-interface {
+            background: #1f2937;
+            color: #f9fafb;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.875em;
+        }
+        
+        .mock-interface .title-bar {
+            background: #374151;
+            margin: -16px -16px 12px -16px;
+            padding: 8px 16px;
+            border-radius: 8px 8px 0 0;
+            font-weight: 600;
+        }
+        
+        .mock-ticket {
+            background: #ffffff;
+            border: 1px solid #d1d9e0;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        
+        .mock-ticket-header {
+            background: #1e40af;
+            color: white;
+            margin: -16px -16px 16px -16px;
+            padding: 12px 16px;
+            border-radius: 8px 8px 0 0;
+            font-weight: 600;
+        }
+        
+        .footer {
+            background: #24292f;
+            color: #f0f6fc;
+            text-align: center;
+            padding: 24px;
+            font-size: 0.9em;
+        }
+        
+        .footer a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Bouton retour flottant */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            font-size: 1.5em;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 8px;
+            }
+            
+            .header {
+                padding: 24px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 24px;
+            }
+            
+            .step-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            
+            .step-number {
+                margin-right: 0;
+            }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔄 Mise à jour Matériel & Logiciels après SCCM</h1>
+            <div class="subtitle">Procédure Novares - Mises à jour Dell et Windows</div>
+        </div>
+        
+        <div class="content">
+            <div class="info-card">
+                <h3>📋 Contexte de la procédure</h3>
+                <p>Après un déploiement SCCM, cette procédure permet de vérifier et réaliser les mises à jour matérielles (Dell) et logicielles (Windows Update) avec les redémarrages nécessaires.</p>
+            </div>
+            
+            <div class="sites-grid">
+                <div class="site-card">
+                    <h4>💻 Mises à jour Dell</h4>
+                    <p>Pilotes, firmware, BIOS</p>
+                </div>
+                <div class="site-card">
+                    <h4>🪟 Windows Update</h4>
+                    <p>Mises à jour de sécurité</p>
+                </div>
+                <div class="site-card">
+                    <h4>🔄 Redémarrages</h4>
+                    <p>Validation post-installation</p>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                <strong>🎯 Déclenchement :</strong> Cette procédure est initiée après un déploiement SCCM pour garantir que tous les postes sont à jour matériellement et logiciellement.
+            </div>
+            
+            <div class="procedure">
+                <h2>⚙️ Procédure de mise à jour post-SCCM</h2>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <span class="step-number">1</span>
+                        <h3>Vérification des mises à jour Dell disponibles</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Ouvrir l'application Dell Command Update ou accéder au support Dell pour vérifier les mises à jour disponibles.</p>
+                        
+                        <div class="image-container">
+                            <img src="media/sccm1.jpg" alt="Vérification des mises à jour Dell" class="procedure-image">
+                            <div class="image-caption">🔍 Vérification des mises à jour Dell disponibles</div>
+                        </div>
+                        
+                        <div class="tech-info">
+                            <strong>💡 Information :</strong> Les mises à jour Dell incluent les pilotes, le firmware et le BIOS pour optimiser les performances et la sécurité.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <span class="step-number">2</span>
+                        <h3>Installation des mises à jour Dell</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Sélectionner et installer toutes les mises à jour Dell critiques recommandées.</p>
+                        
+                        <div class="image-container">
+                            <img src="media/sccm2.jpg" alt="Installation des mises à jour Dell" class="procedure-image">
+                            <div class="image-caption">⚙️ Installation des mises à jour Dell</div>
+                        </div>
+                        
+                        <div class="highlight">
+                            <strong>⚠️ Important :</strong> Certaines mises à jour matérielles nécessitent un redémarrage. Planifier l'installation en conséquence.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <span class="step-number">3</span>
+                        <h3>Vérification des Windows Update</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Ouvrir les paramètres Windows et vérifier les mises à jour disponibles dans Windows Update.</p>
+                        
+                        <div class="image-container">
+                            <img src="media/sccm3.jpg" alt="Vérification des Windows Update" class="procedure-image">
+                            <div class="image-caption">🪟 Vérification des Windows Update disponibles</div>
+                        </div>
+                        
+                        <div class="tech-info">
+                            <strong>🔐 Sécurité :</strong> Les mises à jour Windows sont essentielles pour la sécurité et la stabilité du système.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <span class="step-number">4</span>
+                        <h3>Installation des Windows Update</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Télécharger et installer toutes les mises à jour Windows disponibles.</p>
+                        
+                        <div class="image-container">
+                            <img src="media/sccm4.jpg" alt="Installation des Windows Update" class="procedure-image">
+                            <div class="image-caption">📥 Installation des mises à jour Windows</div>
+                        </div>
+                        
+                        <div class="highlight">
+                            <strong>🔄 Redémarrage :</strong> La plupart des mises à jour Windows nécessitent un redémarrage pour être finalisées.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-header">
+                        <span class="step-number">5</span>
+                        <h3>Redémarrage et validation finale</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Effectuer le redémarrage final et vérifier que toutes les mises à jour ont été correctement appliquées.</p>
+                        
+                        <div class="image-container">
+                            <img src="media/sccm5.jpg" alt="Redémarrage et validation" class="procedure-image">
+                            <div class="image-caption">✅ Redémarrage et validation finale</div>
+                        </div>
+                        
+                        <div style="margin: 16px 0;">
+                            <h4 style="margin-bottom: 8px;">Vérifications post-redémarrage :</h4>
+                            <span class="status-ok">✅ Tous les périphériques fonctionnent correctement</span><br>
+                            <span class="status-ok">✅ Aucune erreur dans le Gestionnaire de périphériques</span><br>
+                            <span class="status-ok">✅ Windows Update indique "À jour"</span><br>
+                            <span class="status-ok">✅ Dell Command Update ne propose plus de mises à jour critiques</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <h3>🔑 Points de contrôle essentiels</h3>
+                <div style="margin-top: 12px;">
+                    <div style="margin: 8px 0;">✅ <strong>Mises à jour Dell :</strong> Pilotes, firmware et BIOS à jour</div>
+                    <div style="margin: 8px 0;">✅ <strong>Windows Update :</strong> Toutes les mises à jour de sécurité installées</div>
+                    <div style="margin: 8px 0;">✅ <strong>Redémarrages :</strong> Effectués après chaque série de mises à jour</div>
+                    <div style="margin: 8px 0;">✅ <strong>Validation :</strong> Fonctionnement normal post-redémarrage</div>
+                    <div style="margin: 8px 0;">✅ <strong>Documentation :</strong> Mises à jour enregistrées pour traçabilité</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Documentation technique Novares - Mise à jour post-SCCM</p>
+            <p>© 2024 Novares Group. Tous droits réservés.</p>
+        </div>
+    </div>
+    
+    <!-- Bouton retour vers le haut -->
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Ajouter le style personnalisé pour le bouton
+            const style = document.createElement('style');
+            style.textContent = `
+                #backToTop {
+                    position: fixed !important;
+                    bottom: 30px !important;
+                    right: 30px !important;
+                    z-index: 9999 !important;
+                    width: auto !important;
+                    height: auto !important;
+                    padding: 12px 18px !important;
+                    background: linear-gradient(135deg, #1e40af, #3b82f6) !important;
+                    color: white !important;
+                    text-align: center !important;
+                    text-decoration: none !important;
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                    font-size: 1rem !important;
+                    font-weight: 600 !important;
+                    border-radius: 24px !important;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: all 0.3s ease !important;
+                    border: none;
+                    cursor: pointer;
+                }
+
+                #backToTop.show {
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                }
+
+                #backToTop:hover {
+                    transform: translateY(-3px) !important;
+                    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3) !important;
+                }
+
+                @media (max-width: 768px) {
+                    #backToTop {
+                        bottom: 20px !important;
+                        right: 20px !important;
+                        padding: 10px 16px !important;
+                        font-size: 0.95rem !important;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Cibler le bouton
+            const btn = document.getElementById('backToTop');
+            if (!btn) return;
+
+            // Changer le texte
+            btn.textContent = 'Retour';
+
+            // Rediriger au clic
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                window.location.href = 'experiences_pro.html';
+            });
+
+            // Afficher le bouton après défilement
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 300) {
+                    btn.classList.add('show');
+                } else {
+                    btn.classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
