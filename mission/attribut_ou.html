@@ -470,7 +470,7 @@
                         <p>Analyser le ticket reçu et identifier les informations nécessaires pour l'intégration.</p>
                         
                         <div class="image-container">
-                            <img src="ou_ticket.jpg" alt="Ticket Freshdesk pour OU" class="procedure-image">
+                            <img src="../ou/ou1.png" alt="Ticket Freshdesk pour OU" class="procedure-image">
                             <div class="image-caption">📧 Exemple de ticket Freshdesk reçu</div>
                         </div>
                         
@@ -499,7 +499,7 @@
                         <p>Rechercher l'utilisateur dans Active Directory pour vérifier son existence et ses paramètres actuels.</p>
                         
                         <div class="image-container">
-                            <img src="ou_ad_search.jpg" alt="Recherche utilisateur AD" class="procedure-image">
+                            <img src="../ou/ou3.png" alt="Recherche utilisateur AD" class="procedure-image">
                             <div class="image-caption">🔍 Recherche utilisateur dans Active Directory</div>
                         </div>
                         
@@ -526,7 +526,7 @@
                         <p>Effectuer le déplacement de l'utilisateur vers l'OU de destination spécifiée dans le ticket.</p>
                         
                         <div class="image-container">
-                            <img src="ou_move_user.jpg" alt="Déplacement utilisateur OU" class="procedure-image">
+                            <img src="../ou/ou2.png" alt="Déplacement utilisateur OU" class="procedure-image">
                             <div class="image-caption">🔄 Déplacement de l'utilisateur vers la nouvelle OU</div>
                         </div>
                         
@@ -553,7 +553,7 @@
                         <p>Confirmer que l'utilisateur a bien été déplacé et que tous ses attributs sont corrects.</p>
                         
                         <div class="image-container">
-                            <img src="ou_verification.jpg" alt="Vérification déplacement OU" class="procedure-image">
+                            <img src="../ou/ou1.png4" alt="Vérification déplacement OU" class="procedure-image">
                             <div class="image-caption">✅ Vérification du déplacement réussi</div>
                         </div>
                         
@@ -578,14 +578,7 @@
                     </div>
                     <div class="step-content">
                         <p>Vérifier que les stratégies de groupe (GPO) appropriées sont appliquées à l'utilisateur dans sa nouvelle OU.</p>
-                        
-                        <div class="mock-ad-console">
-                            <div class="title-bar">GPMC - Vérification des stratégies</div>
-                            <div class="ad-line ad-success">GPO "Production-Security-Policy" : Appliquée</div>
-                            <div class="ad-line ad-success">GPO "Lens-Site-Settings" : Appliquée</div>
-                            <div class="ad-line ad-success">GPO "Default Domain Policy" : Héritée</div>
-                        </div>
-                        
+                                    
                         <div class="tech-info">
                             <strong>🛡️ Sécurité :</strong> Les stratégies de groupe définissent les permissions et restrictions de l'utilisateur.
                         </div>
@@ -600,9 +593,14 @@
                     <div class="step-content">
                         <p>Informer le demandeur de la réalisation de la demande et clôturer le ticket Freshdesk.</p>
                         
+                        <div class="image-container">
+                            <img src="../ou/ou1.png5" alt="Réponce au collaborateur OU" class="procedure-image">
+                            <div class="image-caption">✅ Réponse et fermeture du ticket</div>
+                        </div>
+                        
                         <div class="mock-ticket">
                             <div class="mock-ticket-header">
-                                ✅ Ticket #FR-2024-0856 - RÉSOLU
+                                ✅ Ticket #SR-309998 - RÉSOLU
                             </div>
                             <p><strong>Statut :</strong> Résolu</p>
                             <p><strong>Action réalisée :</strong> Utilisateur Jean Martin déplacé vers OU=Production,OU=Lens</p>
